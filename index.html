@@ -26,7 +26,7 @@
 <!-- <meta name="twitter:image" content="https://pomefy.io/og-image.jpg"> -->
 
 <!-- Favicon (inline SVG — replace with a real .ico or .png when you have brand assets) -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23DE1B3C'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='18' fill='white'%3EP%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23DE1B3C' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='3' r='2' fill='%23DE1B3C'/%3E%3C/svg%3E">
 
 <link rel="canonical" href="https://pomefy.io">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -378,23 +378,11 @@
     transition: transform .25s ease, box-shadow .25s ease;
   }
   .service-card:hover{ transform: translateY(-4px); box-shadow: 0 14px 30px rgba(27,22,19,.1); }
-  .service-card:nth-child(2){ border-left-color: #C44B3F; }
-  .service-card:nth-child(3){ border-left-color: #D4854A; }
-  .service-card:nth-child(4){ border-left-color: #8C6B4A; }
-  .service-card:nth-child(5){ border-left-color: #5C6B5E; }
-  .service-card:nth-child(6){ border-left-color: #4A5565; }
-  .service-card:nth-child(7){ border-left-color: #7A5A5A; }
   .service-icon{
     width: 44px; height:44px; border-radius: 10px;
     display:flex; align-items:center; justify-content:center; margin-bottom: 18px;
     background: var(--red); color: var(--white);
   }
-  .service-card:nth-child(2) .service-icon{ background: #C44B3F; }
-  .service-card:nth-child(3) .service-icon{ background: #D4854A; }
-  .service-card:nth-child(4) .service-icon{ background: #8C6B4A; }
-  .service-card:nth-child(5) .service-icon{ background: #5C6B5E; }
-  .service-card:nth-child(6) .service-icon{ background: #4A5565; }
-  .service-card:nth-child(7) .service-icon{ background: #7A5A5A; }
   .service-icon svg{ width:20px; height:20px; }
   .service-card h3{ font-size: 17px; font-weight:700; margin-bottom:8px; }
   .service-card p{ font-size: 13.5px; color: var(--grey); line-height:1.55; }
@@ -859,10 +847,6 @@
               <div class="label">Saudi Arabia</div>
               <a class="num" href="tel:+9665566153956">+966 556 615 3956</a>
             </div>
-            <div class="region">
-              <div class="label">UAE</div>
-              <a class="num" href="tel:+971553846885">+971 55 384 6885</a>
-            </div>
           </div>
         </div>
       </div>
@@ -1038,7 +1022,7 @@
   //
   // Alternatives: HubSpot, Mailchimp, Netlify Forms, or your own API.
   // ──────────────────────────────────────────────────────────────────
-  const FORM_ENDPOINT = 'https://formspree.io/f/xeajzjgl'; // ← replace this
+  const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'; // ← replace this
 
   const growthForm = document.getElementById('growthForm');
   const formSuccess = document.getElementById('formSuccess');
