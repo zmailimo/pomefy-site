@@ -8,7 +8,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
   :root{
     --ink:#12151A;
@@ -505,96 +504,6 @@ function bandFor(score) {
 /* ---------------- SUBMIT + RESULTS ---------------- */
 let chartInstance = null;
 
-/* ====================================================================
-   EMAIL CONFIGURATION — EmailJS (free, client-side, no backend needed)
-   ====================================================================
-   Setup takes ~5 minutes:
-
-   1. Go to https://www.emailjs.com and create a free account.
-
-   2. CONNECT YOUR EMAIL SERVICE
-      Dashboard → Email Services → Add New Service → choose your provider
-      (Gmail, Outlook, etc.) and follow the OAuth connection steps.
-      Copy the Service ID (e.g. "service_abc123") → paste below as EMAILJS_SERVICE_ID.
-
-   3. CREATE AN EMAIL TEMPLATE
-      Dashboard → Email Templates → Create New Template.
-      Set the "To Email" field to:  mo.zmaili@pomefy.io
-      Set the Subject to:          Revenue Equilibrium Snapshot — {{company}} ({{name}})
-      Set the Body to (HTML):
-
-        <h2>New Snapshot Submission</h2>
-        <p><strong>Name:</strong> {{name}}</p>
-        <p><strong>Email:</strong> {{email}}</p>
-        <p><strong>Company:</strong> {{company}}</p>
-        <p><strong>Snapshot Index:</strong> {{snapshot_index}} / 5 — {{verdict}}</p>
-        <hr>
-        <h3>Stage Scores</h3>
-        {{{stage_scores_html}}}
-        <hr>
-        <h3>Priority Recommendations</h3>
-        {{{priorities_html}}}
-        <hr>
-        <p style="color:#888; font-size:12px;">Submitted {{submitted_at}}</p>
-
-      NOTE: use triple-braces {{{ }}} for the HTML fields so EmailJS
-      renders them as HTML rather than escaping them.
-      Save and copy the Template ID (e.g. "template_xyz789") → paste below.
-
-   4. GET YOUR PUBLIC KEY
-      Dashboard → Account → General → Public Key
-      Copy it → paste below as EMAILJS_PUBLIC_KEY.
-
-   5. Done. Every completed snapshot will now email the full results
-      to mo.zmaili@pomefy.io automatically.
-
-   Free tier: 200 emails/month, 2 templates, 1 connected service.
-   ==================================================================== */
-
-const EMAILJS_SERVICE_ID  = "YOUR_SERVICE_ID";   // ← from step 2
-const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";  // ← from step 3
-const EMAILJS_PUBLIC_KEY  = "YOUR_PUBLIC_KEY";    // ← from step 4
-
-function bandLabel(score) {
-  if (score >= 4.0) return "Well-balanced";
-  if (score >= 2.5) return "Localized imbalance";
-  return "Systemic imbalance";
-}
-
-function buildStageScoresHTML(stageScores) {
-  let rows = stageScores.map(s => {
-    const b = bandLabel(s.avg);
-    const color = s.avg >= 4.0 ? "#0F6E8C" : s.avg >= 2.5 ? "#A80F1A" : "#7A0D14";
-    return `<tr>
-      <td style="padding:8px 12px; border-bottom:1px solid #eee;"><strong>${s.name}</strong></td>
-      <td style="padding:8px 12px; border-bottom:1px solid #eee;">${s.failure}</td>
-      <td style="padding:8px 12px; border-bottom:1px solid #eee; color:${color}; font-weight:700;">${s.avg.toFixed(1)} / 5</td>
-    </tr>`;
-  }).join("");
-  return `<table style="border-collapse:collapse; width:100%; font-family:Arial,sans-serif; font-size:14px;">
-    <tr style="background:#12151A; color:#fff;">
-      <th style="padding:8px 12px; text-align:left;">Stage</th>
-      <th style="padding:8px 12px; text-align:left;">Failure State</th>
-      <th style="padding:8px 12px; text-align:left;">Score</th>
-    </tr>${rows}</table>`;
-}
-
-function buildPrioritiesHTML(stageScores) {
-  const HEALTHY = 4.0;
-  const sorted = [...stageScores].sort((a,b) => a.avg - b.avg);
-  const weak = sorted.filter(s => s.avg < HEALTHY).slice(0, 3);
-  if (weak.length === 0) {
-    return `<p style="color:#555;">All six stages scored above ${HEALTHY} — nothing urgent stands out on self-report. A full diagnostic would confirm this against real data.</p>`;
-  }
-  return weak.map((s, i) => `
-    <div style="margin-bottom:16px; padding:12px 16px; border-left:4px solid ${i === 0 ? '#D51522' : '#ccc'}; background:#f9f9f9; border-radius:0 8px 8px 0;">
-      <p style="margin:0 0 4px 0; font-size:12px; font-weight:700; color:${i === 0 ? '#D51522' : '#888'}; text-transform:uppercase; letter-spacing:.06em;">Priority ${i + 1}</p>
-      <p style="margin:0 0 4px 0; font-size:16px; font-weight:700; color:#12151A;">${s.name} <span style="color:#888; font-weight:400;">— ${s.failure} — ${s.avg.toFixed(1)} / 5</span></p>
-      <p style="margin:0; font-size:14px; color:#444; line-height:1.5;">${RECOMMENDATIONS[s.key]}</p>
-    </div>
-  `).join("");
-}
-
 async function submitAndShowResults() {
   const name = document.getElementById("fName").value.trim();
   const email = document.getElementById("fEmail").value.trim();
@@ -605,36 +514,30 @@ async function submitAndShowResults() {
   }
 
   const { stageScores, index } = computeScores();
-  const verdict = bandLabel(index);
 
-  // ---- Send results email via EmailJS ----
-  const isConfigured = EMAILJS_SERVICE_ID !== "YOUR_SERVICE_ID"
-                    && EMAILJS_TEMPLATE_ID !== "YOUR_TEMPLATE_ID"
-                    && EMAILJS_PUBLIC_KEY  !== "YOUR_PUBLIC_KEY";
-
-  if (isConfigured && typeof emailjs !== "undefined") {
+  // ---- Submit lead + results to your backend / CRM here ----
+  // Replace ENDPOINT_URL with your real form handler, CRM webhook, or
+  // serverless function. Consider wiring this to the same destination as
+  // the #lead-form on pomefy.io so all diagnostic leads land in one place.
+  const ENDPOINT_URL = ""; // e.g. "https://your-domain.com/api/snapshot-leads"
+  const payload = {
+    name, email, company,
+    index: Number(index.toFixed(2)),
+    stages: stageScores.map(s => ({ name: s.name, score: Number(s.avg.toFixed(2)) })),
+    submittedAt: new Date().toISOString()
+  };
+  if (ENDPOINT_URL) {
     try {
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-        name,
-        email,
-        company: company || "(not provided)",
-        snapshot_index: index.toFixed(1),
-        verdict,
-        stage_scores_html: buildStageScoresHTML(stageScores),
-        priorities_html: buildPrioritiesHTML(stageScores),
-        submitted_at: new Date().toLocaleString("en-GB", { dateStyle: "long", timeStyle: "short" })
-      }, EMAILJS_PUBLIC_KEY);
-      console.log("Results email sent successfully.");
-    } catch (err) {
-      console.warn("EmailJS send failed:", err);
+      await fetch(ENDPOINT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+    } catch (e) {
+      console.warn("Lead submission failed (check ENDPOINT_URL):", e);
     }
   } else {
-    console.log("EmailJS not configured — replace the placeholder IDs in the code.");
-    console.log("Results that would be emailed:", {
-      name, email, company,
-      snapshot_index: index.toFixed(1), verdict,
-      stages: stageScores.map(s => `${s.name}: ${s.avg.toFixed(1)}/5 (${s.failure})`)
-    });
+    console.log("Demo mode — no ENDPOINT_URL set. Payload that would be sent:", payload);
   }
 
   hideAllScreens();
