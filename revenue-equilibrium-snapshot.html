@@ -516,28 +516,42 @@ async function submitAndShowResults() {
   const { stageScores, index } = computeScores();
 
   // ---- Submit lead + results to your backend / CRM here ----
-  // Replace ENDPOINT_URL with your real form handler, CRM webhook, or
-  // serverless function. Consider wiring this to the same destination as
-  // the #lead-form on pomefy.io so all diagnostic leads land in one place.
-  const ENDPOINT_URL = ""; // e.g. "https://your-domain.com/api/snapshot-leads"
+  // IMPORTANT: Replace YOUR_SNAPSHOT_FORM_ID with your Formspree form ID.
+  // Create a second Formspree form for snapshot results, or use the same
+  // one as index.html. Example: "https://formspree.io/f/xABcdEfG"
+  const ENDPOINT_URL = "https://formspree.io/f/YOUR_SNAPSHOT_FORM_ID";
   const payload = {
     name, email, company,
     index: Number(index.toFixed(2)),
     stages: stageScores.map(s => ({ name: s.name, score: Number(s.avg.toFixed(2)) })),
     submittedAt: new Date().toISOString()
   };
-  if (ENDPOINT_URL) {
+  if (ENDPOINT_URL && !ENDPOINT_URL.includes("YOUR_SNAPSHOT_FORM_ID")) {
     try {
       await fetch(ENDPOINT_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
         body: JSON.stringify(payload)
       });
     } catch (e) {
       console.warn("Lead submission failed (check ENDPOINT_URL):", e);
     }
-  } else {
-    console.log("Demo mode — no ENDPOINT_URL set. Payload that would be sent:", payload);
+  } else if (ENDPOINT_URL.includes("YOUR_SNAPSHOT_FORM_ID")) {
+    // Fallback: compose a mailto with the results so they still reach you
+    const subject = `Revenue Equilibrium Snapshot: ${name}${company ? ' / ' + company : ''}`;
+    const body = [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      company ? `Company: ${company}` : null,
+      `\nRevenue Equilibrium Index: ${index.toFixed(2)}/5`,
+      `\nStage Scores:`,
+      ...stageScores.map(s => `  ${s.name}: ${s.avg.toFixed(2)}/5`),
+      `\nSubmitted: ${new Date().toISOString()}`
+    ].filter(Boolean).join('\n');
+    setTimeout(() => {
+      window.location.href = `mailto:mo.zmaili@pomefy.io?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }, 500);
+    console.log("Formspree not configured — falling back to mailto. Payload:", payload);
   }
 
   hideAllScreens();

@@ -1029,7 +1029,11 @@
   sections.forEach(s=>spyObserver.observe(s));
 
   // Lead capture form
-  // Replace YOUR_FORM_ID with your Formspree endpoint
+  // ──────────────────────────────────────────────────────────────
+  // SETUP: Replace YOUR_FORM_ID below with your Formspree form ID.
+  // Example: 'https://formspree.io/f/xABcdEfG'
+  // Get one free at https://formspree.io
+  // ──────────────────────────────────────────────────────────────
   const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
 
   const growthForm = document.getElementById('growthForm');
