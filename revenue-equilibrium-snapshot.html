@@ -515,15 +515,30 @@ async function submitAndShowResults() {
 
   const { stageScores, index } = computeScores();
 
-  // ---- Submit lead + results to your backend / CRM here ----
-  // IMPORTANT: Replace YOUR_SNAPSHOT_FORM_ID with your Formspree form ID.
-  // Create a second Formspree form for snapshot results, or use the same
-  // one as index.html. Example: "https://formspree.io/f/xABcdEfG"
+  // Build detailed question-by-question breakdown
+  const detailedResponses = STAGES.map(stage => {
+    const questionResults = stage.qs.map((q, qi) => {
+      const key = stage.key + "-" + qi;
+      return {
+        question: q,
+        answer: answers[key] !== undefined ? answers[key] : null
+      };
+    });
+    const stageScore = stageScores.find(s => s.name === stage.name);
+    return {
+      stage: stage.name,
+      phase: stage.phase,
+      score: stageScore ? Number(stageScore.avg.toFixed(2)) : null,
+      questions: questionResults
+    };
+  });
+
+  // ---- Submit lead + results to Formspree ----
   const ENDPOINT_URL = "https://formspree.io/f/xvkoponw";
   const payload = {
     name, email, company,
-    index: Number(index.toFixed(2)),
-    stages: stageScores.map(s => ({ name: s.name, score: Number(s.avg.toFixed(2)) })),
+    overallIndex: Number(index.toFixed(2)),
+    stages: detailedResponses,
     submittedAt: new Date().toISOString()
   };
   if (ENDPOINT_URL && !ENDPOINT_URL.includes("YOUR_SNAPSHOT_FORM_ID")) {
@@ -537,17 +552,24 @@ async function submitAndShowResults() {
       console.warn("Lead submission failed (check ENDPOINT_URL):", e);
     }
   } else if (ENDPOINT_URL.includes("YOUR_SNAPSHOT_FORM_ID")) {
-    // Fallback: compose a mailto with the results so they still reach you
+    // Fallback: compose a mailto with full results
     const subject = `Revenue Equilibrium Snapshot: ${name}${company ? ' / ' + company : ''}`;
-    const body = [
+    const bodyParts = [
       `Name: ${name}`,
       `Email: ${email}`,
       company ? `Company: ${company}` : null,
       `\nRevenue Equilibrium Index: ${index.toFixed(2)}/5`,
-      `\nStage Scores:`,
-      ...stageScores.map(s => `  ${s.name}: ${s.avg.toFixed(2)}/5`),
-      `\nSubmitted: ${new Date().toISOString()}`
-    ].filter(Boolean).join('\n');
+      `\n${'='.repeat(50)}`,
+    ];
+    detailedResponses.forEach(stage => {
+      bodyParts.push(`\n${stage.stage} (${stage.phase}) — Score: ${stage.score}/5`);
+      stage.questions.forEach((q, i) => {
+        bodyParts.push(`  Q${i+1}: ${q.question}`);
+        bodyParts.push(`  A${i+1}: ${q.answer}/5`);
+      });
+    });
+    bodyParts.push(`\nSubmitted: ${new Date().toISOString()}`);
+    const body = bodyParts.filter(Boolean).join('\n');
     setTimeout(() => {
       window.location.href = `mailto:mo.zmaili@pomefy.io?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     }, 500);
