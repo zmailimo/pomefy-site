@@ -993,11 +993,14 @@
     ].filter(Boolean);
 
     const mailto = `mailto:mo.zmaili@pomefy.io?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
-    window.location.href = mailto;
 
-    // Launch the Revenue Equilibrium Snapshot tool in a new tab,
-    // independently of the mailto submission above.
+    // Launch the Revenue Equilibrium Snapshot tool in a new tab FIRST,
+    // before the mailto navigates the current page away.
     window.open('revenue-equilibrium-snapshot.html', '_blank', 'noopener');
+
+    // Small delay so the browser processes the window.open before
+    // the mailto navigation fires on the current page.
+    setTimeout(()=>{ window.location.href = mailto; }, 300);
 
     formSuccess.hidden = false;
     growthForm.querySelector('.form-submit').textContent = 'Request Sent ✓';
