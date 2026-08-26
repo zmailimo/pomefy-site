@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Revenue Equilibrium Snapshot — POME Fruitful Partners</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+  :root{
+    --ink:#12151A;
+    --charcoal:#1B2027;
+    --coral:#D51522;
+    --coral-dark:#A80F1A;
+    --teal:#0F6E8C;
+    --sky:#EEF4F6;
+    --white:#FFFFFF;
+    --muted:#6B7280;
+    --line:#E4E9EC;
+    --ink-soft:#3A3F47;
+    --display: 'Space Grotesk', -apple-system, sans-serif;
+    --body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:var(--body);
+    color:var(--ink);
+    background:
+      radial-gradient(900px 500px at 85% -10%, rgba(213,21,34,0.09), transparent 60%),
+      radial-gradient(700px 500px at -10% 110%, rgba(15,110,140,0.10), transparent 60%),
+      #F6F8F9;
+    min-height:100vh;
+  }
+
+  /* ---------- Site header bar ---------- */
+  .sitebar{
+    display:flex; align-items:center; justify-content:space-between;
+    max-width:900px; margin:0 auto; padding:22px 20px 0 20px;
+  }
+  .sitebar a{ text-decoration:none; }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand-logo{ height:26px; width:auto; display:block; }
+  .brand .ring{ width:18px; height:18px; border-radius:50%; border:2.5px solid var(--coral); }
+  .brand span{ font-family:var(--display); font-weight:700; font-size:13px; letter-spacing:.08em; color:var(--ink); }
+  .backlink{ font-size:13px; font-weight:600; color:var(--muted); }
+  .backlink:hover{ color:var(--coral); }
+
+  .wrap{ max-width:760px; margin:0 auto; padding:20px 16px 60px 16px; }
+
+  .app{
+    width:100%;
+    background:var(--white);
+    border-radius:22px;
+    box-shadow:0 24px 70px rgba(18,21,26,0.10), 0 2px 10px rgba(18,21,26,0.05);
+    position:relative;
+    border:1px solid var(--line);
+  }
+
+  /* ---------- Ring progress signature ---------- */
+  .progress-bar{
+    display:flex; align-items:center; gap:14px;
+    padding:22px 32px 0 32px;
+  }
+  .ring-wrap{ position:relative; width:44px; height:44px; flex:none; }
+  .ring-wrap svg{ transform:rotate(-90deg); }
+  .ring-track{ fill:none; stroke:var(--line); stroke-width:5; }
+  .ring-fill{ fill:none; stroke:var(--coral); stroke-width:5; stroke-linecap:round; transition:stroke-dashoffset .5s cubic-bezier(.4,0,.2,1); }
+  .ring-label{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-family:var(--display); font-size:11px; font-weight:700; color:var(--ink);
+  }
+  .progress-text{ display:flex; flex-direction:column; }
+  .progress-text .step{ font-size:13px; font-weight:700; color:var(--ink); }
+  .progress-text .sub{ font-size:12px; color:var(--muted); }
+
+  .screen{ padding:30px 40px 38px 40px; }
+  @media (max-width:600px){ .screen{ padding:24px 22px 30px 22px; } .progress-bar{ padding:20px 22px 0 22px; } }
+
+  .eyebrow{
+    font-family:var(--display); font-size:12px; font-weight:700; letter-spacing:.12em; color:var(--coral);
+    text-transform:uppercase; margin:0 0 12px 0;
+  }
+  h1{
+    font-family:var(--display); font-weight:700; color:var(--ink);
+    font-size:32px; line-height:1.12; margin:0 0 16px 0; letter-spacing:-.01em;
+  }
+  h2{
+    font-family:var(--display); font-weight:700; color:var(--ink);
+    font-size:23px; line-height:1.2; margin:0 0 6px 0; letter-spacing:-.01em;
+  }
+  p.lead{ font-size:16px; line-height:1.6; color:var(--ink-soft); margin:0 0 24px 0; }
+
+  .stage-tag{
+    display:inline-flex; align-items:center; gap:12px;
+    background:var(--sky); border-radius:999px; padding:7px 18px 7px 7px;
+    margin-bottom:20px;
+  }
+  .stage-tag .num{
+    width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;font-family:var(--display);
+  }
+  .stage-tag .meta{ display:flex; flex-direction:column; line-height:1.25; }
+  .stage-tag .name{ font-weight:700; color:var(--ink); font-size:14px; font-family:var(--display); }
+  .stage-tag .tagline{ color:var(--teal); font-size:12.5px; font-weight:500; }
+
+  .qcard{ margin-bottom:28px; }
+  .qtext{ font-size:16px; color:var(--ink); line-height:1.5; margin-bottom:12px; font-weight:500; }
+  .scale{ display:flex; gap:8px; }
+  .scale label{ flex:1; }
+  .scale input{ position:absolute; opacity:0; width:0; height:0; }
+  .scale .opt{
+    display:flex; flex-direction:column; align-items:center; gap:4px;
+    border:1.5px solid var(--line); border-radius:12px; padding:10px 4px;
+    cursor:pointer; transition:all .15s ease; font-size:13px; color:var(--muted); font-weight:600;
+    user-select:none;
+  }
+  .scale .opt .n{ font-family:var(--display); font-size:18px; color:var(--ink); font-weight:700; }
+  .scale input:checked + .opt{
+    border-color:var(--coral); background:#FBEBEC; color:var(--coral-dark);
+    box-shadow:0 0 0 2px rgba(213,21,34,0.15);
+  }
+  .scale input:checked + .opt .n{ color:var(--coral-dark); }
+  .scale input:focus-visible + .opt{ outline:2px solid var(--teal); outline-offset:2px; }
+  .scale-caption{ display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-top:6px; padding:0 2px; }
+
+  .nav-row{ display:flex; justify-content:space-between; align-items:center; margin-top:30px; gap:12px; }
+  button{ font-family:var(--body); font-size:15px; font-weight:700; cursor:pointer; border-radius:999px; border:none; padding:14px 28px; transition:transform .1s ease, box-shadow .15s ease, background .15s ease; }
+  button:active{ transform:scale(.98); }
+  .btn-primary{ background:var(--ink); color:#fff; }
+  .btn-primary:hover{ background:var(--coral); }
+  .btn-primary:disabled{ background:#C9CFD4; cursor:not-allowed; }
+  .btn-ghost{ background:transparent; color:var(--muted); padding:14px 8px; }
+  .btn-ghost:hover{ color:var(--ink); }
+
+  .field{ margin-bottom:16px; }
+  .field label{ display:block; font-size:13px; font-weight:700; color:var(--ink); margin-bottom:6px; }
+  .field input{
+    width:100%; padding:13px 16px; border:1.5px solid var(--line); border-radius:12px;
+    font-size:15px; font-family:var(--body); color:var(--ink);
+  }
+  .field input:focus{ outline:none; border-color:var(--teal); box-shadow:0 0 0 3px rgba(15,110,140,0.12); }
+
+  /* ---------- Results ---------- */
+  .index-hero{
+    background:linear-gradient(135deg, var(--ink), var(--charcoal));
+    border-radius:18px; padding:28px 30px; color:#fff; margin-bottom:28px;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+    position:relative; overflow:hidden;
+  }
+  .index-hero::after{
+    content:""; position:absolute; right:-40px; top:-40px; width:150px; height:150px;
+    border-radius:50%; border:2px solid rgba(213,21,34,0.32);
+  }
+  .index-hero .label{ font-size:12px; letter-spacing:.10em; font-weight:700; color:#F3B0B6; text-transform:uppercase; margin-bottom:6px; font-family:var(--display);}
+  .index-hero .value{ font-family:var(--display); font-size:44px; font-weight:700; }
+  .index-hero .verdict{ font-size:14px; color:#D8DEE3; max-width:280px; line-height:1.5; }
+
+  .chart-wrap{ position:relative; height:280px; margin:8px 0 26px 0; }
+
+  /* ---------- Failure-state tooltip ---------- */
+  .info-dot{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:15px; height:15px; border-radius:50%; background:var(--line); color:var(--muted);
+    font-size:10px; font-weight:700; margin-left:6px; cursor:help; position:relative;
+    font-family:var(--body); vertical-align:middle;
+  }
+  .info-dot:hover, .info-dot:focus{ background:var(--coral); color:#fff; outline:none; }
+  .info-dot .tip{
+    visibility:hidden; opacity:0; position:absolute; bottom:135%; left:50%; transform:translateX(-50%);
+    background:var(--ink); color:#fff; font-size:12.5px; font-weight:400; line-height:1.45;
+    padding:10px 13px; border-radius:9px; width:210px; max-width:60vw;
+    box-shadow:0 10px 28px rgba(0,0,0,.28); transition:opacity .15s ease; z-index:20;
+    text-transform:none; letter-spacing:normal;
+  }
+  .info-dot .tip::after{
+    content:""; position:absolute; top:100%; left:50%; transform:translateX(-50%);
+    border:6px solid transparent; border-top-color:var(--ink);
+  }
+  .info-dot:hover .tip, .info-dot:focus .tip{ visibility:visible; opacity:1; }
+
+  /* ---------- Priority recommendations ---------- */
+  .priority-section{ margin-bottom:30px; }
+  .priority-section h2{ font-size:19px; margin-bottom:4px; }
+  .priority-section > p.lead{ margin-bottom:18px; }
+  .priority-grid{ display:flex; flex-direction:column; gap:12px; }
+  .priority-card{
+    border:1.5px solid var(--line); border-left:4px solid var(--coral); border-radius:12px;
+    padding:16px 18px; background:var(--white);
+  }
+  .priority-card.rank-2, .priority-card.rank-3{ border-left-color:#D8DEE3; }
+  .priority-rank{
+    font-family:var(--display); font-size:11px; font-weight:700; letter-spacing:.09em;
+    color:var(--coral); text-transform:uppercase; margin-bottom:7px;
+  }
+  .priority-card.rank-2 .priority-rank, .priority-card.rank-3 .priority-rank{ color:var(--muted); }
+  .priority-head{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:3px; }
+  .priority-stage{ font-family:var(--display); font-weight:700; font-size:16px; color:var(--ink); }
+  .priority-score{ font-family:var(--display); font-weight:700; font-size:14px; white-space:nowrap; }
+  .priority-failure{ font-size:12px; color:var(--muted); font-weight:700; margin-bottom:9px; text-transform:uppercase; letter-spacing:.04em; }
+  .priority-text{ font-size:14.5px; color:var(--ink-soft); line-height:1.55; margin:0; }
+  .priority-empty{ background:var(--sky); border-radius:14px; padding:22px 24px; }
+  .priority-empty h2{ font-size:18px; margin-bottom:8px; }
+  .priority-empty p{ color:var(--ink-soft); font-size:14px; margin:0; line-height:1.55; }
+
+  table.results{ width:100%; border-collapse:collapse; margin-bottom:26px; font-size:14px; }
+  table.results th{ text-align:left; background:var(--ink); color:#fff; padding:11px 12px; font-size:11.5px; letter-spacing:.04em; font-family:var(--display); font-weight:600;}
+  table.results td{ padding:11px 12px; border-bottom:1px solid var(--line); color:var(--ink); }
+  table.results tr:nth-child(even){ background:var(--sky); }
+  .score-pill{
+    display:inline-block; min-width:36px; text-align:center; padding:3px 9px; border-radius:999px;
+    font-weight:700; font-size:13px; font-family:var(--display);
+  }
+
+  .cta-box{
+    background:var(--sky); border-radius:16px; padding:26px 26px; text-align:center;
+  }
+  .cta-box h2{ font-size:19px; }
+  .cta-box p{ color:var(--ink-soft); font-size:14px; margin:0 0 16px 0; line-height:1.55; }
+
+  .disclaimer{ font-size:12px; color:var(--muted); font-style:italic; margin-top:20px; line-height:1.5; }
+
+  .footerbar{ text-align:center; padding:26px 16px 10px 16px; }
+  .footerbar p{ font-family:var(--display); font-size:12px; color:var(--muted); letter-spacing:.02em; margin:4px 0; }
+
+  .hidden{ display:none !important; }
+</style>
+</head>
+<body>
+
+<div class="sitebar">
+  <a class="brand" href="https://pomefy.io" aria-label="POME Fruitful Partners home">
+    <!-- pome-logo.png is the real POME icon mark (cleaned/sharpened from the
+         uploaded logo, background removed). If it's ever missing or fails to
+         load, the placeholder ring below is shown instead so nothing breaks. -->
+    <img src="pome-logo.png" alt="" class="brand-logo"
+         onload="document.getElementById('ringFallback').style.display='none';"
+         onerror="this.style.display='none';">
+    <span class="ring" id="ringFallback"></span>
+    <span>POME FRUITFUL PARTNERS</span>
+  </a>
+  <a class="backlink" href="https://pomefy.io">← pomefy.io</a>
+</div>
+
+<div class="wrap">
+<div class="app">
+  <div class="progress-bar">
+    <div class="ring-wrap">
+      <svg width="44" height="44" viewBox="0 0 44 44">
+        <circle class="ring-track" cx="22" cy="22" r="18"></circle>
+        <circle class="ring-fill" id="ringFill" cx="22" cy="22" r="18" stroke-dasharray="113.1" stroke-dashoffset="113.1"></circle>
+      </svg>
+      <div class="ring-label" id="ringLabel">0%</div>
+    </div>
+    <div class="progress-text">
+      <span class="step" id="progressText">Getting started</span>
+      <span class="sub">Revenue Equilibrium Snapshot</span>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="screen" id="screen-intro">
+    <p class="eyebrow">Free Diagnostic Tool</p>
+    <h1>The Revenue Equilibrium Snapshot</h1>
+    <p class="lead">Growth isn't a straight line — it's a cycle. Revenue moves through five stages toward cash, while a sixth reclaims what's lost and feeds it back in. This 30-question snapshot takes about 5 minutes and shows you where your cycle is out of balance right now.</p>
+    <div class="nav-row" style="justify-content:flex-start;">
+      <button class="btn-primary" onclick="goToStage(0)">Start the snapshot →</button>
+    </div>
+    <p class="disclaimer">Best answered by whoever is closest to overall revenue performance — a founder, MD, or Head of Sales. There are no wrong answers.</p>
+  </div>
+
+  <!-- STAGE SCREENS injected here -->
+  <div id="stage-container"></div>
+
+  <!-- CONTACT CAPTURE -->
+  <div class="screen hidden" id="screen-contact">
+    <p class="eyebrow">Almost there</p>
+    <h2>Where should we send your results?</h2>
+    <p class="lead">Your personalized Snapshot — including which stage needs attention first — is ready right after this.</p>
+    <div class="field"><label for="fName">Full name</label><input id="fName" type="text" placeholder="Jane Rivera" autocomplete="name"></div>
+    <div class="field"><label for="fEmail">Work email</label><input id="fEmail" type="email" placeholder="jane@company.com" autocomplete="email"></div>
+    <div class="field"><label for="fCompany">Company</label><input id="fCompany" type="text" placeholder="Company name" autocomplete="organization"></div>
+    <div class="nav-row">
+      <button class="btn-ghost" onclick="goToStage(5)">← Back</button>
+      <button class="btn-primary" id="submitBtn" onclick="submitAndShowResults()">See my results →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="screen hidden" id="screen-results">
+    <p class="eyebrow">Your snapshot</p>
+    <h2 id="resultsHeadline">Here's where your system stands</h2>
+    <p class="lead" id="resultsSub"></p>
+
+    <div class="index-hero">
+      <div>
+        <div class="label">Snapshot Index</div>
+        <div class="value" id="indexValue">0.0 / 5</div>
+      </div>
+      <div class="verdict" id="indexVerdict"></div>
+    </div>
+
+    <div class="priority-section" id="priorityContainer"></div>
+
+    <div class="chart-wrap"><canvas id="radarChart" role="img" aria-label="Radar chart of your six stage scores"></canvas></div>
+
+    <table class="results">
+      <thead><tr><th>Stage</th><th>Failure state if low</th><th>Your score</th></tr></thead>
+      <tbody id="resultsTableBody"></tbody>
+    </table>
+
+    <div class="cta-box">
+      <h2>Want the full picture?</h2>
+      <p>This snapshot is based on perception alone. The full Revenue Equilibrium Diagnostic adds real performance data and direct process observation to produce a validated Equilibrium Index and a prioritized growth plan — no obligation.</p>
+      <button class="btn-primary" onclick="alert('Wire this button to your booking link or mailto:mo.zmaili@pomefy.io')">Talk to POME about my results</button>
+    </div>
+    <p class="disclaimer">Your answers are based on self-report only, with no underlying data or independent verification — treat this as a directional starting point, not a scored exam.</p>
+  </div>
+</div>
+
+<div class="footerbar">
+  <p>Advisory Backed by Delivery. Growth You Can Trust.</p>
+  <p>© POME Fruitful Partners. All rights reserved.</p>
+</div>
+</div>
+
+<script>
+/* ---------------- DATA ---------------- */
+/* Taglines mirror the live pomefy.io "Revenue Equilibrium Model" section copy. */
+const STAGES = [
+  { key:"blueocean", num:"01", name:"Blue Ocean", phase:"Water Source", tagline:"Creating new markets", failure:"Drought", qs:[
+    "We have a clear, active plan for entering new markets or segments — not just serving our existing customer base.",
+    "In the last 12 months, we've generated meaningful revenue from a genuinely new market, segment, or use case.",
+    "If our top accounts stopped growing tomorrow, we have a credible plan for where new revenue would come from.",
+    "We treat market expansion as an ongoing priority, not something we only revisit once growth has already stalled.",
+    "We're not currently seeing early signs of commoditization or price pressure in our core market."
+  ]},
+  { key:"risingsun", num:"02", name:"Rising Sun", phase:"Evaporation", tagline:"Building visibility & belief", failure:"Over-Evaporation", qs:[
+    "The leads marketing sends to sales are consistently high-quality and get worked promptly.",
+    "Our demand generation volume is matched to what our sales team can actually handle.",
+    "We rarely have leads sitting untouched in our CRM.",
+    "Sales and marketing agree on what makes a lead \u201Cready\u201D before it's handed over.",
+    "We have real visibility into what happens to a lead after marketing hands it to sales."
+  ]},
+  { key:"thecloud", num:"03", name:"The Cloud", phase:"Condensation", tagline:"Structuring the pipeline", failure:"Stagnation", qs:[
+    "I'm highly confident in our current pipeline number — I'd bet on it.",
+    "We have clear, enforced rules for when a deal moves from one stage to the next.",
+    "Our sales forecasts are usually accurate within a small margin.",
+    "Deals rarely sit in the same pipeline stage for multiple quarters without action.",
+    "When a deal stalls, there's a clear next step — escalate, disqualify, or accelerate — rather than it just sitting."
+  ]},
+  { key:"bringtheheat", num:"04", name:"Bring the Heat", phase:"Pressure & Acceleration", tagline:"Urgency & momentum", failure:"Flooding", qs:[
+    "Most of our deals close because of real value and urgency, not discounting.",
+    "We have clear governance over how and when discounts are approved.",
+    "We rarely see customers regret or churn shortly after a rushed close.",
+    "Our win rate stays fairly consistent throughout the period, rather than spiking suspiciously at quarter-end.",
+    "Deals that get accelerated still arrive at Finance/Legal with clean, accurate paperwork."
+  ]},
+  { key:"rainfall", num:"05", name:"Rainfall", phase:"Precipitation", tagline:"Growing market share", failure:"Flash Floods", qs:[
+    "Our revenue comes in steadily throughout the period, not clustered at the end.",
+    "Our margins have stayed stable or improved over the last year.",
+    "Deals we close don't create unexpected operational strain later.",
+    "We don't see a pattern of rushed, \u201Chockey stick\u201D closing at the end of every period.",
+    "Once a deal closes, the account transitions cleanly to the team that owns retention."
+  ]},
+  { key:"diggersdig", num:"06", name:"Diggers Dig", phase:"Groundwater & Runoff", tagline:"Reclaims stale opportunity — feeds straight back into The Cloud", failure:"Neglect", qs:[
+    "We have an active, owned process for reactivating stale or lost opportunities.",
+    "We rarely let leads or accounts go quiet without follow-up.",
+    "Cross-sell and upsell to existing customers is a deliberate, tracked motion — not an accident.",
+    "When an account churns, we have a standard process for finding out why.",
+    "Reactivating an old lead is treated as real, valued work — not lower priority than new pipeline."
+  ]}
+];
+
+const answers = {};
+let currentStage = -1;
+const TOTAL_STEPS = STAGES.length + 2;
+const RING_CIRC = 113.1;
+
+/* Plain-language explanation shown on hover over each failure state. */
+const FAILURE_INFO = {
+  "Drought": "Over-reliance on existing customers — commoditization and margin erosion tend to follow.",
+  "Over-Evaporation": "High lead volume but low intent — leads to sales burnout and CRM congestion.",
+  "Stagnation": "Pipeline looks active but is actually bloated and stale — forecasts feel confident but aren't reliable.",
+  "Flooding": "Deals get force-closed with discounting — leads to customer regret and early churn.",
+  "Flash Floods": "Revenue arrives in short-term bursts that quietly cost margin and stability later.",
+  "Neglect": "Lost or stale opportunity is simply left uncollected — revenue you already paid to generate goes unclaimed."
+};
+
+/* One general-purpose starting recommendation per stage, shown when that
+   stage lands among the respondent's three lowest scores. */
+const RECOMMENDATIONS = {
+  blueocean: "Build a standing cadence for evaluating new markets, segments, or use cases — even one dedicated hour a month. Treat expansion as an ongoing function, not a rescue mission you turn to once growth stalls.",
+  risingsun: "Set an explicit lead-quality bar with sales before increasing demand-gen volume further. Matching output to what sales can actually work well is usually a faster fix than spending more.",
+  thecloud: "Introduce clear, enforced exit criteria for every pipeline stage so deals can't sit indefinitely. This alone tends to be the fastest lever to lift both forecast accuracy and rep accountability.",
+  bringtheheat: "Put lightweight governance around discount approval before a deal reaches signature. Replacing ad hoc discretion with a simple threshold-based process protects margin without slowing down real urgency.",
+  rainfall: "Track what share of revenue books in the final two weeks of each period — if it's high, work backward to find what's delaying earlier decisions. Smoothing the curve usually beats closing faster.",
+  diggersdig: "Assign explicit, named ownership for reactivating stale pipeline and dormant contacts. This is the most common finding of all: reclaiming lost opportunity isn't formally anyone's job."
+};
+
+/* ---------------- BUILD STAGE SCREENS ---------------- */
+const container = document.getElementById("stage-container");
+STAGES.forEach((stage, si) => {
+  const div = document.createElement("div");
+  div.className = "screen hidden";
+  div.id = "screen-stage-" + si;
+
+  let qsHtml = "";
+  stage.qs.forEach((q, qi) => {
+    const name = stage.key + "-" + qi;
+    let opts = "";
+    for (let v = 1; v <= 5; v++) {
+      opts += `
+        <label>
+          <input type="radio" name="${name}" value="${v}" onchange="recordAnswer('${name}', ${v}, ${si})">
+          <div class="opt"><span class="n">${v}</span></div>
+        </label>`;
+    }
+    qsHtml += `
+      <div class="qcard">
+        <div class="qtext">${qi + 1 + si*5}. ${q}</div>
+        <div class="scale">${opts}</div>
+        <div class="scale-caption"><span>Not at all true</span><span>Very true</span></div>
+      </div>`;
+  });
+
+  div.innerHTML = `
+    <div class="stage-tag">
+      <span class="num">${stage.num}</span>
+      <span class="meta"><span class="name">${stage.name}</span><span class="tagline">${stage.tagline}</span></span>
+    </div>
+    <h2>Rate each statement</h2>
+    <p class="lead">1 = not at all true, 5 = very true. Go with your gut.</p>
+    ${qsHtml}
+    <div class="nav-row">
+      <button class="btn-ghost" onclick="goToStage(${si - 1})">← Back</button>
+      <button class="btn-primary" id="next-${si}" onclick="goToStage(${si + 1})" disabled>Continue →</button>
+    </div>
+  `;
+  container.appendChild(div);
+});
+
+/* ---------------- NAVIGATION ---------------- */
+function updateProgress(stepIndex) {
+  const pct = Math.round((stepIndex / TOTAL_STEPS) * 100);
+  const offset = RING_CIRC - (pct / 100) * RING_CIRC;
+  document.getElementById("ringFill").style.strokeDashoffset = offset;
+  document.getElementById("ringLabel").textContent = pct + "%";
+  const labels = ["Getting started","Stage 1 of 6","Stage 2 of 6","Stage 3 of 6","Stage 4 of 6","Stage 5 of 6","Stage 6 of 6","Your details","Results"];
+  document.getElementById("progressText").textContent = labels[Math.min(stepIndex, labels.length - 1)];
+}
+
+function hideAllScreens() {
+  document.getElementById("screen-intro").classList.add("hidden");
+  STAGES.forEach((s, i) => document.getElementById("screen-stage-" + i).classList.add("hidden"));
+  document.getElementById("screen-contact").classList.add("hidden");
+  document.getElementById("screen-results").classList.add("hidden");
+}
+
+function goToStage(index) {
+  hideAllScreens();
+  if (index < 0) {
+    document.getElementById("screen-intro").classList.remove("hidden");
+    currentStage = -1;
+    updateProgress(0);
+  } else if (index < STAGES.length) {
+    document.getElementById("screen-stage-" + index).classList.remove("hidden");
+    currentStage = index;
+    updateProgress(index + 1);
+    window.scrollTo({top:0, behavior:"smooth"});
+  } else {
+    document.getElementById("screen-contact").classList.remove("hidden");
+    updateProgress(STAGES.length + 1);
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+}
+
+function recordAnswer(name, value, stageIndex) {
+  answers[name] = value;
+  const stage = STAGES[stageIndex];
+  const allAnswered = stage.qs.every((_, qi) => answers[stage.key + "-" + qi] !== undefined);
+  document.getElementById("next-" + stageIndex).disabled = !allAnswered;
+}
+
+/* ---------------- SCORING ---------------- */
+function computeScores() {
+  const stageScores = STAGES.map(stage => {
+    const vals = stage.qs.map((_, qi) => answers[stage.key + "-" + qi] || 0);
+    const avg = vals.reduce((a,b) => a+b, 0) / vals.length;
+    return { ...stage, avg };
+  });
+  const index = stageScores.reduce((a,s) => a + s.avg, 0) / stageScores.length;
+  return { stageScores, index };
+}
+
+function bandFor(score) {
+  if (score >= 4.0) return { color: "#0F6E8C", label: "Well-balanced" };
+  if (score >= 2.5) return { color: "#A80F1A", label: "Localized imbalance" };
+  return { color: "#7A0D14", label: "Systemic imbalance" };
+}
+
+/* ---------------- SUBMIT + RESULTS ---------------- */
+let chartInstance = null;
+
+/* ====================================================================
+   EMAIL CONFIGURATION — EmailJS (free, client-side, no backend needed)
+   ====================================================================
+   Setup takes ~5 minutes:
+
+   1. Go to https://www.emailjs.com and create a free account.
+
+   2. CONNECT YOUR EMAIL SERVICE
+      Dashboard → Email Services → Add New Service → choose your provider
+      (Gmail, Outlook, etc.) and follow the OAuth connection steps.
+      Copy the Service ID (e.g. "service_abc123") → paste below as EMAILJS_SERVICE_ID.
+
+   3. CREATE AN EMAIL TEMPLATE
+      Dashboard → Email Templates → Create New Template.
+      Set the "To Email" field to:  mo.zmaili@pomefy.io
+      Set the Subject to:          Revenue Equilibrium Snapshot — {{company}} ({{name}})
+      Set the Body to (HTML):
+
+        <h2>New Snapshot Submission</h2>
+        <p><strong>Name:</strong> {{name}}</p>
+        <p><strong>Email:</strong> {{email}}</p>
+        <p><strong>Company:</strong> {{company}}</p>
+        <p><strong>Snapshot Index:</strong> {{snapshot_index}} / 5 — {{verdict}}</p>
+        <hr>
+        <h3>Stage Scores</h3>
+        {{{stage_scores_html}}}
+        <hr>
+        <h3>Priority Recommendations</h3>
+        {{{priorities_html}}}
+        <hr>
+        <p style="color:#888; font-size:12px;">Submitted {{submitted_at}}</p>
+
+      NOTE: use triple-braces {{{ }}} for the HTML fields so EmailJS
+      renders them as HTML rather than escaping them.
+      Save and copy the Template ID (e.g. "template_xyz789") → paste below.
+
+   4. GET YOUR PUBLIC KEY
+      Dashboard → Account → General → Public Key
+      Copy it → paste below as EMAILJS_PUBLIC_KEY.
+
+   5. Done. Every completed snapshot will now email the full results
+      to mo.zmaili@pomefy.io automatically.
+
+   Free tier: 200 emails/month, 2 templates, 1 connected service.
+   ==================================================================== */
+
+const EMAILJS_SERVICE_ID  = "YOUR_SERVICE_ID";   // ← from step 2
+const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";  // ← from step 3
+const EMAILJS_PUBLIC_KEY  = "YOUR_PUBLIC_KEY";    // ← from step 4
+
+function bandLabel(score) {
+  if (score >= 4.0) return "Well-balanced";
+  if (score >= 2.5) return "Localized imbalance";
+  return "Systemic imbalance";
+}
+
+function buildStageScoresHTML(stageScores) {
+  let rows = stageScores.map(s => {
+    const b = bandLabel(s.avg);
+    const color = s.avg >= 4.0 ? "#0F6E8C" : s.avg >= 2.5 ? "#A80F1A" : "#7A0D14";
+    return `<tr>
+      <td style="padding:8px 12px; border-bottom:1px solid #eee;"><strong>${s.name}</strong></td>
+      <td style="padding:8px 12px; border-bottom:1px solid #eee;">${s.failure}</td>
+      <td style="padding:8px 12px; border-bottom:1px solid #eee; color:${color}; font-weight:700;">${s.avg.toFixed(1)} / 5</td>
+    </tr>`;
+  }).join("");
+  return `<table style="border-collapse:collapse; width:100%; font-family:Arial,sans-serif; font-size:14px;">
+    <tr style="background:#12151A; color:#fff;">
+      <th style="padding:8px 12px; text-align:left;">Stage</th>
+      <th style="padding:8px 12px; text-align:left;">Failure State</th>
+      <th style="padding:8px 12px; text-align:left;">Score</th>
+    </tr>${rows}</table>`;
+}
+
+function buildPrioritiesHTML(stageScores) {
+  const HEALTHY = 4.0;
+  const sorted = [...stageScores].sort((a,b) => a.avg - b.avg);
+  const weak = sorted.filter(s => s.avg < HEALTHY).slice(0, 3);
+  if (weak.length === 0) {
+    return `<p style="color:#555;">All six stages scored above ${HEALTHY} — nothing urgent stands out on self-report. A full diagnostic would confirm this against real data.</p>`;
+  }
+  return weak.map((s, i) => `
+    <div style="margin-bottom:16px; padding:12px 16px; border-left:4px solid ${i === 0 ? '#D51522' : '#ccc'}; background:#f9f9f9; border-radius:0 8px 8px 0;">
+      <p style="margin:0 0 4px 0; font-size:12px; font-weight:700; color:${i === 0 ? '#D51522' : '#888'}; text-transform:uppercase; letter-spacing:.06em;">Priority ${i + 1}</p>
+      <p style="margin:0 0 4px 0; font-size:16px; font-weight:700; color:#12151A;">${s.name} <span style="color:#888; font-weight:400;">— ${s.failure} — ${s.avg.toFixed(1)} / 5</span></p>
+      <p style="margin:0; font-size:14px; color:#444; line-height:1.5;">${RECOMMENDATIONS[s.key]}</p>
+    </div>
+  `).join("");
+}
+
+async function submitAndShowResults() {
+  const name = document.getElementById("fName").value.trim();
+  const email = document.getElementById("fEmail").value.trim();
+  const company = document.getElementById("fCompany").value.trim();
+  if (!name || !email) {
+    alert("Please add at least your name and work email so we can follow up.");
+    return;
+  }
+
+  const { stageScores, index } = computeScores();
+  const verdict = bandLabel(index);
+
+  // ---- Send results email via EmailJS ----
+  const isConfigured = EMAILJS_SERVICE_ID !== "YOUR_SERVICE_ID"
+                    && EMAILJS_TEMPLATE_ID !== "YOUR_TEMPLATE_ID"
+                    && EMAILJS_PUBLIC_KEY  !== "YOUR_PUBLIC_KEY";
+
+  if (isConfigured && typeof emailjs !== "undefined") {
+    try {
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        name,
+        email,
+        company: company || "(not provided)",
+        snapshot_index: index.toFixed(1),
+        verdict,
+        stage_scores_html: buildStageScoresHTML(stageScores),
+        priorities_html: buildPrioritiesHTML(stageScores),
+        submitted_at: new Date().toLocaleString("en-GB", { dateStyle: "long", timeStyle: "short" })
+      }, EMAILJS_PUBLIC_KEY);
+      console.log("Results email sent successfully.");
+    } catch (err) {
+      console.warn("EmailJS send failed:", err);
+    }
+  } else {
+    console.log("EmailJS not configured — replace the placeholder IDs in the code.");
+    console.log("Results that would be emailed:", {
+      name, email, company,
+      snapshot_index: index.toFixed(1), verdict,
+      stages: stageScores.map(s => `${s.name}: ${s.avg.toFixed(1)}/5 (${s.failure})`)
+    });
+  }
+
+  hideAllScreens();
+  document.getElementById("screen-results").classList.remove("hidden");
+  updateProgress(STAGES.length + 2);
+  window.scrollTo({top:0, behavior:"smooth"});
+  // Chart.js must measure the canvas after it's visible, not before —
+  // requestAnimationFrame waits one paint so display:none is resolved.
+  requestAnimationFrame(() => renderResults(stageScores, index, name));
+}
+
+function renderResults(stageScores, index, name) {
+  document.getElementById("resultsHeadline").textContent = name ? `${name.split(" ")[0]}, here's where your system stands` : "Here's where your system stands";
+
+  const weakest = [...stageScores].sort((a,b) => a.avg - b.avg)[0];
+  const subText = weakest.avg < 4.0
+    ? `Your lowest-scoring stage is ${weakest.name} (${weakest.failure}) — that's usually the best place to start a conversation.`
+    : `All six stages are trending healthy on self-report — ${weakest.name} is your relative lowest, but nothing here looks urgent.`;
+  document.getElementById("resultsSub").textContent = subText;
+
+  const band = bandFor(index);
+  document.getElementById("indexValue").textContent = index.toFixed(1) + " / 5";
+  document.getElementById("indexVerdict").textContent =
+    band.label === "Well-balanced" ? "Your system looks well-balanced on self-report. A full diagnostic would confirm this against real data." :
+    band.label === "Localized imbalance" ? "You're likely carrying a localized imbalance in one or two stages, worth identifying precisely." :
+    "Signs point to a broader, systemic imbalance across multiple stages.";
+
+  const tbody = document.getElementById("resultsTableBody");
+  tbody.innerHTML = "";
+  stageScores.forEach(s => {
+    const b = bandFor(s.avg);
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td><strong>${s.name}</strong></td><td>${s.failure}<span class="info-dot" tabindex="0" aria-label="What ${s.failure} means">i<span class="tip">${FAILURE_INFO[s.failure]}</span></span></td><td><span class="score-pill" style="background:${b.color}1F; color:${b.color};">${s.avg.toFixed(1)}</span></td>`;
+    tbody.appendChild(tr);
+  });
+
+  renderPriorities(stageScores);
+
+  const ctx = document.getElementById("radarChart");
+  if (chartInstance) chartInstance.destroy();
+  chartInstance = new Chart(ctx, {
+    type: "radar",
+    data: {
+      labels: stageScores.map(s => s.name),
+      datasets: [{
+        label: "Your score",
+        data: stageScores.map(s => Number(s.avg.toFixed(2))),
+        borderColor: "#D51522",
+        backgroundColor: "rgba(213,21,34,0.15)",
+        pointBackgroundColor: "#D51522",
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        r: {
+          min: 0, max: 5, ticks: { stepSize: 1, backdropColor: "transparent", color: "#9AA3AB" },
+          grid: { color: "#E4E9EC" },
+          angleLines: { color: "#E4E9EC" },
+          pointLabels: { color: "#3A3F47", font: { size: 11, family: "Inter" } }
+        }
+      },
+      plugins: { legend: { display: false } }
+    }
+  });
+}
+
+/* Ranks the respondent's own scores and surfaces up to 3 starting
+   recommendations for whichever stages scored below a "healthy" threshold. */
+function renderPriorities(stageScores) {
+  const HEALTHY_THRESHOLD = 4.0;
+  const sorted = [...stageScores].sort((a, b) => a.avg - b.avg);
+  const weak = sorted.filter(s => s.avg < HEALTHY_THRESHOLD).slice(0, 3);
+  const container = document.getElementById("priorityContainer");
+
+  if (weak.length === 0) {
+    container.innerHTML = `
+      <div class="priority-empty">
+        <h2>Nothing urgent stands out</h2>
+        <p>All six stages are trending healthy on self-report. A full diagnostic would confirm this against real performance data and likely surface smaller optimization opportunities rather than one clear priority fix.</p>
+      </div>`;
+    return;
+  }
+
+  const cards = weak.map((s, i) => `
+    <div class="priority-card rank-${i + 1}">
+      <div class="priority-rank">Priority ${i + 1}</div>
+      <div class="priority-head">
+        <span class="priority-stage">${s.name}</span>
+        <span class="priority-score" style="color:${bandFor(s.avg).color}">${s.avg.toFixed(1)} / 5</span>
+      </div>
+      <div class="priority-failure">${s.failure}</div>
+      <p class="priority-text">${RECOMMENDATIONS[s.key]}</p>
+    </div>`).join("");
+
+  container.innerHTML = `
+    <h2>Where to focus first</h2>
+    <p class="lead">Based on your lowest-scoring stages — not a substitute for the full diagnostic, but a reasonable place to start the conversation.</p>
+    <div class="priority-grid">${cards}</div>`;
+}
+</script>
+</body>
+</html>
