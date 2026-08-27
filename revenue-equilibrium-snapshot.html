@@ -315,6 +315,7 @@
       <h2>Want the full picture?</h2>
       <p>This snapshot is based on perception alone. The full Revenue Equilibrium Diagnostic adds real performance data and direct process observation to produce a validated Equilibrium Index and a prioritized growth plan — no obligation.</p>
       <button class="btn-primary" onclick="talkToPome()">Talk to POME about my results</button>
+      <p style="margin-top:12px; font-size:13px; color:#6B7280;">Or <a href="mailto:mo.zmaili@pomefy.io" style="color:#1B1613; text-decoration:underline;">email us directly</a></p>
     </div>
     <p class="disclaimer">Your answers are based on self-report only, with no underlying data or independent verification — treat this as a directional starting point, not a scored exam.</p>
   </div>
@@ -646,30 +647,23 @@ function renderResults(stageScores, index, name) {
 /* Ranks the respondent's own scores and surfaces up to 3 starting
    recommendations for whichever stages scored below a "healthy" threshold. */
 function talkToPome() {
-  const name = document.getElementById("fName").value.trim() || "there";
+  const name = document.getElementById("fName").value.trim() || "";
   const email = document.getElementById("fEmail").value.trim();
   const company = document.getElementById("fCompany").value.trim();
   const { stageScores, index } = computeScores();
 
-  const subject = `Let's discuss my Revenue Equilibrium results${company ? ' — ' + company : ''}`;
-  const bodyParts = [
-    `Hi POME,`,
-    ``,
-    `I just completed the Revenue Equilibrium Snapshot and would like to discuss my results.`,
-    ``,
-    `Overall Index: ${index.toFixed(2)}/5`,
-    ``
-  ];
-  stageScores.forEach(s => {
-    bodyParts.push(`${s.name}: ${s.avg.toFixed(2)}/5`);
-  });
-  bodyParts.push(``);
-  bodyParts.push(`Looking forward to hearing from you.`);
-  bodyParts.push(``);
-  bodyParts.push(`${name}${email ? '\n' + email : ''}${company ? '\n' + company : ''}`);
+  // Build Calendly URL with pre-filled fields and scores
+  const params = new URLSearchParams();
+  if (name) params.set("name", name);
+  if (email) params.set("email", email);
+  // Pass scores as a custom answer (shows in the booking notification)
+  const scoresSummary = `Overall: ${index.toFixed(2)}/5 | ` +
+    stageScores.map(s => `${s.name}: ${s.avg.toFixed(2)}`).join(' | ') +
+    (company ? ` | Company: ${company}` : '');
+  params.set("a1", scoresSummary);
 
-  const body = bodyParts.join('\n');
-  window.location.href = `mailto:mo.zmaili@pomefy.io?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const calendlyUrl = `https://calendly.com/mo-zmaili-pomefy/30min?${params.toString()}`;
+  window.open(calendlyUrl, '_blank', 'noopener');
 }
 
 function renderPriorities(stageScores) {
