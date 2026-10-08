@@ -14,6 +14,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Collaborate | POME Fruitful Partners">
 <meta property="og:description" content="We're looking for senior thinkers, operators, and builders who want to work on commercial problems that matter.">
+<meta property="og:image" content="https://pomefy.io/og-image.png">
 <meta property="og:url" content="https://pomefy.io/collaborate">
 <meta property="og:site_name" content="POME Fruitful Partners">
 
@@ -21,6 +22,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Collaborate | POME Fruitful Partners">
 <meta name="twitter:description" content="We're looking for senior thinkers, operators, and builders who want to work on commercial problems that matter.">
+<meta name="twitter:image" content="https://pomefy.io/og-image.png">
 
 <!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M9.5 4.5A13 13 0 1 1 4 13' fill='none' stroke='%23DE1B3C' stroke-width='4.5' stroke-linecap='round'/%3E%3C/svg%3E">
@@ -119,8 +121,11 @@ nav.links a:hover::after{width:100%;}
 .menu-toggle svg{width:24px;height:24px;display:block;}
 
 /* Mobile drawer */
-.mobile-drawer{position:fixed;inset:0;z-index:99;display:none;flex-direction:column;background:var(--ink);color:var(--white);padding:100px 40px 40px;}
-.mobile-drawer.open{display:flex;}
+.drawer-overlay{position:fixed;inset:0;z-index:98;background:rgba(27,22,19,.55);opacity:0;pointer-events:none;transition:opacity .35s ease;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);}
+.drawer-overlay.open{opacity:1;pointer-events:auto;}
+.mobile-drawer{position:fixed;top:0;right:0;bottom:0;width:min(320px,85vw);z-index:99;display:flex;flex-direction:column;background:var(--ink);color:var(--white);padding:100px 40px 40px;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);box-shadow:-8px 0 30px rgba(0,0,0,.2);}
+.mobile-drawer.open{transform:translateX(0);}
+body.drawer-open{overflow:hidden;}
 .mobile-drawer a{display:block;font-size:20px;font-weight:600;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.1);}
 .mobile-drawer .btn{margin-top:24px;width:100%;justify-content:center;}
 
@@ -208,7 +213,10 @@ nav.links a:hover::after{width:100%;}
 .char-count{text-align:right;font-size:.75rem;color:var(--grey-light);margin-top:4px;}
 
 .form-submit{text-align:center;margin-top:32px;}
-.form-submit .btn{min-width:220px;}
+.form-submit .btn{min-width:220px;transition:opacity .2s;}
+.form-submit .btn:disabled{opacity:.7;cursor:wait;}
+@keyframes btn-spin{to{transform:rotate(360deg)}}
+.form-submit .btn.sending::before{content:"";display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:btn-spin .6s linear infinite;margin-right:8px;vertical-align:middle;}
 
 .form-success{display:none;text-align:center;padding:48px 24px;}
 .form-success svg{width:56px;height:56px;stroke:var(--red);stroke-width:1.5;fill:none;margin:0 auto 20px;}
@@ -281,19 +289,20 @@ nav.links a:hover::after{width:100%;}
       <a href="#apply">Apply</a>
     </nav>
     <a href="#apply" class="btn nav-cta">Apply Now</a>
-    <button class="menu-toggle" aria-label="Open menu" onclick="document.querySelector('.mobile-drawer').classList.toggle('open');this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');" aria-expanded="false">
+    <button class="menu-toggle" aria-label="Open menu" id="menuToggle" onclick="toggleDrawer()" aria-expanded="false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
   </div>
 </header>
 
 <!-- Mobile drawer -->
-<div class="mobile-drawer" role="dialog" aria-label="Navigation menu">
-  <a href="#who" onclick="document.querySelector('.mobile-drawer').classList.remove('open');">Who We Look For</a>
-  <a href="#roles" onclick="document.querySelector('.mobile-drawer').classList.remove('open');">Who Thrives Here</a>
-  <a href="#engage" onclick="document.querySelector('.mobile-drawer').classList.remove('open');">How We Engage</a>
-  <a href="#apply" onclick="document.querySelector('.mobile-drawer').classList.remove('open');">Apply</a>
-  <a href="#apply" class="btn solid" onclick="document.querySelector('.mobile-drawer').classList.remove('open');">Apply Now</a>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer" role="dialog" aria-label="Navigation menu">
+  <a href="#who">Who We Look For</a>
+  <a href="#roles">Who Thrives Here</a>
+  <a href="#engage">How We Engage</a>
+  <a href="#apply">Apply</a>
+  <a href="#apply" class="btn solid">Apply Now</a>
 </div>
 
 <main id="main">
@@ -589,7 +598,7 @@ nav.links a:hover::after{width:100%;}
   form.addEventListener('submit',async function(e){
     e.preventDefault();
     const btn=form.querySelector('button[type="submit"]');
-    btn.disabled=true;btn.textContent='Submitting...';
+    btn.disabled=true;btn.classList.add('sending');btn.textContent='Submitting…';
     try{
       const data=new FormData(form);
       const resp=await fetch(form.action,{method:'POST',body:data,headers:{'Accept':'application/json'}});
@@ -597,14 +606,28 @@ nav.links a:hover::after{width:100%;}
         form.style.display='none';
         success.style.display='block';
       }else{
-        btn.disabled=false;btn.textContent='Submit Application';
+        btn.disabled=false;btn.classList.remove('sending');btn.textContent='Submit Application';
         alert('Something went wrong. Please try again.');
       }
     }catch(err){
-      btn.disabled=false;btn.textContent='Submit Application';
+      btn.disabled=false;btn.classList.remove('sending');btn.textContent='Submit Application';
       alert('Network error. Please try again.');
     }
   });
+})();
+</script>
+<script>
+(function(){
+  const toggle=document.getElementById('menuToggle');
+  const drawer=document.getElementById('mobileDrawer');
+  const overlay=document.getElementById('drawerOverlay');
+  function openDrawer(){drawer.classList.add('open');overlay.classList.add('open');document.body.classList.add('drawer-open');toggle.setAttribute('aria-expanded','true');}
+  function closeDrawer(){drawer.classList.remove('open');overlay.classList.remove('open');document.body.classList.remove('drawer-open');toggle.setAttribute('aria-expanded','false');}
+  window.toggleDrawer=function(){drawer.classList.contains('open')?closeDrawer():openDrawer();};
+  overlay.addEventListener('click',closeDrawer);
+  drawer.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeDrawer);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&drawer.classList.contains('open'))closeDrawer();});
+  window.addEventListener('resize',function(){if(window.innerWidth>980&&drawer.classList.contains('open'))closeDrawer();});
 })();
 </script>
 </body>
