@@ -270,7 +270,8 @@
   header.site-nav.scrolled .brand{ color: var(--ink); }
   header.site-nav.scrolled nav.links a{ color: var(--ink); }
   header.site-nav.scrolled .brand .sub{ color: var(--grey); }
-  header.site-nav.scrolled .nav-cta{ border-color: var(--red); background: var(--red); color: var(--white); }
+  header.site-nav.scrolled .nav-cta{ border-color: var(--red) !important; background: var(--red) !important; color: var(--white) !important; }
+  header.site-nav.scrolled .nav-cta-collab{ border-color: var(--ink) !important; background: var(--ink) !important; color: var(--white) !important; }
   header.site-nav.scrolled .menu-toggle{ color: var(--ink); }
 
   .nav-inner{
@@ -293,6 +294,39 @@
   nav.links a.active::after{ width:100%; }
   nav.links a.active{ opacity:1; }
   header.site-nav.scrolled nav.links a.active{ color: var(--red); }
+
+  /* ---------- Engagements dropdown ---------- */
+  .nav-dropdown{ position:relative; }
+  .nav-dropdown > a .dd-arrow{ display:inline-block; margin-left:3px; font-size:9px; transition:transform .2s ease; }
+  .nav-dropdown:hover > a .dd-arrow{ transform:rotate(180deg); }
+  .dropdown-menu{
+    position:absolute; top:100%; left:0;
+    min-width:200px; padding:8px 0;
+    background:transparent; border:none;
+    border-radius:0; box-shadow:none;
+    opacity:0; visibility:hidden; pointer-events:none;
+    transition:opacity .15s ease, visibility .15s ease;
+    z-index:1001;
+  }
+  /* invisible bridge so mouse doesn't lose hover */
+  .nav-dropdown::after{
+    content:""; position:absolute; top:100%; left:0; width:100%; height:12px;
+  }
+  .nav-dropdown:hover .dropdown-menu{
+    opacity:1; visibility:visible; pointer-events:auto;
+  }
+  .dropdown-menu a{
+    display:flex; align-items:center; justify-content:flex-start; gap:8px;
+    padding:7px 16px; font-size:12.5px; font-weight:600;
+    font-family:var(--sans); color:var(--white) !important;
+    text-decoration:none; transition:color .15s ease; white-space:nowrap;
+    text-align:left;
+  }
+  .dropdown-menu a svg{ width:14px; height:14px; flex:none; stroke:currentColor; fill:none; stroke-width:2; }
+  .dropdown-menu a:hover{ color:var(--red) !important; }
+  .dropdown-menu a::after{ display:none !important; }
+  header.site-nav.scrolled .dropdown-menu{ display:none; }
+  header.site-nav.scrolled .nav-dropdown > a .dd-arrow{ display:none; }
   .btn{
     display:inline-flex; align-items:center; gap:8px;
     font-size: 13px; font-weight: 700; letter-spacing:0.02em;
@@ -336,8 +370,22 @@
   .mobile-drawer a{
     font-family: var(--serif); font-size: clamp(20px, 5vw, 28px); font-weight:700;
     padding: 12px 0; border-bottom: 1px solid rgba(246,242,233,.12);
+    min-height: 44px; display:flex; align-items:center;
   }
   .mobile-drawer .btn{ margin-top: 24px; align-self:flex-start; border-color: var(--cream); color: var(--cream); font-size: clamp(13px, 3.5vw, 15px); padding: 14px 32px; }
+  .mobile-dd-items{
+    max-height:0; overflow:hidden; transition:max-height .3s ease;
+    padding-left:20px; margin-left:4px; border-left:2px solid var(--red);
+  }
+  .mobile-dd-items.open{ max-height:500px; }
+  .mobile-dd-items a{
+    font-size:clamp(15px,4vw,18px) !important; font-weight:500 !important;
+    opacity:.7; padding:10px 0 !important; min-height:44px;
+    display:flex !important; align-items:center;
+    border-bottom:1px solid rgba(246,242,233,.06) !important;
+  }
+  .mobile-dd-items a:last-child{ border-bottom:none !important; }
+  .mobile-dd-items a:hover, .mobile-dd-items a:active{ opacity:1; color:var(--red) !important; }
   body.drawer-open{ overflow:hidden; }
 
   /* ---------- Hero ---------- */
@@ -361,8 +409,8 @@
     width: 480px; height:480px; z-index:0;
   }
   .orbit svg{ width:100%; height:100%; }
-  .orbit-ring{ animation: spin 60s linear infinite; transform-origin: 240px 240px; }
-  .orbit-ring.slow{ animation-duration: 90s; animation-direction: reverse; }
+  .orbit-ring{ animation: spin 20s linear infinite; transform-origin: 240px 240px; }
+  .orbit-ring.slow{ animation-duration: 30s; animation-direction: reverse; }
   @keyframes spin{ from{ transform: rotate(0deg); } to{ transform: rotate(360deg); } }
 
   .hero-content{ position:relative; z-index:2; max-width: 680px; }
@@ -764,12 +812,23 @@
     <nav class="links" aria-label="Main navigation">
       <a href="#who-we-are">Who We Are</a>
       <a href="#methodology">Methodology</a>
-      <a href="#services">Engagements</a>
+      <div class="nav-dropdown">
+        <a href="#services">Engagements <span class="dd-arrow">▾</span></a>
+        <div class="dropdown-menu">
+          <a href="social-intelligence.html"><svg viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-5 3 3 5-7"/></svg>Growth Strategy</a>
+          <a href="marketing-brand.html"><svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5ZM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Marketing &amp; Brand</a>
+          <a href="e-commerce.html"><svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12L5 3H2m6 18a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"/></svg>E‑Commerce</a>
+          <a href="business-development.html"><svg viewBox="0 0 24 24"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="17" r="3"/><path d="M9.5 8.5 14.5 15.5"/></svg>Business Development</a>
+          <a href="investment-advisory.html"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Investment Advisory</a>
+          <a href="ai-stack.html"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>AI Stack</a>
+          <a href="event-led-bd.html"><svg viewBox="0 0 24 24"><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/><circle cx="12" cy="6" r="2"/><path d="M6 16V9a2 2 0 0 1 2-2h1M18 16V9a2 2 0 0 1-2-2h-1"/></svg>Event‑Led BD</a>
+        </div>
+      </div>
       <a href="#work-with-us">Work With Us</a>
       <a href="#trusted">Clients</a>
     </nav>
-    <a href="#lead-form" class="btn solid nav-cta" style="margin-right:8px;">Get My Free Diagnostic</a>
-    <a href="collaborate.html" class="btn solid nav-cta">Collaborate</a>
+    <a href="#lead-form" class="btn nav-cta" style="margin-right:8px;background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.4);color:var(--white);">Get My Free Diagnostic</a>
+    <a href="collaborate.html" class="btn nav-cta nav-cta-collab" style="background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.4);color:var(--white);">Collaborate</a>
     <button type="button" class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileDrawer" aria-label="Open menu">
       <svg id="menuIconOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       <svg id="menuIconClose" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none;"><path d="M6 6l12 12M18 6 6 18"/></svg>
@@ -781,7 +840,16 @@
 <nav id="mobileDrawer" class="mobile-drawer" aria-label="Mobile" aria-hidden="true">
   <a href="#who-we-are">Who We Are</a>
   <a href="#methodology">Methodology</a>
-  <a href="#services">Engagements</a>
+  <a href="#services" class="mobile-dd-toggle" onclick="event.preventDefault();var items=this.parentElement.querySelector('.mobile-dd-items');items.classList.toggle('open');this.querySelector('.dd-arrow').style.transform=items.classList.contains('open')?'rotate(180deg)':'';">Engagements <span class="dd-arrow" style="font-size:10px;margin-left:4px;display:inline-block;transition:transform .2s ease;">▾</span></a>
+  <div class="mobile-dd-items">
+    <a href="social-intelligence.html">Growth Strategy</a>
+    <a href="marketing-brand.html">Marketing &amp; Brand</a>
+    <a href="e-commerce.html">E‑Commerce</a>
+    <a href="business-development.html">Business Development</a>
+    <a href="investment-advisory.html">Investment Advisory</a>
+    <a href="ai-stack.html">AI Stack</a>
+    <a href="event-led-bd.html">Event‑Led BD</a>
+  </div>
   <a href="#work-with-us">Work With Us</a>
   <a href="#trusted">Clients</a>
   <a href="collaborate.html">Collaborate</a>
@@ -908,7 +976,10 @@
 
         <div class="equilibrium-row">
           <div class="equilibrium-label"><span class="dot-red"></span><b>Revenue Equilibrium</b> When all stages run in balance, the result is sustainable, self-reinforcing growth.</div>
-          <a href="diagnostics.html" class="btn on-dark" style="border-color: rgba(246,242,233,.4); color: var(--cream);">Learn More About Our Diagnostics →</a>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;">
+            <a href="diagnostics.html" class="btn on-dark" style="border-color: rgba(246,242,233,.4); color: var(--cream);">Learn More About Our Diagnostics →</a>
+            <a href="#lead-form" class="btn solid">Get My Free Diagnostic</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1027,7 +1098,7 @@
       <div class="lead-copy reveal">
         <div class="kicker"><span class="dot"></span><span class="eyebrow" style="color: rgba(246,242,233,.6);">Let's Talk</span></div>
         <h2 class="section-title">Get Your Free Revenue Equilibrium Diagnostic</h2>
-        <p class="section-lede">Tell us where your business is today and what you're hoping to grow. We'll come back with how a joined‑up, delivery‑backed plan could look for you. There's no obligation.</p>
+        <p class="section-lede">Tell us where your business is today and what you're hoping to grow.</p>
 
         <ol class="how-it-works">
           <li><span class="step-num">1</span><span>Tell us a bit about your business and goals</span></li>
@@ -1197,7 +1268,13 @@
     drawer.classList.contains('open') ? closeDrawer() : openDrawer();
   });
   overlay.addEventListener('click', closeDrawer);
-  drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeDrawer));
+  drawer.querySelectorAll('a').forEach(a=>{
+    // Don't close drawer when tapping the Engagements toggle
+    if(a.classList.contains('mobile-dd-toggle')) return;
+    a.addEventListener('click', closeDrawer);
+  });
+  // Close drawer when tapping a sub-menu link
+  drawer.querySelectorAll('.mobile-dd-items a').forEach(a=>a.addEventListener('click', closeDrawer));
   window.addEventListener('keydown', (e)=>{
     if(e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
   });

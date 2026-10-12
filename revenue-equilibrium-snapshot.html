@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Revenue Equilibrium Snapshot — POME Fruitful Partners</title>
+<title>The Revenue Equilibrium Snapshot | POME Fruitful Partners</title>
+<meta property="og:image" content="https://pomefy.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pomefy.io/og-image.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M9.5 4.5A13 13 0 1 1 4 13' fill='none' stroke='%23DE1B3C' stroke-width='4.5' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -20,6 +26,11 @@
     --muted:#6B7280;
     --line:#E4E9EC;
     --ink-soft:#3A3F47;
+    --green:#0E7C4A;
+    --green-bg:#ECFDF3;
+    --amber:#B45309;
+    --amber-bg:#FFFBEB;
+    --red-bg:#FEF2F2;
     --display: 'Space Grotesk', -apple-system, sans-serif;
     --body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
@@ -181,14 +192,27 @@
   }
   .info-dot:hover .tip, .info-dot:focus .tip{ visibility:visible; opacity:1; }
 
-  /* ---------- Priority recommendations ---------- */
+  /* ---------- Urgency badge ---------- */
+  .urgency-badge{
+    display:inline-flex; align-items:center; gap:5px;
+    font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+    padding:4px 10px; border-radius:999px; margin-left:8px; vertical-align:middle;
+  }
+  .urgency-badge.critical{ background:var(--red-bg); color:var(--coral-dark); }
+  .urgency-badge.attention{ background:var(--amber-bg); color:var(--amber); }
+  .urgency-badge.monitor{ background:var(--sky); color:var(--muted); }
+  .urgency-badge::before{
+    content:""; width:6px; height:6px; border-radius:50%; background:currentColor; flex:none;
+  }
+
+  /* ---------- Priority recommendations (enhanced) ---------- */
   .priority-section{ margin-bottom:30px; }
   .priority-section h2{ font-size:19px; margin-bottom:4px; }
   .priority-section > p.lead{ margin-bottom:18px; }
-  .priority-grid{ display:flex; flex-direction:column; gap:12px; }
+  .priority-grid{ display:flex; flex-direction:column; gap:14px; }
   .priority-card{
     border:1.5px solid var(--line); border-left:4px solid var(--coral); border-radius:12px;
-    padding:16px 18px; background:var(--white);
+    padding:18px 20px; background:var(--white);
   }
   .priority-card.rank-2, .priority-card.rank-3{ border-left-color:#D8DEE3; }
   .priority-rank{
@@ -196,14 +220,59 @@
     color:var(--coral); text-transform:uppercase; margin-bottom:7px;
   }
   .priority-card.rank-2 .priority-rank, .priority-card.rank-3 .priority-rank{ color:var(--muted); }
-  .priority-head{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:3px; }
+  .priority-head{ display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:3px; flex-wrap:wrap; }
   .priority-stage{ font-family:var(--display); font-weight:700; font-size:16px; color:var(--ink); }
   .priority-score{ font-family:var(--display); font-weight:700; font-size:14px; white-space:nowrap; }
-  .priority-failure{ font-size:12px; color:var(--muted); font-weight:700; margin-bottom:9px; text-transform:uppercase; letter-spacing:.04em; }
-  .priority-text{ font-size:14.5px; color:var(--ink-soft); line-height:1.55; margin:0; }
+  .priority-failure{ font-size:12px; color:var(--muted); font-weight:700; margin-bottom:6px; text-transform:uppercase; letter-spacing:.04em; }
+  .priority-interpretation{ font-size:14px; color:var(--ink); line-height:1.55; margin:0 0 12px 0; font-weight:500; }
+  .priority-symptoms{ margin:0 0 12px 0; padding:0; list-style:none; }
+  .priority-symptoms li{
+    font-size:13.5px; color:var(--ink-soft); line-height:1.5; padding:4px 0 4px 20px;
+    position:relative;
+  }
+  .priority-symptoms li::before{
+    content:""; position:absolute; left:0; top:11px; width:8px; height:8px;
+    border-radius:50%; border:2px solid var(--coral); background:transparent;
+  }
+  .priority-card.rank-2 .priority-symptoms li::before,
+  .priority-card.rank-3 .priority-symptoms li::before{ border-color:var(--muted); }
+  .priority-action{
+    background:var(--sky); border-radius:10px; padding:12px 14px;
+    font-size:13.5px; color:var(--ink); line-height:1.5;
+  }
+  .priority-action strong{ font-weight:700; color:var(--teal); font-size:12px; text-transform:uppercase; letter-spacing:.04em; display:block; margin-bottom:3px; }
   .priority-empty{ background:var(--sky); border-radius:14px; padding:22px 24px; }
   .priority-empty h2{ font-size:18px; margin-bottom:8px; }
   .priority-empty p{ color:var(--ink-soft); font-size:14px; margin:0; line-height:1.55; }
+
+  /* ---------- Strengths section ---------- */
+  .strengths-section{ margin-bottom:30px; }
+  .strengths-section h2{ font-size:19px; margin-bottom:4px; }
+  .strengths-section > p.lead{ margin-bottom:14px; }
+  .strength-grid{ display:flex; flex-direction:column; gap:10px; }
+  .strength-card{
+    border:1.5px solid #C6F0D9; border-left:4px solid var(--green); border-radius:12px;
+    padding:14px 18px; background:var(--green-bg);
+  }
+  .strength-head{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:4px; }
+  .strength-stage{ font-family:var(--display); font-weight:700; font-size:15px; color:var(--ink); }
+  .strength-score{ font-family:var(--display); font-weight:700; font-size:13px; color:var(--green); }
+  .strength-text{ font-size:14px; color:var(--ink-soft); line-height:1.5; margin:0; }
+
+  /* ---------- Cross-stage connections ---------- */
+  .connections-section{ margin-bottom:30px; }
+  .connections-section h2{ font-size:19px; margin-bottom:4px; }
+  .connections-section > p.lead{ margin-bottom:14px; }
+  .connection-card{
+    border:1.5px solid #F5D0A9; border-radius:12px;
+    padding:16px 18px; background:var(--amber-bg); margin-bottom:10px;
+  }
+  .connection-label{
+    font-family:var(--display); font-size:11px; font-weight:700; letter-spacing:.09em;
+    color:var(--amber); text-transform:uppercase; margin-bottom:6px;
+  }
+  .connection-stages{ font-family:var(--display); font-weight:700; font-size:15px; color:var(--ink); margin-bottom:5px; }
+  .connection-text{ font-size:14px; color:var(--ink-soft); line-height:1.55; margin:0; }
 
   table.results{ width:100%; border-collapse:collapse; margin-bottom:26px; font-size:14px; }
   table.results th{ text-align:left; background:var(--ink); color:#fff; padding:11px 12px; font-size:11.5px; letter-spacing:.04em; font-family:var(--display); font-weight:600;}
@@ -213,6 +282,7 @@
     display:inline-block; min-width:36px; text-align:center; padding:3px 9px; border-radius:999px;
     font-weight:700; font-size:13px; font-family:var(--display);
   }
+  .score-interp{ display:block; font-size:11.5px; font-weight:500; color:var(--muted); margin-top:3px; }
 
   .cta-box{
     background:var(--sky); border-radius:16px; padding:26px 26px; text-align:center;
@@ -231,17 +301,14 @@
 <body>
 
 <div class="sitebar">
-  <a class="brand" href="https://pomefy.io" aria-label="POME Fruitful Partners home">
-    <!-- pome-logo.png is the real POME icon mark (cleaned/sharpened from the
-         uploaded logo, background removed). If it's ever missing or fails to
-         load, the placeholder ring below is shown instead so nothing breaks. -->
+  <a class="brand" href="index.html" aria-label="POME Fruitful Partners home">
     <img src="pome-logo.png" alt="" class="brand-logo"
          onload="document.getElementById('ringFallback').style.display='none';"
          onerror="this.style.display='none';">
     <span class="ring" id="ringFallback"></span>
     <span>POME FRUITFUL PARTNERS</span>
   </a>
-  <a class="backlink" href="https://pomefy.io">← pomefy.io</a>
+  <a class="backlink" href="index.html">← pomefy.io</a>
 </div>
 
 <div class="wrap">
@@ -264,11 +331,11 @@
   <div class="screen" id="screen-intro">
     <p class="eyebrow">Free Diagnostic Tool</p>
     <h1>The Revenue Equilibrium Snapshot</h1>
-    <p class="lead">Growth isn't a straight line — it's a cycle. Revenue moves through five stages toward cash, while a sixth reclaims what's lost and feeds it back in. This 30-question snapshot takes about 5 minutes and shows you where your cycle is out of balance right now.</p>
+    <p class="lead">Growth isn't a straight line. It's a cycle. Revenue moves through five stages toward cash, while a sixth reclaims what's lost and feeds it back in. This 30-question snapshot takes about 5 minutes and shows you where your cycle is out of balance right now.</p>
     <div class="nav-row" style="justify-content:flex-start;">
       <button class="btn-primary" onclick="goToStage(0)">Start the snapshot →</button>
     </div>
-    <p class="disclaimer">Best answered by whoever is closest to overall revenue performance — a founder, MD, or Head of Sales. There are no wrong answers.</p>
+    <p class="disclaimer">Best answered by whoever is closest to overall revenue performance: a founder, MD, or Head of Sales. There are no wrong answers.</p>
   </div>
 
   <!-- STAGE SCREENS injected here -->
@@ -278,7 +345,7 @@
   <div class="screen hidden" id="screen-contact">
     <p class="eyebrow">Almost there</p>
     <h2>Where should we send your results?</h2>
-    <p class="lead">Your personalized Snapshot — including which stage needs attention first — is ready right after this.</p>
+    <p class="lead">Your personalized Snapshot, including which stage needs attention first, is ready right after this.</p>
     <div class="field"><label for="fName">Full name</label><input id="fName" type="text" placeholder="Jane Rivera" autocomplete="name"></div>
     <div class="field"><label for="fEmail">Work email</label><input id="fEmail" type="email" placeholder="jane@company.com" autocomplete="email"></div>
     <div class="field"><label for="fCompany">Company</label><input id="fCompany" type="text" placeholder="Company name" autocomplete="organization"></div>
@@ -302,7 +369,14 @@
       <div class="verdict" id="indexVerdict"></div>
     </div>
 
+    <!-- Strengths (what's working) -->
+    <div class="strengths-section" id="strengthsContainer"></div>
+
+    <!-- Priority recommendations (enhanced) -->
     <div class="priority-section" id="priorityContainer"></div>
+
+    <!-- Cross-stage connections -->
+    <div class="connections-section hidden" id="connectionsContainer"></div>
 
     <div class="chart-wrap"><canvas id="radarChart" role="img" aria-label="Radar chart of your six stage scores"></canvas></div>
 
@@ -313,26 +387,26 @@
 
     <div class="cta-box">
       <h2>Want the full picture?</h2>
-      <p>This snapshot is based on perception alone. The full Revenue Equilibrium Diagnostic adds real performance data and direct process observation to produce a validated Equilibrium Index and a prioritized growth plan — no obligation.</p>
-      <a href="diagnostics.html" class="btn-primary" style="display:inline-block;text-decoration:none;text-align:center;">Learn More About Our Diagnostics →</a>
-      <p style="margin-top:12px; font-size:13px; color:#6B7280;">Or <a href="mailto:mo.zmaili@pomefy.io" style="color:#1B1613; text-decoration:underline;">email us directly</a></p>
+      <p>This snapshot is based on perception alone. The full Revenue Equilibrium Diagnostic adds real performance data and direct process observation to produce a validated Equilibrium Index and a prioritized growth plan, with no obligation.</p>
+      <a href="diagnostics.html" class="btn-primary" style="display:inline-block;text-decoration:none;color:#fff;text-align:center;">Learn More About Our Diagnostics →</a>
     </div>
-    <p class="disclaimer">Your answers are based on self-report only, with no underlying data or independent verification — treat this as a directional starting point, not a scored exam.</p>
+    <p class="disclaimer">Your answers are based on self-report only, with no underlying data or independent verification. Treat this as a directional starting point, not a scored exam.</p>
   </div>
 </div>
 
 <div class="footerbar">
-  <p>Advisory Backed by Delivery. Growth You Can Trust.</p>
-  <p>© POME Fruitful Partners. All rights reserved.</p>
+  <p><a class="backlink" href="index.html" style="text-decoration:none;color:var(--muted);">← Back to pomefy.io</a></p>
+  <p>© 2026 POME Fruitful Partners. All rights reserved.</p>
 </div>
 </div>
 
 <script>
-/* ---------------- DATA ---------------- */
-/* Taglines mirror the live pomefy.io "Revenue Equilibrium Model" section copy. */
+/* ================================================================
+   DATA
+   ================================================================ */
 const STAGES = [
   { key:"blueocean", num:"01", name:"Blue Ocean", phase:"Water Source", tagline:"Creating new markets", failure:"Drought", qs:[
-    "We have a clear, active plan for entering new markets or segments — not just serving our existing customer base.",
+    "We have a clear, active plan for entering new markets or segments, not just serving our existing customer base.",
     "In the last 12 months, we've generated meaningful revenue from a genuinely new market, segment, or use case.",
     "If our top accounts stopped growing tomorrow, we have a credible plan for where new revenue would come from.",
     "We treat market expansion as an ongoing priority, not something we only revisit once growth has already stalled.",
@@ -342,15 +416,15 @@ const STAGES = [
     "The leads marketing sends to sales are consistently high-quality and get worked promptly.",
     "Our demand generation volume is matched to what our sales team can actually handle.",
     "We rarely have leads sitting untouched in our CRM.",
-    "Sales and marketing agree on what makes a lead \u201Cready\u201D before it's handed over.",
+    "Sales and marketing agree on what makes a lead “ready” before it's handed over.",
     "We have real visibility into what happens to a lead after marketing hands it to sales."
   ]},
   { key:"thecloud", num:"03", name:"The Cloud", phase:"Condensation", tagline:"Structuring the pipeline", failure:"Stagnation", qs:[
-    "I'm highly confident in our current pipeline number — I'd bet on it.",
+    "I'm highly confident in our current pipeline number. I'd bet on it.",
     "We have clear, enforced rules for when a deal moves from one stage to the next.",
     "Our sales forecasts are usually accurate within a small margin.",
     "Deals rarely sit in the same pipeline stage for multiple quarters without action.",
-    "When a deal stalls, there's a clear next step — escalate, disqualify, or accelerate — rather than it just sitting."
+    "When a deal stalls, there's a clear next step (escalate, disqualify, or accelerate) rather than it just sitting."
   ]},
   { key:"bringtheheat", num:"04", name:"Bring the Heat", phase:"Pressure & Acceleration", tagline:"Urgency & momentum", failure:"Flooding", qs:[
     "Most of our deals close because of real value and urgency, not discounting.",
@@ -363,15 +437,15 @@ const STAGES = [
     "Our revenue comes in steadily throughout the period, not clustered at the end.",
     "Our margins have stayed stable or improved over the last year.",
     "Deals we close don't create unexpected operational strain later.",
-    "We don't see a pattern of rushed, \u201Chockey stick\u201D closing at the end of every period.",
+    "We don't see a pattern of rushed, “hockey stick” closing at the end of every period.",
     "Once a deal closes, the account transitions cleanly to the team that owns retention."
   ]},
-  { key:"diggersdig", num:"06", name:"Diggers Dig", phase:"Groundwater & Runoff", tagline:"Reclaims stale opportunity — feeds straight back into The Cloud", failure:"Neglect", qs:[
+  { key:"diggersdig", num:"06", name:"Diggers Dig", phase:"Groundwater & Runoff", tagline:"Reclaims stale opportunity and feeds it back into The Cloud", failure:"Neglect", qs:[
     "We have an active, owned process for reactivating stale or lost opportunities.",
     "We rarely let leads or accounts go quiet without follow-up.",
-    "Cross-sell and upsell to existing customers is a deliberate, tracked motion — not an accident.",
+    "Cross-sell and upsell to existing customers is a deliberate, tracked motion, not an accident.",
     "When an account churns, we have a standard process for finding out why.",
-    "Reactivating an old lead is treated as real, valued work — not lower priority than new pipeline."
+    "Reactivating an old lead is treated as real, valued work, not lower priority than new pipeline."
   ]}
 ];
 
@@ -380,28 +454,156 @@ let currentStage = -1;
 const TOTAL_STEPS = STAGES.length + 2;
 const RING_CIRC = 113.1;
 
-/* Plain-language explanation shown on hover over each failure state. */
 const FAILURE_INFO = {
-  "Drought": "Over-reliance on existing customers — commoditization and margin erosion tend to follow.",
-  "Over-Evaporation": "High lead volume but low intent — leads to sales burnout and CRM congestion.",
-  "Stagnation": "Pipeline looks active but is actually bloated and stale — forecasts feel confident but aren't reliable.",
-  "Flooding": "Deals get force-closed with discounting — leads to customer regret and early churn.",
+  "Drought": "Over-reliance on existing customers. Commoditization and margin erosion tend to follow.",
+  "Over-Evaporation": "High lead volume but low intent. This leads to sales burnout and CRM congestion.",
+  "Stagnation": "Pipeline looks active but is actually bloated and stale. Forecasts feel confident but aren't reliable.",
+  "Flooding": "Deals get force-closed with discounting. This leads to customer regret and early churn.",
   "Flash Floods": "Revenue arrives in short-term bursts that quietly cost margin and stability later.",
-  "Neglect": "Lost or stale opportunity is simply left uncollected — revenue you already paid to generate goes unclaimed."
+  "Neglect": "Lost or stale opportunity is simply left uncollected. Revenue you already paid to generate goes unclaimed."
 };
 
-/* One general-purpose starting recommendation per stage, shown when that
-   stage lands among the respondent's three lowest scores. */
-const RECOMMENDATIONS = {
-  blueocean: "Build a standing cadence for evaluating new markets, segments, or use cases — even one dedicated hour a month. Treat expansion as an ongoing function, not a rescue mission you turn to once growth stalls.",
-  risingsun: "Set an explicit lead-quality bar with sales before increasing demand-gen volume further. Matching output to what sales can actually work well is usually a faster fix than spending more.",
-  thecloud: "Introduce clear, enforced exit criteria for every pipeline stage so deals can't sit indefinitely. This alone tends to be the fastest lever to lift both forecast accuracy and rep accountability.",
-  bringtheheat: "Put lightweight governance around discount approval before a deal reaches signature. Replacing ad hoc discretion with a simple threshold-based process protects margin without slowing down real urgency.",
-  rainfall: "Track what share of revenue books in the final two weeks of each period — if it's high, work backward to find what's delaying earlier decisions. Smoothing the curve usually beats closing faster.",
-  diggersdig: "Assign explicit, named ownership for reactivating stale pipeline and dormant contacts. This is the most common finding of all: reclaiming lost opportunity isn't formally anyone's job."
+/* ---- Enhanced: per-stage recommendations with symptoms, actions, and interpretations ---- */
+const STAGE_DATA = {
+  blueocean: {
+    recommendation: "Build a standing cadence for evaluating new markets, segments, or use cases, even one dedicated hour a month. Treat expansion as an ongoing function, not a rescue mission you turn to once growth stalls.",
+    symptoms: [
+      "Revenue is heavily concentrated in one segment or a small set of existing accounts",
+      "You're competing more on price than on differentiation",
+      "New customer acquisition has flattened or slowed noticeably",
+      "Your product or service is starting to feel interchangeable with competitors"
+    ],
+    action: "Block one session per month to evaluate one adjacent market or use case. Start with your existing customers: ask what else they buy from competitors that you could serve. You don't need a strategy deck; you need a habit.",
+    interpretations: {
+      critical: "Your business is likely over-dependent on a shrinking or saturating market. Growth is being squeezed, not built.",
+      attention: "You have awareness of the need to expand, but it's not yet a working process. Most growth is still coming from where it always has.",
+      healthy: "You're actively creating or entering new markets. The risk of commoditization is being managed."
+    },
+    strength: "You're actively expanding your market presence beyond your core base. That's the foundation everything else builds on."
+  },
+  risingsun: {
+    recommendation: "Set an explicit lead-quality bar with sales before increasing demand-gen volume further. Matching output to what sales can actually work well is usually a faster fix than spending more.",
+    symptoms: [
+      "Sales complains about lead quality while marketing reports record volume",
+      "Leads sit untouched in the CRM for days or weeks",
+      "Cost per lead is low but cost per opportunity is high",
+      "There's no shared definition of what makes a lead 'sales-ready'"
+    ],
+    action: "Get sales and marketing in a room and agree on five attributes that make a lead worth calling. Write them down. Gate handover on those five things for 30 days and measure what changes.",
+    interpretations: {
+      critical: "Marketing and sales are likely working against each other. Volume is being generated but not converted, which burns budget and morale.",
+      attention: "The handoff between marketing and sales has friction. Leads are coming in, but the conversion from lead to real opportunity isn't clean.",
+      healthy: "Marketing and sales are well-aligned. Leads are relevant, timely, and getting worked."
+    },
+    strength: "Your demand generation is well-matched to sales capacity. Leads are relevant and getting worked promptly."
+  },
+  thecloud: {
+    recommendation: "Introduce clear, enforced exit criteria for every pipeline stage so deals can't sit indefinitely. This alone tends to be the fastest lever to lift both forecast accuracy and rep accountability.",
+    symptoms: [
+      "Pipeline value looks healthy on paper but deals keep slipping quarter to quarter",
+      "Forecast accuracy is consistently off by more than 15–20%",
+      "Reps have deals in their pipeline that haven't moved in 90+ days",
+      "There's no standard rule for when a deal advances or gets disqualified"
+    ],
+    action: "Pick your three most common pipeline stages. For each one, write down the one thing that must be true before a deal can move to the next stage. Enforce it for one quarter and watch what happens to your forecast.",
+    interpretations: {
+      critical: "Your pipeline is likely inflated with stale or wishful deals. The number you're reporting probably isn't real, and decisions are being made on it.",
+      attention: "Pipeline management has gaps. Some deals are sitting too long, and forecasts aren't landing where they should.",
+      healthy: "Your pipeline is well-governed. Deals move with clear criteria, and what you forecast is close to what you close."
+    },
+    strength: "Your pipeline is clean and well-governed. What's in there is real, and what you forecast is close to what you close."
+  },
+  bringtheheat: {
+    recommendation: "Put lightweight governance around discount approval before a deal reaches signature. Replacing ad hoc discretion with a simple threshold-based process protects margin without slowing down real urgency.",
+    symptoms: [
+      "Discounting has become the default way to close, not the exception",
+      "Win rates spike suspiciously at the end of each quarter",
+      "Customers churn or express regret within the first few months",
+      "Reps routinely override pricing without structured approval"
+    ],
+    action: "Implement a simple discount threshold: anything over 10% needs one approval, anything over 20% needs two. Track how many deals hit each tier for one quarter. The pattern alone will tell you where the problem is.",
+    interpretations: {
+      critical: "Deals are being forced through with pressure and discounting. You're likely trading long-term value for short-term numbers, and it's showing up in churn or margin erosion.",
+      attention: "Some deals are closing on urgency that isn't real. Discount governance is inconsistent, and a few bad patterns may be developing.",
+      healthy: "Deals close on value and real urgency. Discounting is controlled and margins are protected."
+    },
+    strength: "Your deals are closing on genuine value, not pressure tactics. Discounting is controlled and margins are healthy."
+  },
+  rainfall: {
+    recommendation: "Track what share of revenue books in the final two weeks of each period. If it's high, work backward to find what's delaying earlier decisions. Smoothing the curve usually beats closing faster.",
+    symptoms: [
+      "More than 40% of revenue books in the final week of each period",
+      "Margins have been quietly declining quarter over quarter",
+      "Operations or delivery teams are regularly blindsided by what sales just closed",
+      "Post-close handoffs are messy, slow, or missing entirely"
+    ],
+    action: "Pull last quarter's close dates and plot them on a timeline. If you see a hockey stick, pick the three largest late-closing deals and trace back what delayed them. The bottleneck is almost never 'the customer took too long.'",
+    interpretations: {
+      critical: "Revenue is arriving in bursts that strain operations and mask declining margins. Growth may look fine from the top line, but it's not sustainable at this pace.",
+      attention: "There's some clustering of revenue at period-end, and the handoff from sales to delivery could be smoother. Not yet critical, but worth watching.",
+      healthy: "Revenue flows steadily, margins are stable, and closed deals transition cleanly to the teams that deliver them."
+    },
+    strength: "Revenue arrives steadily throughout the period with stable margins. Your sales motion and operations are well-synchronized."
+  },
+  diggersdig: {
+    recommendation: "Assign explicit, named ownership for reactivating stale pipeline and dormant contacts. This is the most common finding of all: reclaiming lost opportunity isn't formally anyone's job.",
+    symptoms: [
+      "Lost deals and churned accounts go into a CRM graveyard that nobody looks at",
+      "Cross-sell and upsell happen accidentally, not by design",
+      "When a customer leaves, nobody formally investigates why",
+      "Reactivation is seen as lower-status work compared to new pipeline"
+    ],
+    action: "Export your lost/closed-lost deals from the last 12 months. Sort by deal size. Pick the top 10 and assign one person to contact each one this week with a simple check-in, no pitch. See how many are willing to re-engage.",
+    interpretations: {
+      critical: "You're continuously paying to acquire new customers while leaving previously-won revenue on the table. This is often the single biggest hidden cost in a business.",
+      attention: "Some reactivation happens, but it's not systematic. There's revenue sitting in your CRM that nobody is actively working to reclaim.",
+      healthy: "You have an active recycling motion. Stale opportunities get reworked, churned accounts get investigated, and upsell is a deliberate process."
+    },
+    strength: "You're actively reclaiming lost and stale opportunity. That's a competitive advantage most businesses don't even think about."
+  }
 };
 
-/* ---------------- BUILD STAGE SCREENS ---------------- */
+/* ---- Cross-stage connection pairs ---- */
+const CROSS_STAGE_LINKS = [
+  {
+    stages: ["thecloud", "diggersdig"],
+    label: "Pipeline & Recycling",
+    text: "When The Cloud (pipeline) and Diggers Dig (recycling) are both weak, stale deals sit in a bloated pipeline with no process to reclaim them. Opportunity enters the system and stops moving. It doesn't convert, and it doesn't get recycled. This is the most expensive combination because you're paying for demand generation that produces nothing."
+  },
+  {
+    stages: ["risingsun", "thecloud"],
+    label: "Demand & Pipeline",
+    text: "When Rising Sun (demand) and The Cloud (pipeline) are both weak, leads either aren't arriving or aren't converting into structured deals. The top of the cycle is leaking. Marketing effort isn't reaching the pipeline, and the pipeline can't tell good opportunity from noise."
+  },
+  {
+    stages: ["bringtheheat", "rainfall"],
+    label: "Acceleration & Revenue",
+    text: "When Bring the Heat (acceleration) and Rainfall (revenue) are both weak, deals are being forced closed but the revenue they produce is unstable. Discounting, quarter-end spikes, and post-close operational strain tend to travel together, and they compound."
+  },
+  {
+    stages: ["blueocean", "risingsun"],
+    label: "Market & Visibility",
+    text: "When Blue Ocean (market creation) and Rising Sun (visibility) are both weak, you're not expanding into new markets and your existing demand generation isn't working well. Growth is stalling at the very start of the cycle. There's nothing feeding the rest of the system."
+  },
+  {
+    stages: ["blueocean", "diggersdig"],
+    label: "Expansion & Recycling",
+    text: "When Blue Ocean (expansion) and Diggers Dig (recycling) are both weak, you're neither creating new market space nor reclaiming what you've already invested in. Revenue is dependent on a single, shrinking motion. The middle of the cycle is doing all the work."
+  },
+  {
+    stages: ["risingsun", "bringtheheat"],
+    label: "Demand & Urgency",
+    text: "When Rising Sun (visibility) and Bring the Heat (acceleration) are both weak, you're generating low-intent leads and then trying to force them through with pressure. This creates a cycle of poor quality in, poor quality out, and the sales team absorbs the cost."
+  }
+];
+
+/* ---- Strength messages for high-scoring stages ---- */
+const STRENGTH_THRESHOLD = 4.0;
+const WEAK_THRESHOLD = 4.0;
+
+/* ================================================================
+   BUILD STAGE SCREENS
+   ================================================================ */
 const container = document.getElementById("stage-container");
 STAGES.forEach((stage, si) => {
   const div = document.createElement("div");
@@ -443,7 +645,9 @@ STAGES.forEach((stage, si) => {
   container.appendChild(div);
 });
 
-/* ---------------- NAVIGATION ---------------- */
+/* ================================================================
+   NAVIGATION
+   ================================================================ */
 function updateProgress(stepIndex) {
   const pct = Math.round((stepIndex / TOTAL_STEPS) * 100);
   const offset = RING_CIRC - (pct / 100) * RING_CIRC;
@@ -485,7 +689,9 @@ function recordAnswer(name, value, stageIndex) {
   document.getElementById("next-" + stageIndex).disabled = !allAnswered;
 }
 
-/* ---------------- SCORING ---------------- */
+/* ================================================================
+   SCORING
+   ================================================================ */
 function computeScores() {
   const stageScores = STAGES.map(stage => {
     const vals = stage.qs.map((_, qi) => answers[stage.key + "-" + qi] || 0);
@@ -497,13 +703,63 @@ function computeScores() {
 }
 
 function bandFor(score) {
-  if (score >= 4.0) return { color: "#0F6E8C", label: "Well-balanced" };
+  if (score >= 4.0) return { color: "#0E7C4A", label: "Well-balanced" };
   if (score >= 2.5) return { color: "#A80F1A", label: "Localized imbalance" };
   return { color: "#7A0D14", label: "Systemic imbalance" };
 }
 
-/* ---------------- SUBMIT + RESULTS ---------------- */
+function urgencyFor(score) {
+  if (score < 2.0) return { level: "critical", label: "Act now" };
+  if (score < 3.0) return { level: "attention", label: "Needs attention" };
+  if (score < 4.0) return { level: "monitor", label: "Monitor" };
+  return null;
+}
+
+function interpretationBand(score) {
+  if (score < 2.5) return "critical";
+  if (score < 4.0) return "attention";
+  return "healthy";
+}
+
+function scoreInterpretation(score) {
+  if (score >= 4.5) return "Strong";
+  if (score >= 4.0) return "Healthy";
+  if (score >= 3.0) return "Mixed";
+  if (score >= 2.0) return "Weak";
+  return "Critical";
+}
+
+/* ================================================================
+   SUBMIT + RESULTS
+   ================================================================ */
 let chartInstance = null;
+
+/* ====================================================================
+   FORM SUBMISSION via Formspree
+   ==================================================================== */
+const FORMSPREE_URL = "https://formspree.io/f/xvkoponw";
+
+function bandLabel(score) {
+  if (score >= 4.0) return "Well-balanced";
+  if (score >= 2.5) return "Localized imbalance";
+  return "Systemic imbalance";
+}
+
+function buildStageScoresSummary(stageScores) {
+  return stageScores.map(s => `${s.name}: ${s.avg.toFixed(1)}/5 (${s.failure})`).join("\n");
+}
+
+function buildPrioritiesSummary(stageScores) {
+  const sorted = [...stageScores].sort((a,b) => a.avg - b.avg);
+  const weak = sorted.filter(s => s.avg < WEAK_THRESHOLD).slice(0, 3);
+  if (weak.length === 0) return "All six stages scored healthy. No urgent priorities.";
+  return weak.map((s, i) => {
+    const data = STAGE_DATA[s.key];
+    const urg = urgencyFor(s.avg);
+    const urgLabel = urg ? ` [${urg.label}]` : "";
+    return `Priority ${i + 1}${urgLabel}: ${s.name} (${s.avg.toFixed(1)}/5, ${s.failure})\n${data.interpretations[interpretationBand(s.avg)]}\nFirst step: ${data.action}`;
+  }).join("\n\n");
+}
 
 async function submitAndShowResults() {
   const name = document.getElementById("fName").value.trim();
@@ -515,104 +771,91 @@ async function submitAndShowResults() {
   }
 
   const { stageScores, index } = computeScores();
+  const verdict = bandLabel(index);
 
-  // Build detailed question-by-question breakdown
-  const detailedResponses = STAGES.map(stage => {
-    const questionResults = stage.qs.map((q, qi) => {
-      const key = stage.key + "-" + qi;
-      return {
-        question: q,
-        answer: answers[key] !== undefined ? answers[key] : null
-      };
+  // ---- Submit results via Formspree ----
+  try {
+    await fetch(FORMSPREE_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({
+        name,
+        email,
+        company: company || "(not provided)",
+        snapshot_index: index.toFixed(1) + " / 5",
+        verdict,
+        stage_scores: buildStageScoresSummary(stageScores),
+        priorities: buildPrioritiesSummary(stageScores),
+        submitted_at: new Date().toLocaleString("en-GB", { dateStyle: "long", timeStyle: "short" })
+      })
     });
-    const stageScore = stageScores.find(s => s.name === stage.name);
-    return {
-      stage: stage.name,
-      phase: stage.phase,
-      score: stageScore ? Number(stageScore.avg.toFixed(2)) : null,
-      questions: questionResults
-    };
-  });
-
-  // ---- Submit lead + results to Formspree ----
-  const ENDPOINT_URL = "https://formspree.io/f/xvkoponw";
-  const payload = {
-    name, email, company,
-    overallIndex: Number(index.toFixed(2)),
-    stages: detailedResponses,
-    submittedAt: new Date().toISOString()
-  };
-  if (ENDPOINT_URL && !ENDPOINT_URL.includes("YOUR_SNAPSHOT_FORM_ID")) {
-    try {
-      await fetch(ENDPOINT_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify(payload)
-      });
-    } catch (e) {
-      console.warn("Lead submission failed (check ENDPOINT_URL):", e);
-    }
-  } else if (ENDPOINT_URL.includes("YOUR_SNAPSHOT_FORM_ID")) {
-    // Fallback: compose a mailto with full results
-    const subject = `Revenue Equilibrium Snapshot: ${name}${company ? ' / ' + company : ''}`;
-    const bodyParts = [
-      `Name: ${name}`,
-      `Email: ${email}`,
-      company ? `Company: ${company}` : null,
-      `\nRevenue Equilibrium Index: ${index.toFixed(2)}/5`,
-      `\n${'='.repeat(50)}`,
-    ];
-    detailedResponses.forEach(stage => {
-      bodyParts.push(`\n${stage.stage} (${stage.phase}) — Score: ${stage.score}/5`);
-      stage.questions.forEach((q, i) => {
-        bodyParts.push(`  Q${i+1}: ${q.question}`);
-        bodyParts.push(`  A${i+1}: ${q.answer}/5`);
-      });
-    });
-    bodyParts.push(`\nSubmitted: ${new Date().toISOString()}`);
-    const body = bodyParts.filter(Boolean).join('\n');
-    setTimeout(() => {
-      window.location.href = `mailto:mo.zmaili@pomefy.io?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    }, 500);
-    console.log("Formspree not configured — falling back to mailto. Payload:", payload);
+    console.log("Formspree submission sent successfully.");
+  } catch (err) {
+    console.warn("Formspree submission failed:", err);
   }
 
   hideAllScreens();
   document.getElementById("screen-results").classList.remove("hidden");
   updateProgress(STAGES.length + 2);
   window.scrollTo({top:0, behavior:"smooth"});
-  // Chart.js must measure the canvas after it's visible, not before —
-  // requestAnimationFrame waits one paint so display:none is resolved.
   requestAnimationFrame(() => renderResults(stageScores, index, name));
 }
 
+/* ================================================================
+   RENDER RESULTS (enhanced)
+   ================================================================ */
 function renderResults(stageScores, index, name) {
+  /* ---- Headline & sub ---- */
   document.getElementById("resultsHeadline").textContent = name ? `${name.split(" ")[0]}, here's where your system stands` : "Here's where your system stands";
 
   const weakest = [...stageScores].sort((a,b) => a.avg - b.avg)[0];
-  const subText = weakest.avg < 4.0
-    ? `Your lowest-scoring stage is ${weakest.name} (${weakest.failure}) — that's usually the best place to start a conversation.`
-    : `All six stages are trending healthy on self-report — ${weakest.name} is your relative lowest, but nothing here looks urgent.`;
+  const strongest = [...stageScores].sort((a,b) => b.avg - a.avg)[0];
+  const weakCount = stageScores.filter(s => s.avg < WEAK_THRESHOLD).length;
+
+  let subText;
+  if (weakCount === 0) {
+    subText = `All six stages are trending healthy on self-report. ${weakest.name} is your relative lowest, but nothing here looks urgent.`;
+  } else if (weakCount <= 2) {
+    subText = `Your system has localized pressure in ${weakCount === 1 ? 'one stage' : 'two stages'}. ${weakest.name} (${weakest.failure}) is where to start the conversation.`;
+  } else {
+    subText = `${weakCount} of your six stages are below the healthy threshold. This points to a broader systemic pattern, not just one area to fix.`;
+  }
   document.getElementById("resultsSub").textContent = subText;
 
+  /* ---- Index hero ---- */
   const band = bandFor(index);
   document.getElementById("indexValue").textContent = index.toFixed(1) + " / 5";
-  document.getElementById("indexVerdict").textContent =
-    band.label === "Well-balanced" ? "Your system looks well-balanced on self-report. A full diagnostic would confirm this against real data." :
-    band.label === "Localized imbalance" ? "You're likely carrying a localized imbalance in one or two stages, worth identifying precisely." :
-    "Signs point to a broader, systemic imbalance across multiple stages.";
+  let verdictText;
+  if (band.label === "Well-balanced") {
+    verdictText = "Your system looks well-balanced on self-report. A full diagnostic would confirm this against real data.";
+  } else if (band.label === "Localized imbalance") {
+    verdictText = "You're likely carrying a localized imbalance in one or two stages, worth identifying precisely before it spreads.";
+  } else {
+    verdictText = "Signs point to a broader, systemic imbalance across multiple stages. Individual fixes won't be enough.";
+  }
+  document.getElementById("indexVerdict").textContent = verdictText;
 
+  /* ---- Strengths ---- */
+  renderStrengths(stageScores);
+
+  /* ---- Priorities ---- */
+  renderPriorities(stageScores);
+
+  /* ---- Cross-stage connections ---- */
+  renderConnections(stageScores);
+
+  /* ---- Score table with interpretations ---- */
   const tbody = document.getElementById("resultsTableBody");
   tbody.innerHTML = "";
   stageScores.forEach(s => {
     const b = bandFor(s.avg);
+    const interp = scoreInterpretation(s.avg);
     const tr = document.createElement("tr");
-    tr.innerHTML = `<td><strong>${s.name}</strong></td><td>${s.failure}<span class="info-dot" tabindex="0" aria-label="What ${s.failure} means">i<span class="tip">${FAILURE_INFO[s.failure]}</span></span></td><td><span class="score-pill" style="background:${b.color}1F; color:${b.color};">${s.avg.toFixed(1)}</span></td>`;
+    tr.innerHTML = `<td><strong>${s.name}</strong></td><td>${s.failure}<span class="info-dot" tabindex="0" aria-label="What ${s.failure} means">i<span class="tip">${FAILURE_INFO[s.failure]}</span></span></td><td><span class="score-pill" style="background:${b.color}1F; color:${b.color};">${s.avg.toFixed(1)}</span><span class="score-interp">${interp}</span></td>`;
     tbody.appendChild(tr);
   });
 
-  renderPriorities(stageScores);
-
+  /* ---- Radar chart ---- */
   const ctx = document.getElementById("radarChart");
   if (chartInstance) chartInstance.destroy();
   chartInstance = new Chart(ctx, {
@@ -644,36 +887,39 @@ function renderResults(stageScores, index, name) {
   });
 }
 
-/* Ranks the respondent's own scores and surfaces up to 3 starting
-   recommendations for whichever stages scored below a "healthy" threshold. */
-function talkToPome() {
-  const name = document.getElementById("fName").value.trim() || "";
-  const email = document.getElementById("fEmail").value.trim();
-  const company = document.getElementById("fCompany").value.trim();
-  const { stageScores, index } = computeScores();
+/* ---- Strengths section ---- */
+function renderStrengths(stageScores) {
+  const strong = stageScores.filter(s => s.avg >= STRENGTH_THRESHOLD).sort((a,b) => b.avg - a.avg);
+  const el = document.getElementById("strengthsContainer");
 
-  // Build Calendly URL with pre-filled fields and scores
-  const params = new URLSearchParams();
-  if (name) params.set("name", name);
-  if (email) params.set("email", email);
-  // Pass scores as a custom answer (shows in the booking notification)
-  const scoresSummary = `Overall: ${index.toFixed(2)}/5 | ` +
-    stageScores.map(s => `${s.name}: ${s.avg.toFixed(2)}`).join(' | ') +
-    (company ? ` | Company: ${company}` : '');
-  params.set("a1", scoresSummary);
+  if (strong.length === 0) {
+    el.innerHTML = "";
+    return;
+  }
 
-  const calendlyUrl = `https://calendly.com/mo-zmaili-pomefy/30min?${params.toString()}`;
-  window.open(calendlyUrl, '_blank', 'noopener');
+  const cards = strong.map(s => `
+    <div class="strength-card">
+      <div class="strength-head">
+        <span class="strength-stage">${s.name}</span>
+        <span class="strength-score">${s.avg.toFixed(1)} / 5</span>
+      </div>
+      <p class="strength-text">${STAGE_DATA[s.key].strength}</p>
+    </div>`).join("");
+
+  el.innerHTML = `
+    <h2>What's working</h2>
+    <p class="lead">${strong.length === 6 ? "All six stages are trending healthy. Here's what you're doing right." : "These stages are performing well. Protect them while you address what's below."}</p>
+    <div class="strength-grid">${cards}</div>`;
 }
 
+/* ---- Priority recommendations (enhanced with symptoms, actions, urgency) ---- */
 function renderPriorities(stageScores) {
-  const HEALTHY_THRESHOLD = 4.0;
   const sorted = [...stageScores].sort((a, b) => a.avg - b.avg);
-  const weak = sorted.filter(s => s.avg < HEALTHY_THRESHOLD).slice(0, 3);
-  const container = document.getElementById("priorityContainer");
+  const weak = sorted.filter(s => s.avg < WEAK_THRESHOLD).slice(0, 3);
+  const el = document.getElementById("priorityContainer");
 
   if (weak.length === 0) {
-    container.innerHTML = `
+    el.innerHTML = `
       <div class="priority-empty">
         <h2>Nothing urgent stands out</h2>
         <p>All six stages are trending healthy on self-report. A full diagnostic would confirm this against real performance data and likely surface smaller optimization opportunities rather than one clear priority fix.</p>
@@ -681,21 +927,62 @@ function renderPriorities(stageScores) {
     return;
   }
 
-  const cards = weak.map((s, i) => `
+  const cards = weak.map((s, i) => {
+    const data = STAGE_DATA[s.key];
+    const urg = urgencyFor(s.avg);
+    const band = interpretationBand(s.avg);
+    const interpretation = data.interpretations[band];
+    const symptomsHtml = data.symptoms.map(sym => `<li>${sym}</li>`).join("");
+
+    return `
     <div class="priority-card rank-${i + 1}">
       <div class="priority-rank">Priority ${i + 1}</div>
       <div class="priority-head">
-        <span class="priority-stage">${s.name}</span>
+        <span class="priority-stage">${s.name}${urg ? `<span class="urgency-badge ${urg.level}">${urg.label}</span>` : ''}</span>
         <span class="priority-score" style="color:${bandFor(s.avg).color}">${s.avg.toFixed(1)} / 5</span>
       </div>
       <div class="priority-failure">${s.failure}</div>
-      <p class="priority-text">${RECOMMENDATIONS[s.key]}</p>
+      <p class="priority-interpretation">${interpretation}</p>
+      <ul class="priority-symptoms">${symptomsHtml}</ul>
+      <div class="priority-action">
+        <strong>Concrete first step</strong>
+        ${data.action}
+      </div>
+    </div>`;
+  }).join("");
+
+  el.innerHTML = `
+    <h2>Where to focus first</h2>
+    <p class="lead">Based on your lowest-scoring stages. Not a substitute for the full diagnostic, but a reasonable place to start the conversation.</p>
+    <div class="priority-grid">${cards}</div>`;
+}
+
+/* ---- Cross-stage connections ---- */
+function renderConnections(stageScores) {
+  const el = document.getElementById("connectionsContainer");
+  const weakKeys = new Set(stageScores.filter(s => s.avg < WEAK_THRESHOLD).map(s => s.key));
+
+  const active = CROSS_STAGE_LINKS.filter(link =>
+    link.stages.every(k => weakKeys.has(k))
+  );
+
+  if (active.length === 0) {
+    el.classList.add("hidden");
+    return;
+  }
+
+  el.classList.remove("hidden");
+  const cards = active.map(link => `
+    <div class="connection-card">
+      <div class="connection-label">${link.label}</div>
+      <div class="connection-stages">${link.stages.map(k => STAGES.find(s => s.key === k).name).join(" + ")}</div>
+      <p class="connection-text">${link.text}</p>
     </div>`).join("");
 
-  container.innerHTML = `
-    <h2>Where to focus first</h2>
-    <p class="lead">Based on your lowest-scoring stages — not a substitute for the full diagnostic, but a reasonable place to start the conversation.</p>
-    <div class="priority-grid">${cards}</div>`;
+  el.innerHTML = `
+    <h2>Connected risks</h2>
+    <p class="lead">Some of your weak stages are linked. Fixing one in isolation may not be enough.</p>
+    ${cards}`;
 }
 </script>
 </body>
