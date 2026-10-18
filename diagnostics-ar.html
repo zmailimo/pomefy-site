@@ -173,26 +173,26 @@ header.site-nav.scrolled {
   display: flex; align-items: center; justify-content: space-between; gap: 24px;
 }
 .brand {
-  display: flex; align-items: center; gap: 12px;
+  display: flex; align-items: center; gap: 14px;
   color: var(--fg); text-decoration: none;
   transition: color .35s ease;
 }
 .brand .wordmark {
   font-family: 'Playfair Display', Georgia, serif; font-weight: 900; font-size: 20px;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.01em; margin-bottom: -3px;
 }
 .brand .sub {
-  display: block; font-size: 9px; letter-spacing: 0.18em;
-  color: var(--fg-dim); font-weight: 600; margin-top: 1px;
+  display: block; font-size: 11px; letter-spacing: 0.14em;
+  color: var(--fg-dim); font-weight: 600; margin-top: -2px;
   transition: color .35s ease;
 }
 .ring-mark {
   position: relative; display: inline-block;
-  width: 36px; height: 36px; flex-shrink: 0;
+  width: 40px; height: 40px; flex-shrink: 0;
 }
 .logo-img {
   position: absolute; top: 0; right: 0;
-  width: 36px; height: 36px;
+  width: 40px; height: 40px;
   transition: opacity .35s ease;
 }
 .logo-img-white { display: none; }
@@ -269,6 +269,7 @@ header.site-nav.scrolled .nav-cta {
   nav.links { display: none; }
   .nav-cta { display: none; }
   .menu-toggle { display: block; }
+    .lang-switch{ display:none; }
   .nav-inner { padding: 14px 22px; }
 }
 
@@ -288,6 +289,10 @@ body.drawer-open { overflow: hidden; }
 .lbl-num { font-family:var(--font-body); font-size:7.5px; font-weight:700; fill:var(--accent); letter-spacing:0.13em; }
 .lbl-title { font-family:var(--font-display); font-size:13px; font-weight:500; fill:var(--fg); }
 .lbl-sub { font-family:var(--font-body); font-size:8px; font-weight:400; fill:var(--fg-dim); }
+.lbl-fo { direction:rtl; text-align:right; padding:6px 8px; box-sizing:border-box; }
+.lbl-fo .fo-num { font-family:var(--font-body); font-size:7.5px; font-weight:700; color:var(--accent); letter-spacing:0.13em; margin-bottom:3px; }
+.lbl-fo .fo-title { font-family:var(--font-display); font-size:13px; font-weight:500; color:var(--fg); margin-bottom:3px; }
+.lbl-fo .fo-sub { font-family:var(--font-body); font-size:8px; font-weight:400; color:var(--fg-dim); line-height:1.4; }
 .lbl-connector { fill:none; stroke:var(--accent); stroke-width:1; stroke-dasharray:4 3; opacity:0.35; }
 .lbl-dot { fill:var(--accent); opacity:0.6; }
 
@@ -576,15 +581,32 @@ body.drawer-open { overflow: hidden; }
 }
 
 /* Language Switcher */
-.lang-switch{display:inline-flex;align-items:center;gap:4px;margin-left:12px;margin-right:12px;font-size:13px;font-weight:600;letter-spacing:.02em;}
-.lang-switch a{color:rgba(255,255,255,.55);text-decoration:none;padding:3px 6px;border-radius:4px;transition:all .25s ease;}
+.lang-switch{display:flex;align-items:center;gap:2px;font-size:12px;font-weight:600;letter-spacing:.02em;margin-right:0;}
+.lang-switch a{color:rgba(255,255,255,.5);text-decoration:none;padding:2px 5px;border-radius:3px;transition:all .25s ease;white-space:nowrap;}
 .lang-switch a:hover{color:rgba(255,255,255,.85);}
-.lang-switch a.active{color:var(--white);background:rgba(255,255,255,.15);}
-.lang-switch .sep{color:rgba(255,255,255,.3);user-select:none;}
+.lang-switch a.active{color:var(--white);background:rgba(255,255,255,.12);}
+.lang-switch .sep{color:rgba(255,255,255,.25);user-select:none;font-size:10px;}
+
 header.site-nav.scrolled .lang-switch a{color:rgba(27,22,19,.4);}
 header.site-nav.scrolled .lang-switch a:hover{color:rgba(27,22,19,.7);}
-header.site-nav.scrolled .lang-switch a.active{color:var(--ink);background:rgba(27,22,19,.08);}
-header.site-nav.scrolled .lang-switch .sep{color:rgba(27,22,19,.2);}
+header.site-nav.scrolled .lang-switch a.active{color:var(--ink);background:rgba(27,22,19,.07);}
+header.site-nav.scrolled .lang-switch .sep{color:rgba(27,22,19,.15);}
+
+.mobile-lang-switch{display:flex;justify-content:center;gap:8px;padding:16px 24px;border-top:1px solid rgba(27,22,19,.1);margin-top:8px;}
+.mobile-lang-switch a{font-size:14px;font-weight:600;color:rgba(27,22,19,.5);text-decoration:none;padding:6px 14px;border-radius:6px;transition:all .25s ease;}
+.mobile-lang-switch a:hover{color:var(--ink);}
+.mobile-lang-switch a.active{color:var(--white);background:var(--red);}
+
+/* Language Switcher */
+.lang-switch{display:flex;align-items:center;gap:2px;font-size:12px;font-weight:600;letter-spacing:.02em;margin-left:0;}
+.lang-switch a{color:rgba(255,255,255,.5);text-decoration:none;padding:2px 5px;border-radius:3px;transition:all .25s ease;white-space:nowrap;}
+.lang-switch a:hover{color:rgba(255,255,255,.85);}
+.lang-switch a.active{color:var(--white);background:rgba(255,255,255,.12);}
+.lang-switch .sep{color:rgba(255,255,255,.25);user-select:none;font-size:10px;}
+header.site-nav.scrolled .lang-switch a{color:rgba(27,22,19,.4);}
+header.site-nav.scrolled .lang-switch a:hover{color:rgba(27,22,19,.7);}
+header.site-nav.scrolled .lang-switch a.active{color:var(--ink);background:rgba(27,22,19,.07);}
+header.site-nav.scrolled .lang-switch .sep{color:rgba(27,22,19,.15);}
 
 .mobile-lang-switch{display:flex;justify-content:center;gap:8px;padding:16px 24px;border-top:1px solid rgba(27,22,19,.1);margin-top:8px;}
 .mobile-lang-switch a{font-size:14px;font-weight:600;color:rgba(27,22,19,.5);text-decoration:none;padding:6px 14px;border-radius:6px;transition:all .25s ease;}
@@ -609,12 +631,14 @@ header.site-nav.scrolled .lang-switch .sep{color:rgba(27,22,19,.2);}
       <a href="#stages">المراحل الست</a>
       <a href="#diagnostic">التشخيصات</a>
       <a href="#pricing">التسعير</a>
-    </nav>
+      <div class="mobile-lang-switch"><a href="diagnostics.html">EN</a><a href="#" class="active">عربي</a></div>
+</nav>
     <a href="https://calendly.com/mo-zmaili-pomefy/30min" target="_blank" rel="noopener" class="btn solid nav-cta">احجز مكالمة تعريفية</a>
     <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" aria-expanded="false">
       <svg id="menuIconOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       <svg id="menuIconClose" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none;"><path d="M6 6l12 12M18 6 6 18"/></svg>
     </button>
+    <div class="lang-switch"><a href="diagnostics.html">EN</a><span class="sep">|</span><a href="#" class="active">عربي</a></div>
   </div>
 </header>
 
@@ -1026,28 +1050,22 @@ header.site-nav.scrolled .lang-switch .sep{color:rgba(27,22,19,.2);}
           <path class="lbl-connector" d="M62,365 C62,340 62,315 62,296"/>
           <circle class="lbl-dot" cx="62" cy="294" r="2.5"/>
           <rect class="lbl-card" x="6" y="367" width="128" height="72"/>
-          <rect class="lbl-stripe" x="6" y="367" width="3.5" height="72"/>
-          <text class="lbl-num" x="18" y="383">٠١ · مصدر المياه</text>
-          <text class="lbl-title" x="18" y="399">المحيط الأزرق</text>
-          <text class="lbl-sub" x="18" y="412"><tspan x="18">خلق السوق وتوسيع</tspan><tspan x="18" dy="10">إجمالي السوق</tspan><tspan x="18" dy="10">المستهدف.</tspan></text>
+          <rect class="lbl-stripe" x="130.5" y="367" width="3.5" height="72"/>
+          <foreignObject x="6" y="367" width="125" height="72"><div xmlns="http://www.w3.org/1999/xhtml" class="lbl-fo"><div class="fo-num">٠١ · مصدر المياه</div><div class="fo-title">المحيط الأزرق</div><div class="fo-sub">خلق السوق وتوسيع إجمالي السوق المستهدف.</div></div></foreignObject>
         </g>
         <g>
           <path class="lbl-connector" d="M100,145 C100,155 96,162 94,168"/>
           <circle class="lbl-dot" cx="100" cy="143" r="2.5"/>
           <rect class="lbl-card" x="30" y="170" width="140" height="72"/>
-          <rect class="lbl-stripe" x="30" y="170" width="3.5" height="72"/>
-          <text class="lbl-num" x="42" y="186">٠٢ · التبخر</text>
-          <text class="lbl-title" x="42" y="203">الشمس المشرقة</text>
-          <text class="lbl-sub" x="42" y="215"><tspan x="42">المبيعات والتسويق</tspan><tspan x="42" dy="10">لخلق الرؤية والإيمان</tspan><tspan x="42" dy="10">والطموح.</tspan></text>
+          <rect class="lbl-stripe" x="166.5" y="170" width="3.5" height="72"/>
+          <foreignObject x="30" y="170" width="137" height="72"><div xmlns="http://www.w3.org/1999/xhtml" class="lbl-fo"><div class="fo-num">٠٢ · التبخر</div><div class="fo-title">الشمس المشرقة</div><div class="fo-sub">المبيعات والتسويق لخلق الرؤية والإيمان والطموح.</div></div></foreignObject>
         </g>
         <g>
           <path class="lbl-connector" d="M425,57 C425,44 425,30 425,22"/>
           <circle class="lbl-dot" cx="425" cy="59" r="2.5"/>
           <rect class="lbl-card" x="358" y="-20" width="148" height="70"/>
-          <rect class="lbl-stripe" x="358" y="-20" width="3.5" height="70"/>
-          <text class="lbl-num" x="370" y="-4">٠٣ · التكثف</text>
-          <text class="lbl-title" x="370" y="13">السحابة</text>
-          <text class="lbl-sub" x="370" y="25"><tspan x="370">تحويل الاهتمام إلى</tspan><tspan x="370" dy="10">فرص منظمة</tspan><tspan x="370" dy="10">وقابلة للقياس.</tspan></text>
+          <rect class="lbl-stripe" x="502.5" y="-20" width="3.5" height="70"/>
+          <foreignObject x="358" y="-20" width="145" height="70"><div xmlns="http://www.w3.org/1999/xhtml" class="lbl-fo"><div class="fo-num">٠٣ · التكثف</div><div class="fo-title">السحابة</div><div class="fo-sub">تحويل الاهتمام إلى فرص منظمة وقابلة للقياس.</div></div></foreignObject>
         </g>
         <g>
           <path class="lbl-connector" d="M540,172 C525,170 510,165 495,160"/>
@@ -1055,35 +1073,29 @@ header.site-nav.scrolled .lang-switch .sep{color:rgba(27,22,19,.2);}
           <path class="lbl-connector" d="M690,168 C692,148 690,128 688,108"/>
           <circle class="lbl-dot" cx="688" cy="106" r="2.5"/>
           <rect class="lbl-card" x="542" y="144" width="148" height="72"/>
-          <rect class="lbl-stripe" x="542" y="144" width="3.5" height="72"/>
-          <text class="lbl-num" x="554" y="160">٠٤ · الضغط</text>
-          <text class="lbl-title" x="554" y="177">أشعل الحماس</text>
-          <text class="lbl-sub" x="554" y="189"><tspan x="554">خلق الزخم والإلحاح</tspan><tspan x="554" dy="10">وتحفيز الاختراق</tspan><tspan x="554" dy="10">والتقدم.</tspan></text>
+          <rect class="lbl-stripe" x="686.5" y="144" width="3.5" height="72"/>
+          <foreignObject x="542" y="144" width="145" height="72"><div xmlns="http://www.w3.org/1999/xhtml" class="lbl-fo"><div class="fo-num">٠٤ · الضغط</div><div class="fo-title">أشعل الحماس</div><div class="fo-sub">خلق الزخم والإلحاح وتحفيز الاختراق والتقدم.</div></div></foreignObject>
         </g>
         <g class="anim-lightning2" style="animation-delay:1.2s">
           <path d="M682,88 L678,100 L684,99 L676,114" fill="none" stroke="var(--lightning)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M682,88 L678,100 L684,99 L676,114" fill="none" stroke="var(--lightning)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.2"/>
         </g>
         <g class="goal-highlight">
-          <rect x="758" y="186" width="160" height="80" rx="10" fill="var(--accent)" opacity="0.08">
+          <rect x="738" y="182" width="188" height="92" rx="10" fill="var(--accent)" opacity="0.08">
             <animate attributeName="opacity" values="0.06;0.14;0.06" dur="3s" repeatCount="indefinite"/>
           </rect>
           <path class="lbl-connector" d="M830,296 C830,286 830,274 830,264"/>
           <circle class="lbl-dot" cx="830" cy="298" r="2.5"/>
-          <rect class="lbl-card" x="762" y="190" width="152" height="72" stroke="var(--accent)" stroke-width="1.5"/>
-          <rect class="lbl-stripe" x="762" y="190" width="4.5" height="72" fill="var(--accent)"/>
-          <text class="lbl-num" x="774" y="206" fill="var(--accent)">٠٥ · الهطول</text>
-          <text class="lbl-title" x="774" y="223">المطر</text>
-          <text class="lbl-sub" x="774" y="235"><tspan x="774">تحويل الفرص إلى</tspan><tspan x="774" dy="10">تدفق نقدي ونمو</tspan><tspan x="774" dy="10">الحصة السوقية.</tspan></text>
+          <rect class="lbl-card" x="742" y="186" width="180" height="84" stroke="var(--accent)" stroke-width="1.5"/>
+          <rect class="lbl-stripe" x="918" y="186" width="4.5" height="84" fill="var(--accent)"/>
+          <foreignObject x="742" y="186" width="176" height="84"><div xmlns="http://www.w3.org/1999/xhtml" class="lbl-fo"><div class="fo-num" style="color:var(--accent)">٠٥ · الهطول</div><div class="fo-title">المطر</div><div class="fo-sub">تحويل الفرص إلى تدفق نقدي ونمو الحصة السوقية.</div></div></foreignObject>
         </g>
         <g>
           <path class="lbl-connector" d="M805,400 C798,404 790,408 782,410"/>
           <circle class="lbl-dot" cx="807" cy="398" r="2.5"/>
-          <rect class="lbl-card" x="630" y="412" width="155" height="52"/>
-          <rect class="lbl-stripe" x="630" y="412" width="3.5" height="52"/>
-          <text class="lbl-num" x="642" y="428">٠٦ · المياه الجوفية</text>
-          <text class="lbl-title" x="642" y="445">الحفارون يحفرون</text>
-          <text class="lbl-sub" x="642" y="457">استعادة وتجديد الفرص</text>
+          <rect class="lbl-card" x="630" y="412" width="180" height="84"/>
+          <rect class="lbl-stripe" x="806.5" y="412" width="3.5" height="84"/>
+          <foreignObject x="630" y="412" width="176" height="84"><div xmlns="http://www.w3.org/1999/xhtml" class="lbl-fo"><div class="fo-num">٠٦ · المياه الجوفية</div><div class="fo-title">الحفارون يحفرون</div><div class="fo-sub">استعادة وتجديد الفرص</div></div></foreignObject>
         </g>
       </svg>
     </div>
