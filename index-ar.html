@@ -246,7 +246,7 @@
   .skip-link:focus{ top: 16px; }
 
   /* ---------- Logo mark (real brand files: white for dark/red bg, red for light bg) ---------- */
-  .ring-mark{ width: 34px; height:34px; position:relative; flex:none; }
+  .ring-mark{ width: 40px; height:40px; position:relative; flex:none; }
   .logo-img{ position:absolute; inset:0; width:100%; height:100%; display:block; transition: opacity .35s ease; }
   .logo-img-white{ opacity: 1; }
   .logo-img-red{ opacity: 0; }
@@ -278,20 +278,20 @@
     max-width: var(--container); margin:0 auto; padding: 18px 40px;
     display:flex; align-items:center; justify-content:space-between; gap: 24px;
   }
-  .brand{ display:flex; align-items:center; gap:12px; color: var(--white); transition: color .35s ease; }
-  .brand .wordmark{ font-family: var(--serif); font-weight:900; font-size:20px; letter-spacing: 0.01em; }
-  .brand .sub{ display:block; font-size: 9px; letter-spacing: 0.18em; color: rgba(255,255,255,.75); font-weight:600; margin-top:1px; transition: color .35s ease; }
+  .brand{ display:flex; align-items:center; gap:14px; color: var(--white); transition: color .35s ease; }
+  .brand .wordmark{ font-family: var(--serif); font-weight:900; font-size:20px; letter-spacing: 0.01em; margin-bottom:-3px; }
+  .brand .sub{ display:block; font-size: 11px; letter-spacing: 0.14em; color: rgba(255,255,255,.85); font-weight:600; margin-top:-2px; transition: color .35s ease; }
   nav.links{ display:flex; align-items:center; gap:30px; }
   nav.links a{
-    font-size: 13px; font-weight: 600; color: var(--white);
+    font-size: 13px; font-weight: 600; color: var(--white); white-space:nowrap;
     position: relative; padding: 4px 0; transition: color .35s ease, opacity .35s ease;
   }
-  nav.links a::after{
+  nav.links > a::after{
     content:""; position:absolute; right:0; bottom:0; height:1.5px; width:0;
     background: currentColor; transition: width .25s ease;
   }
-  nav.links a:hover::after{ width:100%; }
-  nav.links a.active::after{ width:100%; }
+  nav.links > a:hover::after{ width:100%; }
+  nav.links > a.active::after{ width:100%; }
   nav.links a.active{ opacity:1; }
   header.site-nav.scrolled nav.links a.active{ color: var(--red); }
 
@@ -558,9 +558,9 @@
     padding: 0 18px; text-align:center; position:relative;
   }
   .cycle-stage::after{
-    content:"←"; position:absolute; left:-4px; top: 34px; color: rgba(246,242,233,.3); font-size:18px;
+    content:"←"; position:absolute; right:-4px; top: 34px; color: rgba(246,242,233,.3); font-size:18px;
   }
-  .cycle-stage:last-child::after{ display:none; }
+  .cycle-stage:first-child::after{ display:none; }
   .stage-icon{
     width: 56px; height:56px; border-radius:50%; margin: 0 auto 18px;
     display:flex; align-items:center; justify-content:center;
@@ -568,7 +568,7 @@
   }
   .stage-icon.alt{ background: var(--cream); color: var(--ink); }
   .stage-icon svg{ width:22px; height:22px; }
-  .stage-eyebrow{ font-size: 10.5px; letter-spacing:.14em; color: var(--red); font-weight:700; text-transform:uppercase; }
+  .stage-eyebrow{ font-size: 14px; letter-spacing:.14em; color: var(--red); font-weight:700; }
   .stage-title{ font-family: var(--serif); font-weight:700; font-size: 19px; margin: 6px 0 8px; }
   .stage-desc{ font-size: 13.5px; color: rgba(246,242,233,.65); line-height:1.5; }
 
@@ -590,7 +590,7 @@
   .loop-text .stage-title{ margin: 4px 0 4px; }
   .loop-feed{ display:flex; align-items:center; gap: 14px; color: rgba(246,242,233,.5); font-size:13px; margin-right:auto; }
   .loop-feed .dash{ width: 120px; height:1px; background: rgba(246,242,233,.25); position:relative; }
-  .loop-feed .dash::after{ content:"›"; position:absolute; right:-2px; top:-9px; }
+  .loop-feed .dash::after{ content:"›"; position:absolute; left:-2px; top:-9px; }
 
   .equilibrium-row{
     margin-top: 42px; padding-top: 34px; border-top: 1px solid rgba(246,242,233,.15);
@@ -674,7 +674,7 @@
 
   /* ---------- Lead capture form ---------- */
   .lead-section{ background: var(--ink); color: var(--cream); padding: 130px 0; }
-  .lead-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items:start; margin-top: 0; }
+  .lead-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items:start; margin-top:-2px; }
   .lead-copy .section-title{ color: var(--white); margin-top: 4px; }
   .lead-copy .section-lede{ color: rgba(246,242,233,.72); }
 
@@ -772,8 +772,11 @@
     .service-grid{ grid-template-columns: repeat(2,1fr); }
     .logo-grid{ grid-template-columns: repeat(2,1fr); }
     .cycle-row{ grid-template-columns: 1fr; gap: 34px; }
-    .cycle-stage::after{ content:"↓"; left:auto; right:50%; top:auto; bottom:-28px; transform:translateX(-50%); }
+    .cycle-stage::after{ content:"↓"; right:50%; left:auto; top:auto; bottom:-28px; transform:translateX(50%); }
+    .cycle-stage:first-child::after{ display:block; }
+    .cycle-stage:last-child::after{ display:none; }
     nav.links{ display:none; }
+    .lang-switch{ display:none; }
     .nav-cta{ display:none; }
     .menu-toggle{ display:block; }
     .orbit{ display:none; }
@@ -794,15 +797,16 @@
   }
 
 /* Language Switcher */
-.lang-switch{display:inline-flex;align-items:center;gap:4px;margin-left:12px;margin-right:12px;font-size:13px;font-weight:600;letter-spacing:.02em;}
-.lang-switch a{color:rgba(255,255,255,.55);text-decoration:none;padding:3px 6px;border-radius:4px;transition:all .25s ease;}
+.lang-switch{display:flex;align-items:center;gap:2px;font-size:12px;font-weight:600;letter-spacing:.02em;margin-right:0;}
+.lang-switch a{color:rgba(255,255,255,.5);text-decoration:none;padding:2px 5px;border-radius:3px;transition:all .25s ease;white-space:nowrap;}
 .lang-switch a:hover{color:rgba(255,255,255,.85);}
-.lang-switch a.active{color:var(--white);background:rgba(255,255,255,.15);}
-.lang-switch .sep{color:rgba(255,255,255,.3);user-select:none;}
+.lang-switch a.active{color:var(--white);background:rgba(255,255,255,.12);}
+.lang-switch .sep{color:rgba(255,255,255,.25);user-select:none;font-size:10px;}
+
 header.site-nav.scrolled .lang-switch a{color:rgba(27,22,19,.4);}
 header.site-nav.scrolled .lang-switch a:hover{color:rgba(27,22,19,.7);}
-header.site-nav.scrolled .lang-switch a.active{color:var(--ink);background:rgba(27,22,19,.08);}
-header.site-nav.scrolled .lang-switch .sep{color:rgba(27,22,19,.2);}
+header.site-nav.scrolled .lang-switch a.active{color:var(--ink);background:rgba(27,22,19,.07);}
+header.site-nav.scrolled .lang-switch .sep{color:rgba(27,22,19,.15);}
 
 .mobile-lang-switch{display:flex;justify-content:center;gap:8px;padding:16px 24px;border-top:1px solid rgba(27,22,19,.1);margin-top:8px;}
 .mobile-lang-switch a{font-size:14px;font-weight:600;color:rgba(27,22,19,.5);text-decoration:none;padding:6px 14px;border-radius:6px;transition:all .25s ease;}
@@ -829,7 +833,7 @@ header.site-nav.scrolled .lang-switch .sep{color:rgba(27,22,19,.2);}
       <a href="#who-we-are">من نحن</a>
       <a href="#methodology">المنهجية</a>
       <div class="nav-dropdown">
-        <a href="#services">خدماتنا <span class="dd-arrow">▾</span></a>
+        <a href="#services">خدماتنا</a>
         <div class="dropdown-menu">
           <a href="social-intelligence-ar.html"><svg viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-5 3 3 5-7"/></svg>الذكاء الاجتماعي</a>
           <a href="marketing-brand-ar.html"><svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5ZM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>التسويق والعلامة التجارية</a>
@@ -843,13 +847,13 @@ header.site-nav.scrolled .lang-switch .sep{color:rgba(27,22,19,.2);}
       <a href="#work-with-us">اعمل معنا</a>
       <a href="#trusted">العملاء</a>
     </nav>
-    <div class="lang-switch"><a href="index.html">EN</a><span class="sep">|</span><a href="#" class="active">عربي</a></div>
     <a href="#lead-form" class="btn nav-cta" style="margin-left:8px;background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.4);color:var(--white);">احصل على تشخيصك المجاني</a>
     <a href="collaborate-ar.html" class="btn nav-cta nav-cta-collab" style="background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.4);color:var(--white);">تعاون معنا</a>
     <button type="button" class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileDrawer" aria-label="افتح القائمة">
       <svg id="menuIconOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       <svg id="menuIconClose" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none;"><path d="M6 6l12 12M18 6 6 18"/></svg>
     </button>
+    <div class="lang-switch"><a href="index.html">EN</a><span class="sep">|</span><a href="#" class="active">عربي</a></div>
   </div>
 </header>
 
@@ -857,7 +861,7 @@ header.site-nav.scrolled .lang-switch .sep{color:rgba(27,22,19,.2);}
 <nav id="mobileDrawer" class="mobile-drawer" aria-label="الهاتف المحمول" aria-hidden="true">
   <a href="#who-we-are">من نحن</a>
   <a href="#methodology">المنهجية</a>
-  <a href="#services" class="mobile-dd-toggle" onclick="event.preventDefault();var items=this.parentElement.querySelector('.mobile-dd-items');items.classList.toggle('open');this.querySelector('.dd-arrow').style.transform=items.classList.contains('open')?'rotate(180deg)':'';">خدماتنا <span class="dd-arrow" style="font-size:10px;margin-left:4px;display:inline-block;transition:transform .2s ease;">▾</span></a>
+  <a href="#services" class="mobile-dd-toggle" onclick="event.preventDefault();var items=this.parentElement.querySelector('.mobile-dd-items');items.classList.toggle('open');">خدماتنا</a>
   <div class="mobile-dd-items">
     <a href="social-intelligence-ar.html">الذكاء الاجتماعي</a>
     <a href="marketing-brand-ar.html">التسويق والعلامة التجارية</a>
@@ -927,7 +931,7 @@ header.site-nav.scrolled .lang-switch .sep{color:rgba(27,22,19,.2);}
 
       <div class="who-grid">
         <div class="who-text reveal">
-          <p><strong>POME Fruitful Partners</strong> is a شركة استشارات تطوير أعمال بُنيت عند تقاطع الذكاء الاجتماعي واستشارات الإيرادات والتنفيذ التجاري. نعمل مع المؤسسات المستعدة لتحويل الرؤى إلى زخم وإعادة رسم مسارها.</p>
+          <p><strong>POME Fruitful Partners</strong> هي شركة استشارات تطوير أعمال بُنيت عند تقاطع الذكاء الاجتماعي واستشارات الإيرادات والتنفيذ التجاري. نعمل مع المؤسسات المستعدة لتحويل الرؤى إلى زخم وإعادة رسم مسارها.</p>
           <p>منهجيتنا هي نموذج توازن الإيرادات، إطار عمل قائم على الأنظمة مستوحى من دورة المياه الطبيعية. نتعامل مع الإيرادات كنظام حي، وليس خط إنتاج خطي. ست مراحل مترابطة تعمل في تدفق مستمر. عندما تختل مرحلة واحدة، يعاني النظام بأكمله، ليس من نقص في الجهد، بل من اختلال التوازن.</p>
           <p>لا نكتفي بتصميم الاستراتيجيات؛ بل ننفذها. فريقنا بنى وأطلق وأدار برامج تجارية عبر طيف الإيرادات بالكامل، وهذه الخبرة العملية تُثري كل جزء من عملنا الاستشاري.</p>
         </div>
@@ -996,7 +1000,7 @@ header.site-nav.scrolled .lang-switch .sep{color:rgba(27,22,19,.2);}
         <div class="equilibrium-row">
           <div class="equilibrium-label"><span class="dot-red"></span><b>توازن الإيرادات</b> عندما تعمل جميع المراحل بتوازن، تكون النتيجة نمواً مستداماً ذاتي التعزيز.</div>
           <div style="display:flex;flex-wrap:wrap;gap:12px;">
-            <a href="diagnostics-ar.html" class="btn on-dark" style="border-color: rgba(246,242,233,.4); color: var(--cream);">← تعرّف على أدوات التشخيص لدينا</a>
+            <a href="diagnostics-ar.html" class="btn on-dark" style="border-color: rgba(246,242,233,.4); color: var(--cream);">تعرّف على أدوات التشخيص لدينا ←</a>
             <a href="#lead-form" class="btn solid">احصل على تشخيصك المجاني</a>
           </div>
         </div>
@@ -1121,7 +1125,7 @@ header.site-nav.scrolled .lang-switch .sep{color:rgba(27,22,19,.2);}
 
         <ol class="how-it-works">
           <li><span class="step-num">1</span><span>أخبرنا قليلاً عن عملك وأهدافك</span></li>
-          <li><span class="step-num">2</span><span>We map it against the توازن الإيرادات Model</span></li>
+          <li><span class="step-num">2</span><span>نقيّمه وفق نموذج توازن الإيرادات</span></li>
           <li><span class="step-num">3</span><span>تحصل على خطة نمو واضحة وقابلة للتنفيذ</span></li>
         </ol>
 
