@@ -283,15 +283,15 @@
   .brand .sub{ display:block; font-size: 9px; letter-spacing: 0.18em; color: rgba(255,255,255,.75); font-weight:600; margin-top:1px; transition: color .35s ease; }
   nav.links{ display:flex; align-items:center; gap:30px; }
   nav.links a{
-    font-size: 13px; font-weight: 600; color: var(--white);
+    font-size: 13px; font-weight: 600; color: var(--white); white-space:nowrap;
     position: relative; padding: 4px 0; transition: color .35s ease, opacity .35s ease;
   }
-  nav.links a::after{
+  nav.links > a::after{
     content:""; position:absolute; left:0; bottom:0; height:1.5px; width:0;
     background: currentColor; transition: width .25s ease;
   }
-  nav.links a:hover::after{ width:100%; }
-  nav.links a.active::after{ width:100%; }
+  nav.links > a:hover::after{ width:100%; }
+  nav.links > a.active::after{ width:100%; }
   nav.links a.active{ opacity:1; }
   header.site-nav.scrolled nav.links a.active{ color: var(--red); }
 
@@ -774,6 +774,7 @@
     .cycle-row{ grid-template-columns: 1fr; gap: 34px; }
     .cycle-stage::after{ content:"↓"; right:auto; left:50%; top:auto; bottom:-28px; transform:translateX(-50%); }
     nav.links{ display:none; }
+    .lang-switch{ display:none; }
     .nav-cta{ display:none; }
     .menu-toggle{ display:block; }
     .orbit{ display:none; }
@@ -794,15 +795,16 @@
   }
 
 /* Language Switcher */
-.lang-switch{display:inline-flex;align-items:center;gap:4px;margin-left:12px;margin-right:12px;font-size:13px;font-weight:600;letter-spacing:.02em;}
-.lang-switch a{color:rgba(255,255,255,.55);text-decoration:none;padding:3px 6px;border-radius:4px;transition:all .25s ease;}
+.lang-switch{display:flex;align-items:center;gap:2px;font-size:12px;font-weight:600;letter-spacing:.02em;margin-left:0;}
+.lang-switch a{color:rgba(255,255,255,.5);text-decoration:none;padding:2px 5px;border-radius:3px;transition:all .25s ease;white-space:nowrap;}
 .lang-switch a:hover{color:rgba(255,255,255,.85);}
-.lang-switch a.active{color:var(--white);background:rgba(255,255,255,.15);}
-.lang-switch .sep{color:rgba(255,255,255,.3);user-select:none;}
+.lang-switch a.active{color:var(--white);background:rgba(255,255,255,.12);}
+.lang-switch .sep{color:rgba(255,255,255,.25);user-select:none;font-size:10px;}
+
 header.site-nav.scrolled .lang-switch a{color:rgba(27,22,19,.4);}
 header.site-nav.scrolled .lang-switch a:hover{color:rgba(27,22,19,.7);}
-header.site-nav.scrolled .lang-switch a.active{color:var(--ink);background:rgba(27,22,19,.08);}
-header.site-nav.scrolled .lang-switch .sep{color:rgba(27,22,19,.2);}
+header.site-nav.scrolled .lang-switch a.active{color:var(--ink);background:rgba(27,22,19,.07);}
+header.site-nav.scrolled .lang-switch .sep{color:rgba(27,22,19,.15);}
 
 .mobile-lang-switch{display:flex;justify-content:center;gap:8px;padding:16px 24px;border-top:1px solid rgba(27,22,19,.1);margin-top:8px;}
 .mobile-lang-switch a{font-size:14px;font-weight:600;color:rgba(27,22,19,.5);text-decoration:none;padding:6px 14px;border-radius:6px;transition:all .25s ease;}
@@ -829,7 +831,7 @@ header.site-nav.scrolled .lang-switch .sep{color:rgba(27,22,19,.2);}
       <a href="#who-we-are">Who We Are</a>
       <a href="#methodology">Methodology</a>
       <div class="nav-dropdown">
-        <a href="#services">Engagements <span class="dd-arrow">▾</span></a>
+        <a href="#services">Engagements</a>
         <div class="dropdown-menu">
           <a href="social-intelligence.html"><svg viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-5 3 3 5-7"/></svg>Growth Strategy</a>
           <a href="marketing-brand.html"><svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5ZM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Marketing &amp; Brand</a>
@@ -843,13 +845,13 @@ header.site-nav.scrolled .lang-switch .sep{color:rgba(27,22,19,.2);}
       <a href="#work-with-us">Work With Us</a>
       <a href="#trusted">Clients</a>
     </nav>
-    <div class="lang-switch"><a href="#" class="active">EN</a><span class="sep">|</span><a href="index-ar.html">عربي</a></div>
-    <a href="#lead-form" class="btn nav-cta" style="margin-right:8px;background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.4);color:var(--white);">Get My Free Diagnostic</a>
+    <a href="#lead-form" class="btn nav-cta" style="margin-right:6px;font-size:12px;background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.4);color:var(--white);">Get My Free Diagnostic</a>
     <a href="collaborate.html" class="btn nav-cta nav-cta-collab" style="background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.4);color:var(--white);">Collaborate</a>
     <button type="button" class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileDrawer" aria-label="Open menu">
       <svg id="menuIconOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       <svg id="menuIconClose" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none;"><path d="M6 6l12 12M18 6 6 18"/></svg>
     </button>
+    <div class="lang-switch"><a href="#" class="active">EN</a><span class="sep">|</span><a href="index-ar.html">عربي</a></div>
   </div>
 </header>
 
@@ -857,7 +859,7 @@ header.site-nav.scrolled .lang-switch .sep{color:rgba(27,22,19,.2);}
 <nav id="mobileDrawer" class="mobile-drawer" aria-label="Mobile" aria-hidden="true">
   <a href="#who-we-are">Who We Are</a>
   <a href="#methodology">Methodology</a>
-  <a href="#services" class="mobile-dd-toggle" onclick="event.preventDefault();var items=this.parentElement.querySelector('.mobile-dd-items');items.classList.toggle('open');this.querySelector('.dd-arrow').style.transform=items.classList.contains('open')?'rotate(180deg)':'';">Engagements <span class="dd-arrow" style="font-size:10px;margin-left:4px;display:inline-block;transition:transform .2s ease;">▾</span></a>
+  <a href="#services" class="mobile-dd-toggle" onclick="event.preventDefault();var items=this.parentElement.querySelector('.mobile-dd-items');items.classList.toggle('open');">Engagements</a>
   <div class="mobile-dd-items">
     <a href="social-intelligence.html">Growth Strategy</a>
     <a href="marketing-brand.html">Marketing &amp; Brand</a>
