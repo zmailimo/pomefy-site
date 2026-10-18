@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لقطة توازن الإيرادات | POME Fruitful Partners</title>
+<meta property="og:image" content="https://pomefy.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pomefy.io/og-image.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M9.5 4.5A13 13 0 1 1 4 13' fill='none' stroke='%23DE1B3C' stroke-width='4.5' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root{
+    --ink:#12151A;
+    --charcoal:#1B2027;
+    --coral:#D51522;
+    --coral-dark:#A80F1A;
+    --teal:#0F6E8C;
+    --sky:#EEF4F6;
+    --white:#FFFFFF;
+    --muted:#6B7280;
+    --line:#E4E9EC;
+    --ink-soft:#3A3F47;
+    --green:#0E7C4A;
+    --green-bg:#ECFDF3;
+    --amber:#B45309;
+    --amber-bg:#FFFBEB;
+    --red-bg:#FEF2F2;
+    --display: 'Noto Kufi Arabic', 'Space Grotesk', -apple-system, sans-serif;
+    --body: 'Noto Sans Arabic', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:var(--body);
+    color:var(--ink);
+    background:
+      radial-gradient(900px 500px at 15% -10%, rgba(213,21,34,0.09), transparent 60%),
+      radial-gradient(700px 500px at 110% 110%, rgba(15,110,140,0.10), transparent 60%),
+      #F6F8F9;
+    min-height:100vh;
+    direction:rtl;
+    text-align:right;
+  }
+
+  /* ---------- Site header bar ---------- */
+  .sitebar{
+    display:flex; align-items:center; justify-content:space-between;
+    max-width:900px; margin:0 auto; padding:22px 20px 0 20px;
+  }
+  .sitebar a{ text-decoration:none; }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand-logo{ height:26px; width:auto; display:block; }
+  .brand .ring{ width:18px; height:18px; border-radius:50%; border:2.5px solid var(--coral); }
+  .brand span{ font-family:var(--display); font-weight:700; font-size:13px; letter-spacing:.08em; color:var(--ink); }
+  .backlink{ font-size:13px; font-weight:600; color:var(--muted); }
+  .backlink:hover{ color:var(--coral); }
+
+  .wrap{ max-width:760px; margin:0 auto; padding:20px 16px 60px 16px; }
+
+  .app{
+    width:100%;
+    background:var(--white);
+    border-radius:22px;
+    box-shadow:0 24px 70px rgba(18,21,26,0.10), 0 2px 10px rgba(18,21,26,0.05);
+    position:relative;
+    border:1px solid var(--line);
+  }
+
+  /* ---------- Ring progress signature ---------- */
+  .progress-bar{
+    display:flex; align-items:center; gap:14px;
+    padding:22px 32px 0 32px;
+  }
+  .ring-wrap{ position:relative; width:44px; height:44px; flex:none; }
+  .ring-wrap svg{ transform:rotate(-90deg); }
+  .ring-track{ fill:none; stroke:var(--line); stroke-width:5; }
+  .ring-fill{ fill:none; stroke:var(--coral); stroke-width:5; stroke-linecap:round; transition:stroke-dashoffset .5s cubic-bezier(.4,0,.2,1); }
+  .ring-label{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-family:var(--display); font-size:11px; font-weight:700; color:var(--ink);
+  }
+  .progress-text{ display:flex; flex-direction:column; }
+  .progress-text .step{ font-size:13px; font-weight:700; color:var(--ink); }
+  .progress-text .sub{ font-size:12px; color:var(--muted); }
+
+  .screen{ padding:30px 40px 38px 40px; }
+  @media (max-width:600px){ .screen{ padding:24px 22px 30px 22px; } .progress-bar{ padding:20px 22px 0 22px; } }
+
+  .eyebrow{
+    font-family:var(--display); font-size:12px; font-weight:700; letter-spacing:.12em; color:var(--coral);
+    text-transform:uppercase; margin:0 0 12px 0;
+  }
+  h1{
+    font-family:var(--display); font-weight:700; color:var(--ink);
+    font-size:32px; line-height:1.3; margin:0 0 16px 0; letter-spacing:-.01em;
+  }
+  h2{
+    font-family:var(--display); font-weight:700; color:var(--ink);
+    font-size:23px; line-height:1.3; margin:0 0 6px 0; letter-spacing:-.01em;
+  }
+  p.lead{ font-size:16px; line-height:1.7; color:var(--ink-soft); margin:0 0 24px 0; }
+
+  .stage-tag{
+    display:inline-flex; align-items:center; gap:12px;
+    background:var(--sky); border-radius:999px; padding:7px 7px 7px 18px;
+    margin-bottom:20px;
+  }
+  .stage-tag .num{
+    width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;font-family:var(--display);
+  }
+  .stage-tag .meta{ display:flex; flex-direction:column; line-height:1.25; }
+  .stage-tag .name{ font-weight:700; color:var(--ink); font-size:14px; font-family:var(--display); }
+  .stage-tag .tagline{ color:var(--teal); font-size:12.5px; font-weight:500; }
+
+  .qcard{ margin-bottom:28px; }
+  .qtext{ font-size:16px; color:var(--ink); line-height:1.6; margin-bottom:12px; font-weight:500; }
+  .scale{ display:flex; gap:8px; }
+  .scale label{ flex:1; }
+  .scale input{ position:absolute; opacity:0; width:0; height:0; }
+  .scale .opt{
+    display:flex; flex-direction:column; align-items:center; gap:4px;
+    border:1.5px solid var(--line); border-radius:12px; padding:10px 4px;
+    cursor:pointer; transition:all .15s ease; font-size:13px; color:var(--muted); font-weight:600;
+    user-select:none;
+  }
+  .scale .opt .n{ font-family:var(--display); font-size:18px; color:var(--ink); font-weight:700; }
+  .scale input:checked + .opt{
+    border-color:var(--coral); background:#FBEBEC; color:var(--coral-dark);
+    box-shadow:0 0 0 2px rgba(213,21,34,0.15);
+  }
+  .scale input:checked + .opt .n{ color:var(--coral-dark); }
+  .scale input:focus-visible + .opt{ outline:2px solid var(--teal); outline-offset:2px; }
+  .scale-caption{ display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-top:6px; padding:0 2px; }
+
+  .nav-row{ display:flex; justify-content:space-between; align-items:center; margin-top:30px; gap:12px; }
+  button{ font-family:var(--body); font-size:15px; font-weight:700; cursor:pointer; border-radius:999px; border:none; padding:14px 28px; transition:transform .1s ease, box-shadow .15s ease, background .15s ease; }
+  button:active{ transform:scale(.98); }
+  .btn-primary{ background:var(--ink); color:#fff; }
+  .btn-primary:hover{ background:var(--coral); }
+  .btn-primary:disabled{ background:#C9CFD4; cursor:not-allowed; }
+  .btn-ghost{ background:transparent; color:var(--muted); padding:14px 8px; }
+  .btn-ghost:hover{ color:var(--ink); }
+
+  .field{ margin-bottom:16px; }
+  .field label{ display:block; font-size:13px; font-weight:700; color:var(--ink); margin-bottom:6px; }
+  .field input{
+    width:100%; padding:13px 16px; border:1.5px solid var(--line); border-radius:12px;
+    font-size:15px; font-family:var(--body); color:var(--ink); text-align:right;
+  }
+  .field input:focus{ outline:none; border-color:var(--teal); box-shadow:0 0 0 3px rgba(15,110,140,0.12); }
+
+  /* ---------- Results ---------- */
+  .index-hero{
+    background:linear-gradient(135deg, var(--ink), var(--charcoal));
+    border-radius:18px; padding:28px 30px; color:#fff; margin-bottom:28px;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+    position:relative; overflow:hidden;
+  }
+  .index-hero::after{
+    content:""; position:absolute; left:-40px; top:-40px; width:150px; height:150px;
+    border-radius:50%; border:2px solid rgba(213,21,34,0.32);
+  }
+  .index-hero .label{ font-size:12px; letter-spacing:.10em; font-weight:700; color:#F3B0B6; text-transform:uppercase; margin-bottom:6px; font-family:var(--display);}
+  .index-hero .value{ font-family:var(--display); font-size:44px; font-weight:700; }
+  .index-hero .verdict{ font-size:14px; color:#D8DEE3; max-width:280px; line-height:1.6; }
+
+  .chart-wrap{ position:relative; height:280px; margin:8px 0 26px 0; }
+
+  /* ---------- Failure-state tooltip ---------- */
+  .info-dot{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:15px; height:15px; border-radius:50%; background:var(--line); color:var(--muted);
+    font-size:10px; font-weight:700; margin-right:6px; cursor:help; position:relative;
+    font-family:var(--body); vertical-align:middle;
+  }
+  .info-dot:hover, .info-dot:focus{ background:var(--coral); color:#fff; outline:none; }
+  .info-dot .tip{
+    visibility:hidden; opacity:0; position:absolute; bottom:135%; right:50%; transform:translateX(50%);
+    background:var(--ink); color:#fff; font-size:12.5px; font-weight:400; line-height:1.5;
+    padding:10px 13px; border-radius:9px; width:210px; max-width:60vw;
+    box-shadow:0 10px 28px rgba(0,0,0,.28); transition:opacity .15s ease; z-index:20;
+    text-transform:none; letter-spacing:normal; text-align:right;
+  }
+  .info-dot .tip::after{
+    content:""; position:absolute; top:100%; right:50%; transform:translateX(50%);
+    border:6px solid transparent; border-top-color:var(--ink);
+  }
+  .info-dot:hover .tip, .info-dot:focus .tip{ visibility:visible; opacity:1; }
+
+  /* ---------- Urgency badge ---------- */
+  .urgency-badge{
+    display:inline-flex; align-items:center; gap:5px;
+    font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+    padding:4px 10px; border-radius:999px; margin-right:8px; vertical-align:middle;
+  }
+  .urgency-badge.critical{ background:var(--red-bg); color:var(--coral-dark); }
+  .urgency-badge.attention{ background:var(--amber-bg); color:var(--amber); }
+  .urgency-badge.monitor{ background:var(--sky); color:var(--muted); }
+  .urgency-badge::before{
+    content:""; width:6px; height:6px; border-radius:50%; background:currentColor; flex:none;
+  }
+
+  /* ---------- Priority recommendations (enhanced) ---------- */
+  .priority-section{ margin-bottom:30px; }
+  .priority-section h2{ font-size:19px; margin-bottom:4px; }
+  .priority-section > p.lead{ margin-bottom:18px; }
+  .priority-grid{ display:flex; flex-direction:column; gap:14px; }
+  .priority-card{
+    border:1.5px solid var(--line); border-right:4px solid var(--coral); border-radius:12px;
+    padding:18px 20px; background:var(--white);
+  }
+  .priority-card.rank-2, .priority-card.rank-3{ border-right-color:#D8DEE3; }
+  .priority-rank{
+    font-family:var(--display); font-size:11px; font-weight:700; letter-spacing:.09em;
+    color:var(--coral); text-transform:uppercase; margin-bottom:7px;
+  }
+  .priority-card.rank-2 .priority-rank, .priority-card.rank-3 .priority-rank{ color:var(--muted); }
+  .priority-head{ display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:3px; flex-wrap:wrap; }
+  .priority-stage{ font-family:var(--display); font-weight:700; font-size:16px; color:var(--ink); }
+  .priority-score{ font-family:var(--display); font-weight:700; font-size:14px; white-space:nowrap; }
+  .priority-failure{ font-size:12px; color:var(--muted); font-weight:700; margin-bottom:6px; text-transform:uppercase; letter-spacing:.04em; }
+  .priority-interpretation{ font-size:14px; color:var(--ink); line-height:1.6; margin:0 0 12px 0; font-weight:500; }
+  .priority-symptoms{ margin:0 0 12px 0; padding:0; list-style:none; }
+  .priority-symptoms li{
+    font-size:13.5px; color:var(--ink-soft); line-height:1.6; padding:4px 20px 4px 0;
+    position:relative;
+  }
+  .priority-symptoms li::before{
+    content:""; position:absolute; right:0; top:11px; width:8px; height:8px;
+    border-radius:50%; border:2px solid var(--coral); background:transparent;
+  }
+  .priority-card.rank-2 .priority-symptoms li::before,
+  .priority-card.rank-3 .priority-symptoms li::before{ border-color:var(--muted); }
+  .priority-action{
+    background:var(--sky); border-radius:10px; padding:12px 14px;
+    font-size:13.5px; color:var(--ink); line-height:1.6;
+  }
+  .priority-action strong{ font-weight:700; color:var(--teal); font-size:12px; text-transform:uppercase; letter-spacing:.04em; display:block; margin-bottom:3px; }
+  .priority-empty{ background:var(--sky); border-radius:14px; padding:22px 24px; }
+  .priority-empty h2{ font-size:18px; margin-bottom:8px; }
+  .priority-empty p{ color:var(--ink-soft); font-size:14px; margin:0; line-height:1.6; }
+
+  /* ---------- Strengths section ---------- */
+  .strengths-section{ margin-bottom:30px; }
+  .strengths-section h2{ font-size:19px; margin-bottom:4px; }
+  .strengths-section > p.lead{ margin-bottom:14px; }
+  .strength-grid{ display:flex; flex-direction:column; gap:10px; }
+  .strength-card{
+    border:1.5px solid #C6F0D9; border-right:4px solid var(--green); border-radius:12px;
+    padding:14px 18px; background:var(--green-bg);
+  }
+  .strength-head{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:4px; }
+  .strength-stage{ font-family:var(--display); font-weight:700; font-size:15px; color:var(--ink); }
+  .strength-score{ font-family:var(--display); font-weight:700; font-size:13px; color:var(--green); }
+  .strength-text{ font-size:14px; color:var(--ink-soft); line-height:1.6; margin:0; }
+
+  /* ---------- Cross-stage connections ---------- */
+  .connections-section{ margin-bottom:30px; }
+  .connections-section h2{ font-size:19px; margin-bottom:4px; }
+  .connections-section > p.lead{ margin-bottom:14px; }
+  .connection-card{
+    border:1.5px solid #F5D0A9; border-radius:12px;
+    padding:16px 18px; background:var(--amber-bg); margin-bottom:10px;
+  }
+  .connection-label{
+    font-family:var(--display); font-size:11px; font-weight:700; letter-spacing:.09em;
+    color:var(--amber); text-transform:uppercase; margin-bottom:6px;
+  }
+  .connection-stages{ font-family:var(--display); font-weight:700; font-size:15px; color:var(--ink); margin-bottom:5px; }
+  .connection-text{ font-size:14px; color:var(--ink-soft); line-height:1.6; margin:0; }
+
+  table.results{ width:100%; border-collapse:collapse; margin-bottom:26px; font-size:14px; }
+  table.results th{ text-align:right; background:var(--ink); color:#fff; padding:11px 12px; font-size:11.5px; letter-spacing:.04em; font-family:var(--display); font-weight:600;}
+  table.results td{ padding:11px 12px; border-bottom:1px solid var(--line); color:var(--ink); text-align:right; }
+  table.results tr:nth-child(even){ background:var(--sky); }
+  .score-pill{
+    display:inline-block; min-width:36px; text-align:center; padding:3px 9px; border-radius:999px;
+    font-weight:700; font-size:13px; font-family:var(--display);
+  }
+  .score-interp{ display:block; font-size:11.5px; font-weight:500; color:var(--muted); margin-top:3px; }
+
+  .cta-box{
+    background:var(--sky); border-radius:16px; padding:26px 26px; text-align:center;
+  }
+  .cta-box h2{ font-size:19px; }
+  .cta-box p{ color:var(--ink-soft); font-size:14px; margin:0 0 16px 0; line-height:1.6; }
+
+  .disclaimer{ font-size:12px; color:var(--muted); font-style:italic; margin-top:20px; line-height:1.6; }
+
+  .footerbar{ text-align:center; padding:26px 16px 10px 16px; }
+  .footerbar p{ font-family:var(--display); font-size:12px; color:var(--muted); letter-spacing:.02em; margin:4px 0; }
+
+  .hidden{ display:none !important; }
+
+/* Language Switcher */
+.lang-switch{display:inline-flex;align-items:center;gap:4px;margin-left:12px;margin-right:12px;font-size:13px;font-weight:600;letter-spacing:.02em;}
+.lang-switch a{color:rgba(255,255,255,.55);text-decoration:none;padding:3px 6px;border-radius:4px;transition:all .25s ease;}
+.lang-switch a:hover{color:rgba(255,255,255,.85);}
+.lang-switch a.active{color:var(--white);background:rgba(255,255,255,.15);}
+.lang-switch .sep{color:rgba(255,255,255,.3);user-select:none;}
+header.site-nav.scrolled .lang-switch a{color:rgba(27,22,19,.4);}
+header.site-nav.scrolled .lang-switch a:hover{color:rgba(27,22,19,.7);}
+header.site-nav.scrolled .lang-switch a.active{color:var(--ink);background:rgba(27,22,19,.08);}
+header.site-nav.scrolled .lang-switch .sep{color:rgba(27,22,19,.2);}
+
+.mobile-lang-switch{display:flex;justify-content:center;gap:8px;padding:16px 24px;border-top:1px solid rgba(27,22,19,.1);margin-top:8px;}
+.mobile-lang-switch a{font-size:14px;font-weight:600;color:rgba(27,22,19,.5);text-decoration:none;padding:6px 14px;border-radius:6px;transition:all .25s ease;}
+.mobile-lang-switch a:hover{color:var(--ink);}
+.mobile-lang-switch a.active{color:var(--white);background:var(--red);}
+</style>
+</head>
+<body>
+
+<div class="sitebar">
+  <a class="brand" href="index-ar.html" aria-label="الصفحة الرئيسية لـ POME Fruitful Partners">
+    <img src="pome-logo.png" alt="" class="brand-logo"
+         onload="document.getElementById('ringFallback').style.display='none';"
+         onerror="this.style.display='none';">
+    <span class="ring" id="ringFallback"></span>
+    <span>POME FRUITFUL PARTNERS</span>
+  </a>
+  <a class="backlink" href="index-ar.html">pomefy.io →</a>
+</div>
+
+<div class="wrap">
+<div class="app">
+  <div class="progress-bar">
+    <div class="ring-wrap">
+      <svg width="44" height="44" viewBox="0 0 44 44">
+        <circle class="ring-track" cx="22" cy="22" r="18"></circle>
+        <circle class="ring-fill" id="ringFill" cx="22" cy="22" r="18" stroke-dasharray="113.1" stroke-dashoffset="113.1"></circle>
+      </svg>
+      <div class="ring-label" id="ringLabel">٪٠</div>
+    </div>
+    <div class="progress-text">
+      <span class="step" id="progressText">لنبدأ</span>
+      <span class="sub">لقطة توازن الإيرادات</span>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="screen" id="screen-intro">
+    <p class="eyebrow">أداة تشخيصية مجانية</p>
+    <h1>لقطة توازن الإيرادات</h1>
+    <p class="lead">النمو ليس خطاً مستقيماً. إنه دورة. تمر الإيرادات عبر خمس مراحل نحو التحصيل، بينما تستعيد المرحلة السادسة ما فُقد وتعيده إلى الدورة. تستغرق هذه اللقطة المكونة من ٣٠ سؤالاً حوالي ٥ دقائق وتُظهر لك أين يختل توازن دورتك الآن.</p>
+    <div class="nav-row" style="justify-content:flex-end;">
+      <button class="btn-primary" onclick="goToStage(0)">← ابدأ اللقطة</button>
+    </div>
+    <p class="disclaimer">يُفضّل أن يُجيب عليها الشخص الأقرب لأداء الإيرادات الإجمالي: المؤسس، أو المدير العام، أو رئيس المبيعات. لا توجد إجابات خاطئة.</p>
+  </div>
+
+  <!-- STAGE SCREENS injected here -->
+  <div id="stage-container"></div>
+
+  <!-- CONTACT CAPTURE -->
+  <div class="screen hidden" id="screen-contact">
+    <p class="eyebrow">أوشكنا على الانتهاء</p>
+    <h2>أين نرسل لك النتائج؟</h2>
+    <p class="lead">لقطتك المخصصة، بما في ذلك المرحلة التي تحتاج اهتماماً أولاً، جاهزة فوراً بعد هذا.</p>
+    <div class="field"><label for="fName">الاسم الكامل</label><input id="fName" type="text" placeholder="أحمد محمد" autocomplete="name"></div>
+    <div class="field"><label for="fEmail">البريد الإلكتروني للعمل</label><input id="fEmail" type="email" placeholder="ahmed@company.com" autocomplete="email"></div>
+    <div class="field"><label for="fCompany">الشركة</label><input id="fCompany" type="text" placeholder="اسم الشركة" autocomplete="organization"></div>
+    <div class="nav-row">
+      <button class="btn-ghost" onclick="goToStage(5)">العودة →</button>
+      <button class="btn-primary" id="submitBtn" onclick="submitAndShowResults()">← عرض نتائجي</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="screen hidden" id="screen-results">
+    <p class="eyebrow">لقطتك</p>
+    <h2 id="resultsHeadline">إليك وضع نظامك الحالي</h2>
+    <p class="lead" id="resultsSub"></p>
+
+    <div class="index-hero">
+      <div>
+        <div class="label">مؤشر اللقطة</div>
+        <div class="value" id="indexValue">٠٫٠ / ٥</div>
+      </div>
+      <div class="verdict" id="indexVerdict"></div>
+    </div>
+
+    <!-- Strengths (what's working) -->
+    <div class="strengths-section" id="strengthsContainer"></div>
+
+    <!-- Priority recommendations (enhanced) -->
+    <div class="priority-section" id="priorityContainer"></div>
+
+    <!-- Cross-stage connections -->
+    <div class="connections-section hidden" id="connectionsContainer"></div>
+
+    <div class="chart-wrap"><canvas id="radarChart" role="img" aria-label="مخطط رادار لنتائج المراحل الست"></canvas></div>
+
+    <table class="results">
+      <thead><tr><th>المرحلة</th><th>حالة الفشل إذا كانت منخفضة</th><th>نتيجتك</th></tr></thead>
+      <tbody id="resultsTableBody"></tbody>
+    </table>
+
+    <div class="cta-box">
+      <h2>تريد الصورة الكاملة؟</h2>
+      <p>تستند هذه اللقطة إلى الانطباعات الذاتية فقط. يضيف التشخيص الكامل لتوازن الإيرادات بيانات أداء حقيقية ومراقبة مباشرة للعمليات لإنتاج مؤشر توازن مُعتمد وخطة نمو ذات أولويات، بدون أي التزام.</p>
+      <a href="diagnostics-ar.html" class="btn-primary" style="display:inline-block;text-decoration:none;color:#fff;text-align:center;">تعرّف على خدمات التشخيص لدينا ←</a>
+    </div>
+    <p class="disclaimer">تستند إجاباتك إلى التقييم الذاتي فقط، بدون بيانات أساسية أو تحقق مستقل. تعامل مع هذا كنقطة انطلاق توجيهية، وليس اختباراً بدرجات.</p>
+  </div>
+</div>
+
+<div class="footerbar">
+  <p><a class="backlink" href="index-ar.html" style="text-decoration:none;color:var(--muted);">العودة إلى pomefy.io →</a></p>
+  <p>© ٢٠٢٦ POME Fruitful Partners. جميع الحقوق محفوظة.</p>
+</div>
+</div>
+
+<script>
+/* ================================================================
+   DATA
+   ================================================================ */
+const STAGES = [
+  { key:"blueocean", num:"٠١", name:"المحيط الأزرق", phase:"مصدر المياه", tagline:"إنشاء أسواق جديدة", failure:"الجفاف", qs:[
+    "لدينا خطة واضحة وفعّالة لدخول أسواق أو شرائح جديدة، وليس مجرد خدمة قاعدة عملائنا الحالية.",
+    "في الأشهر الـ ١٢ الماضية، حققنا إيرادات ملموسة من سوق أو شريحة أو حالة استخدام جديدة فعلاً.",
+    "إذا توقف نمو حساباتنا الكبرى غداً، لدينا خطة موثوقة لمصدر الإيرادات الجديدة.",
+    "نتعامل مع التوسع في السوق كأولوية مستمرة، وليس شيئاً نعود إليه فقط بعد أن يتباطأ النمو.",
+    "لا نرى حالياً علامات مبكرة على التسليع أو ضغط الأسعار في سوقنا الأساسي."
+  ]},
+  { key:"risingsun", num:"٠٢", name:"الشمس المشرقة", phase:"التبخر", tagline:"بناء الظهور والثقة", failure:"التبخر المفرط", qs:[
+    "العملاء المحتملون الذين يرسلهم التسويق إلى المبيعات عالي الجودة باستمرار ويتم التعامل معهم بسرعة.",
+    "حجم توليد الطلب متوافق مع ما يمكن لفريق المبيعات التعامل معه فعلياً.",
+    "نادراً ما يكون لدينا عملاء محتملون متروكون بدون متابعة في نظام إدارة العلاقات.",
+    "يتفق التسويق والمبيعات على ما يجعل العميل المحتمل 'جاهزاً' قبل تسليمه.",
+    "لدينا رؤية حقيقية لما يحدث للعميل المحتمل بعد أن يسلّمه التسويق للمبيعات."
+  ]},
+  { key:"thecloud", num:"٠٣", name:"السحابة", phase:"التكثف", tagline:"هيكلة خط الأنابيب", failure:"الركود", qs:[
+    "أنا واثق جداً من رقم خط الأنابيب الحالي. سأراهن عليه.",
+    "لدينا قواعد واضحة ومُطبّقة لانتقال الصفقة من مرحلة إلى أخرى.",
+    "توقعات مبيعاتنا دقيقة عادةً ضمن هامش صغير.",
+    "نادراً ما تبقى الصفقات في نفس مرحلة خط الأنابيب لعدة أرباع بدون إجراء.",
+    "عندما تتوقف صفقة، هناك خطوة تالية واضحة (تصعيد، أو استبعاد، أو تسريع) بدلاً من تركها معلّقة."
+  ]},
+  { key:"bringtheheat", num:"٠٤", name:"تصعيد الحرارة", phase:"الضغط والتسريع", tagline:"الإلحاح والزخم", failure:"الفيضان", qs:[
+    "معظم صفقاتنا تُغلق بسبب القيمة الحقيقية والإلحاح، وليس التخفيضات.",
+    "لدينا حوكمة واضحة حول كيفية ومتى تُوافق التخفيضات.",
+    "نادراً ما نرى عملاء يندمون أو يتوقفون بعد فترة قصيرة من إغلاق متسرع.",
+    "معدل الفوز لدينا ثابت إلى حد ما طوال الفترة، بدلاً من الارتفاع المريب في نهاية الربع.",
+    "الصفقات التي تُسرَّع تصل إلى المالية/القانون مع أوراق نظيفة ودقيقة."
+  ]},
+  { key:"rainfall", num:"٠٥", name:"هطول المطر", phase:"التساقط", tagline:"تنمية الحصة السوقية", failure:"الفيضانات المفاجئة", qs:[
+    "إيراداتنا تأتي بشكل منتظم طوال الفترة، وليست متجمعة في النهاية.",
+    "هوامش ربحنا ظلت مستقرة أو تحسنت خلال العام الماضي.",
+    "الصفقات التي نُغلقها لا تخلق ضغطاً تشغيلياً غير متوقع لاحقاً.",
+    "لا نرى نمطاً من الإغلاق المتسرع على شكل 'عصا الهوكي' في نهاية كل فترة.",
+    "بمجرد إغلاق الصفقة، ينتقل الحساب بسلاسة إلى الفريق المسؤول عن الاحتفاظ."
+  ]},
+  { key:"diggersdig", num:"٠٦", name:"الحفّارون يحفرون", phase:"المياه الجوفية والجريان", tagline:"استعادة الفرص الراكدة وإعادتها إلى السحابة", failure:"الإهمال", qs:[
+    "لدينا عملية فعّالة ومملوكة لإعادة تنشيط الفرص الراكدة أو المفقودة.",
+    "نادراً ما نترك العملاء المحتملين أو الحسابات تهدأ بدون متابعة.",
+    "البيع المتقاطع والبيع الإضافي للعملاء الحاليين حركة مقصودة ومُتتبّعة، وليس صدفة.",
+    "عندما يتوقف حساب، لدينا عملية معيارية لمعرفة السبب.",
+    "إعادة تنشيط عميل محتمل قديم تُعامل كعمل حقيقي وذو قيمة، وليس أقل أولوية من خط الأنابيب الجديد."
+  ]}
+];
+
+const answers = {};
+let currentStage = -1;
+const TOTAL_STEPS = STAGES.length + 2;
+const RING_CIRC = 113.1;
+
+const FAILURE_INFO = {
+  "الجفاف": "الاعتماد المفرط على العملاء الحاليين. يميل التسليع وتآكل الهوامش إلى الحدوث بعده.",
+  "التبخر المفرط": "حجم كبير من العملاء المحتملين لكن بنية شراء منخفضة. يؤدي إلى إرهاق المبيعات وازدحام نظام إدارة العلاقات.",
+  "الركود": "خط الأنابيب يبدو نشطاً لكنه في الواقع متضخم وراكد. التوقعات تبدو واثقة لكنها غير موثوقة.",
+  "الفيضان": "تُغلق الصفقات بالقوة مع تخفيضات. يؤدي إلى ندم العملاء والتوقف المبكر.",
+  "الفيضانات المفاجئة": "الإيرادات تأتي على شكل دفعات قصيرة المدى تُكلف الهوامش والاستقرار بهدوء.",
+  "الإهمال": "الفرص المفقودة أو الراكدة تُترك ببساطة بدون تحصيل. إيرادات دفعت لتوليدها تذهب بلا مطالبة."
+};
+
+/* ---- Enhanced: per-stage recommendations with symptoms, actions, and interpretations ---- */
+const STAGE_DATA = {
+  blueocean: {
+    recommendation: "ابنِ إيقاعاً منتظماً لتقييم الأسواق أو الشرائح أو حالات الاستخدام الجديدة، حتى لو ساعة واحدة مخصصة شهرياً. تعامل مع التوسع كوظيفة مستمرة، وليس مهمة إنقاذ تلجأ إليها بعد تباطؤ النمو.",
+    symptoms: [
+      "الإيرادات مُركّزة بشكل كبير في شريحة واحدة أو مجموعة صغيرة من الحسابات الحالية",
+      "تتنافس على السعر أكثر من التميز",
+      "اكتساب العملاء الجدد تباطأ أو توقف بشكل ملحوظ",
+      "منتجك أو خدمتك بدأت تبدو قابلة للاستبدال مع المنافسين"
+    ],
+    action: "خصّص جلسة شهرية لتقييم سوق أو حالة استخدام مجاورة. ابدأ بعملائك الحاليين: اسألهم ما الذي يشترونه من المنافسين ويمكنك تقديمه. لا تحتاج عرضاً استراتيجياً؛ تحتاج عادة.",
+    interpretations: {
+      critical: "من المرجح أن عملك يعتمد بشكل مفرط على سوق متقلصة أو مشبعة. النمو يُضغط عليه، لا يُبنى.",
+      attention: "لديك وعي بالحاجة للتوسع، لكنها لم تصبح عملية فعّالة بعد. معظم النمو لا يزال يأتي من المصادر المعتادة.",
+      healthy: "أنت تنشئ أو تدخل أسواقاً جديدة بفعالية. مخاطر التسليع تُدار جيداً."
+    },
+    strength: "أنت توسّع حضورك في السوق بنشاط خارج قاعدتك الأساسية. هذا هو الأساس الذي يُبنى عليه كل شيء آخر."
+  },
+  risingsun: {
+    recommendation: "حدّد معياراً صريحاً لجودة العملاء المحتملين مع المبيعات قبل زيادة حجم توليد الطلب أكثر. مطابقة المخرجات مع ما يمكن للمبيعات العمل عليه فعلاً عادةً ما تكون حلاً أسرع من زيادة الإنفاق.",
+    symptoms: [
+      "المبيعات تشتكي من جودة العملاء المحتملين بينما يُبلّغ التسويق عن أرقام قياسية",
+      "العملاء المحتملون يبقون بدون متابعة في نظام إدارة العلاقات لأيام أو أسابيع",
+      "تكلفة العميل المحتمل منخفضة لكن تكلفة الفرصة مرتفعة",
+      "لا يوجد تعريف مشترك لما يجعل العميل المحتمل 'جاهزاً للمبيعات'"
+    ],
+    action: "اجمع التسويق والمبيعات واتفقوا على خمس صفات تجعل العميل المحتمل يستحق الاتصال. دوّنوها. اشترطوا التسليم بناءً على هذه الخمس لمدة ٣٠ يوماً وقيسوا التغيير.",
+    interpretations: {
+      critical: "من المرجح أن التسويق والمبيعات يعملان ضد بعضهما. يتم توليد حجم لكن بدون تحويل، مما يستنزف الميزانية والمعنويات.",
+      attention: "عملية التسليم بين التسويق والمبيعات فيها احتكاك. العملاء المحتملون يصلون، لكن التحويل من عميل محتمل إلى فرصة حقيقية ليس سلساً.",
+      healthy: "التسويق والمبيعات متناغمان جيداً. العملاء المحتملون مناسبون وفي الوقت المناسب ويُتابعون."
+    },
+    strength: "توليد الطلب لديك متوافق جيداً مع قدرة المبيعات. العملاء المحتملون مناسبون ويُتابعون بسرعة."
+  },
+  thecloud: {
+    recommendation: "أدخل معايير خروج واضحة ومُطبّقة لكل مرحلة في خط الأنابيب حتى لا تبقى الصفقات معلّقة إلى ما لا نهاية. هذا وحده يميل لأن يكون أسرع رافعة لتحسين دقة التوقعات ومسؤولية مندوبي المبيعات.",
+    symptoms: [
+      "قيمة خط الأنابيب تبدو صحية على الورق لكن الصفقات تنزلق من ربع لآخر",
+      "دقة التوقعات تخطئ باستمرار بأكثر من ١٥-٢٠٪",
+      "المندوبون لديهم صفقات في خط الأنابيب لم تتحرك منذ ٩٠+ يوماً",
+      "لا توجد قاعدة معيارية لمتى تتقدم الصفقة أو تُستبعد"
+    ],
+    action: "اختر أكثر ثلاث مراحل شيوعاً في خط الأنابيب. لكل منها، دوّن الشيء الوحيد الذي يجب أن يكون صحيحاً قبل أن تنتقل الصفقة للمرحلة التالية. طبّقه لربع واحد وراقب ما يحدث لتوقعاتك.",
+    interpretations: {
+      critical: "من المرجح أن خط الأنابيب متضخم بصفقات راكدة أو مبنية على أمنيات. الرقم الذي تبلّغ عنه على الأرجح غير حقيقي، والقرارات تُتخذ بناءً عليه.",
+      attention: "إدارة خط الأنابيب فيها فجوات. بعض الصفقات تبقى طويلاً، والتوقعات لا تصل حيث يجب.",
+      healthy: "خط الأنابيب مُدار بشكل جيد. الصفقات تتحرك بمعايير واضحة، وما تتوقعه قريب مما تُغلقه."
+    },
+    strength: "خط الأنابيب لديك نظيف ومُدار بشكل جيد. ما فيه حقيقي، وما تتوقعه قريب مما تُغلقه."
+  },
+  bringtheheat: {
+    recommendation: "ضع حوكمة خفيفة حول الموافقة على التخفيضات قبل وصول الصفقة للتوقيع. استبدال السلطة التقديرية العشوائية بعملية بسيطة قائمة على العتبات يحمي الهوامش بدون إبطاء الإلحاح الحقيقي.",
+    symptoms: [
+      "التخفيض أصبح الطريقة الافتراضية للإغلاق، وليس الاستثناء",
+      "معدلات الفوز ترتفع بشكل مريب في نهاية كل ربع",
+      "العملاء يتوقفون أو يعبّرون عن الندم خلال الأشهر القليلة الأولى",
+      "المندوبون يتجاوزون الأسعار بشكل روتيني بدون موافقة منظمة"
+    ],
+    action: "طبّق عتبة تخفيض بسيطة: أي شيء فوق ١٠٪ يحتاج موافقة واحدة، وأي شيء فوق ٢٠٪ يحتاج موافقتين. تتبّع كم صفقة تصل لكل مستوى لربع واحد. النمط وحده سيُخبرك أين المشكلة.",
+    interpretations: {
+      critical: "الصفقات تُدفع بالقوة بالضغط والتخفيضات. من المرجح أنك تتداول القيمة طويلة المدى مقابل أرقام قصيرة المدى، وهذا يظهر في التوقف أو تآكل الهوامش.",
+      attention: "بعض الصفقات تُغلق بإلحاح غير حقيقي. حوكمة التخفيضات غير متسقة، وبعض الأنماط السيئة قد تتطور.",
+      healthy: "الصفقات تُغلق على القيمة والإلحاح الحقيقي. التخفيضات مُسيطر عليها والهوامش محمية."
+    },
+    strength: "صفقاتك تُغلق بقيمة حقيقية، وليس بتكتيكات ضغط. التخفيضات مُسيطر عليها والهوامش صحية."
+  },
+  rainfall: {
+    recommendation: "تتبّع نسبة الإيرادات التي تُسجّل في الأسبوعين الأخيرين من كل فترة. إذا كانت مرتفعة، اعمل بالعكس لمعرفة ما يؤخر القرارات المبكرة. تنعيم المنحنى عادةً أفضل من الإغلاق الأسرع.",
+    symptoms: [
+      "أكثر من ٤٠٪ من الإيرادات تُسجّل في الأسبوع الأخير من كل فترة",
+      "الهوامش تتراجع بهدوء من ربع لآخر",
+      "فرق العمليات أو التسليم تُفاجأ بانتظام بما أغلقته المبيعات",
+      "عمليات التسليم بعد الإغلاق فوضوية أو بطيئة أو غائبة تماماً"
+    ],
+    action: "استخرج تواريخ إغلاق الربع الماضي ورتّبها على جدول زمني. إذا رأيت نمط عصا الهوكي، اختر أكبر ثلاث صفقات أُغلقت متأخرة وتتبّع ما أخّرها. العائق تقريباً لا يكون أبداً 'أن العميل تأخر'.",
+    interpretations: {
+      critical: "الإيرادات تصل على شكل دفعات تُرهق العمليات وتُخفي تراجع الهوامش. النمو قد يبدو جيداً من السطر الأعلى، لكنه غير مستدام بهذا الإيقاع.",
+      attention: "هناك بعض التجمّع في الإيرادات في نهاية الفترة، وعملية التسليم من المبيعات للتنفيذ يمكن أن تكون أكثر سلاسة. ليست حرجة بعد، لكن تستحق المراقبة.",
+      healthy: "الإيرادات تتدفق بشكل منتظم، الهوامش مستقرة، والصفقات المُغلقة تنتقل بسلاسة للفرق التي تُنفّذها."
+    },
+    strength: "الإيرادات تصل بشكل منتظم طوال الفترة مع هوامش مستقرة. حركة مبيعاتك وعملياتك متزامنة جيداً."
+  },
+  diggersdig: {
+    recommendation: "عيّن ملكية صريحة ومُسمّاة لإعادة تنشيط خط الأنابيب الراكد وجهات الاتصال الخاملة. هذا هو الاكتشاف الأكثر شيوعاً على الإطلاق: استعادة الفرص المفقودة ليست رسمياً مسؤولية أحد.",
+    symptoms: [
+      "الصفقات المفقودة والحسابات المتوقفة تذهب إلى مقبرة في نظام إدارة العلاقات لا ينظر إليها أحد",
+      "البيع المتقاطع والبيع الإضافي يحدثان بالصدفة، وليس بتصميم",
+      "عندما يغادر عميل، لا أحد يحقق رسمياً في السبب",
+      "إعادة التنشيط تُعتبر عملاً أقل مكانة مقارنة بخط الأنابيب الجديد"
+    ],
+    action: "صدّر صفقاتك المفقودة/المُغلقة خاسرة من الـ ١٢ شهراً الماضية. رتّبها حسب حجم الصفقة. اختر أعلى ١٠ وكلّف شخصاً واحداً بالتواصل مع كل منهم هذا الأسبوع بتحية بسيطة، بدون عرض بيعي. شاهد كم منهم مستعد لإعادة التفاعل.",
+    interpretations: {
+      critical: "أنت تدفع باستمرار لاكتساب عملاء جدد بينما تترك إيرادات فزت بها سابقاً على الطاولة. هذا غالباً أكبر تكلفة مخفية في أي عمل.",
+      attention: "بعض إعادة التنشيط يحدث، لكنه ليس منهجياً. هناك إيرادات في نظام إدارة العلاقات لا يعمل أحد بنشاط على استعادتها.",
+      healthy: "لديك حركة إعادة تدوير فعّالة. الفرص الراكدة تُعاد معالجتها، والحسابات المتوقفة تُحقق، والبيع الإضافي عملية مقصودة."
+    },
+    strength: "أنت تستعيد بنشاط الفرص المفقودة والراكدة. هذه ميزة تنافسية لا تفكر فيها معظم الشركات."
+  }
+};
+
+/* ---- Cross-stage connection pairs ---- */
+const CROSS_STAGE_LINKS = [
+  {
+    stages: ["thecloud", "diggersdig"],
+    label: "خط الأنابيب وإعادة التدوير",
+    text: "عندما تكون السحابة (خط الأنابيب) والحفّارون يحفرون (إعادة التدوير) ضعيفتين معاً، تبقى الصفقات الراكدة في خط أنابيب متضخم بدون عملية لاستعادتها. الفرص تدخل النظام وتتوقف عن الحركة. لا تتحول، ولا تُعاد تدويرها. هذا أغلى تركيبة لأنك تدفع لتوليد طلب لا ينتج شيئاً."
+  },
+  {
+    stages: ["risingsun", "thecloud"],
+    label: "الطلب وخط الأنابيب",
+    text: "عندما تكون الشمس المشرقة (الطلب) والسحابة (خط الأنابيب) ضعيفتين معاً، فإن العملاء المحتملين إما لا يصلون أو لا يتحولون إلى صفقات منظمة. أعلى الدورة يتسرب. جهد التسويق لا يصل لخط الأنابيب، وخط الأنابيب لا يستطيع التمييز بين الفرصة الجيدة والضوضاء."
+  },
+  {
+    stages: ["bringtheheat", "rainfall"],
+    label: "التسريع والإيرادات",
+    text: "عندما تكون تصعيد الحرارة (التسريع) وهطول المطر (الإيرادات) ضعيفتين معاً، يتم إغلاق الصفقات بالقوة لكن الإيرادات الناتجة غير مستقرة. التخفيضات وارتفاعات نهاية الربع وضغط العمليات بعد الإغلاق تميل للسفر معاً، وتتراكم."
+  },
+  {
+    stages: ["blueocean", "risingsun"],
+    label: "السوق والظهور",
+    text: "عندما يكون المحيط الأزرق (إنشاء السوق) والشمس المشرقة (الظهور) ضعيفين معاً، فأنت لا تتوسع في أسواق جديدة وتوليد الطلب الحالي لا يعمل جيداً. النمو يتوقف في بداية الدورة. لا شيء يغذي بقية النظام."
+  },
+  {
+    stages: ["blueocean", "diggersdig"],
+    label: "التوسع وإعادة التدوير",
+    text: "عندما يكون المحيط الأزرق (التوسع) والحفّارون يحفرون (إعادة التدوير) ضعيفين معاً، فأنت لا تنشئ مساحة سوقية جديدة ولا تستعيد ما استثمرت فيه سابقاً. الإيرادات تعتمد على حركة واحدة متقلصة. منتصف الدورة يقوم بكل العمل."
+  },
+  {
+    stages: ["risingsun", "bringtheheat"],
+    label: "الطلب والإلحاح",
+    text: "عندما تكون الشمس المشرقة (الظهور) وتصعيد الحرارة (التسريع) ضعيفتين معاً، فأنت تولّد عملاء محتملين منخفضي النية ثم تحاول دفعهم بالضغط. هذا يخلق دورة من الجودة المنخفضة في الدخول والجودة المنخفضة في الخروج، وفريق المبيعات يتحمل التكلفة."
+  }
+];
+
+/* ---- Strength messages for high-scoring stages ---- */
+const STRENGTH_THRESHOLD = 4.0;
+const WEAK_THRESHOLD = 4.0;
+
+/* ================================================================
+   BUILD STAGE SCREENS
+   ================================================================ */
+const container = document.getElementById("stage-container");
+STAGES.forEach((stage, si) => {
+  const div = document.createElement("div");
+  div.className = "screen hidden";
+  div.id = "screen-stage-" + si;
+
+  let qsHtml = "";
+  stage.qs.forEach((q, qi) => {
+    const name = stage.key + "-" + qi;
+    let opts = "";
+    for (let v = 1; v <= 5; v++) {
+      opts += `
+        <label>
+          <input type="radio" name="${name}" value="${v}" onchange="recordAnswer('${name}', ${v}, ${si})">
+          <div class="opt"><span class="n">${v}</span></div>
+        </label>`;
+    }
+    qsHtml += `
+      <div class="qcard">
+        <div class="qtext">${qi + 1 + si*5}. ${q}</div>
+        <div class="scale">${opts}</div>
+        <div class="scale-caption"><span>غير صحيح إطلاقاً</span><span>صحيح تماماً</span></div>
+      </div>`;
+  });
+
+  div.innerHTML = `
+    <div class="stage-tag">
+      <span class="num">${stage.num}</span>
+      <span class="meta"><span class="name">${stage.name}</span><span class="tagline">${stage.tagline}</span></span>
+    </div>
+    <h2>قيّم كل عبارة</h2>
+    <p class="lead">١ = غير صحيح إطلاقاً، ٥ = صحيح تماماً. اتبع حدسك.</p>
+    ${qsHtml}
+    <div class="nav-row">
+      <button class="btn-ghost" onclick="goToStage(${si - 1})">العودة →</button>
+      <button class="btn-primary" id="next-${si}" onclick="goToStage(${si + 1})" disabled>← متابعة</button>
+    </div>
+  `;
+  container.appendChild(div);
+});
+
+/* ================================================================
+   NAVIGATION
+   ================================================================ */
+function toArabicNum(n) {
+  return n.toString().replace(/[0-9]/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+}
+
+function updateProgress(stepIndex) {
+  const pct = Math.round((stepIndex / TOTAL_STEPS) * 100);
+  const offset = RING_CIRC - (pct / 100) * RING_CIRC;
+  document.getElementById("ringFill").style.strokeDashoffset = offset;
+  document.getElementById("ringLabel").textContent = "٪" + toArabicNum(pct);
+  const labels = ["لنبدأ","المرحلة ١ من ٦","المرحلة ٢ من ٦","المرحلة ٣ من ٦","المرحلة ٤ من ٦","المرحلة ٥ من ٦","المرحلة ٦ من ٦","بياناتك","النتائج"];
+  document.getElementById("progressText").textContent = labels[Math.min(stepIndex, labels.length - 1)];
+}
+
+function hideAllScreens() {
+  document.getElementById("screen-intro").classList.add("hidden");
+  STAGES.forEach((s, i) => document.getElementById("screen-stage-" + i).classList.add("hidden"));
+  document.getElementById("screen-contact").classList.add("hidden");
+  document.getElementById("screen-results").classList.add("hidden");
+}
+
+function goToStage(index) {
+  hideAllScreens();
+  if (index < 0) {
+    document.getElementById("screen-intro").classList.remove("hidden");
+    currentStage = -1;
+    updateProgress(0);
+  } else if (index < STAGES.length) {
+    document.getElementById("screen-stage-" + index).classList.remove("hidden");
+    currentStage = index;
+    updateProgress(index + 1);
+    window.scrollTo({top:0, behavior:"smooth"});
+  } else {
+    document.getElementById("screen-contact").classList.remove("hidden");
+    updateProgress(STAGES.length + 1);
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+}
+
+function recordAnswer(name, value, stageIndex) {
+  answers[name] = value;
+  const stage = STAGES[stageIndex];
+  const allAnswered = stage.qs.every((_, qi) => answers[stage.key + "-" + qi] !== undefined);
+  document.getElementById("next-" + stageIndex).disabled = !allAnswered;
+}
+
+/* ================================================================
+   SCORING
+   ================================================================ */
+function computeScores() {
+  const stageScores = STAGES.map(stage => {
+    const vals = stage.qs.map((_, qi) => answers[stage.key + "-" + qi] || 0);
+    const avg = vals.reduce((a,b) => a+b, 0) / vals.length;
+    return { ...stage, avg };
+  });
+  const index = stageScores.reduce((a,s) => a + s.avg, 0) / stageScores.length;
+  return { stageScores, index };
+}
+
+function bandFor(score) {
+  if (score >= 4.0) return { color: "#0E7C4A", label: "متوازن جيداً" };
+  if (score >= 2.5) return { color: "#A80F1A", label: "اختلال موضعي" };
+  return { color: "#7A0D14", label: "اختلال منهجي" };
+}
+
+function urgencyFor(score) {
+  if (score < 2.0) return { level: "critical", label: "تصرّف الآن" };
+  if (score < 3.0) return { level: "attention", label: "يحتاج اهتماماً" };
+  if (score < 4.0) return { level: "monitor", label: "راقب" };
+  return null;
+}
+
+function interpretationBand(score) {
+  if (score < 2.5) return "critical";
+  if (score < 4.0) return "attention";
+  return "healthy";
+}
+
+function scoreInterpretation(score) {
+  if (score >= 4.5) return "قوي";
+  if (score >= 4.0) return "صحي";
+  if (score >= 3.0) return "مختلط";
+  if (score >= 2.0) return "ضعيف";
+  return "حرج";
+}
+
+/* ================================================================
+   SUBMIT + RESULTS
+   ================================================================ */
+let chartInstance = null;
+
+/* ====================================================================
+   FORM SUBMISSION via Formspree
+   ==================================================================== */
+const FORMSPREE_URL = "https://formspree.io/f/xvkoponw";
+
+function bandLabel(score) {
+  if (score >= 4.0) return "متوازن جيداً";
+  if (score >= 2.5) return "اختلال موضعي";
+  return "اختلال منهجي";
+}
+
+function buildStageScoresSummary(stageScores) {
+  return stageScores.map(s => `${s.name}: ${s.avg.toFixed(1)}/5 (${s.failure})`).join("\n");
+}
+
+function buildPrioritiesSummary(stageScores) {
+  const sorted = [...stageScores].sort((a,b) => a.avg - b.avg);
+  const weak = sorted.filter(s => s.avg < WEAK_THRESHOLD).slice(0, 3);
+  if (weak.length === 0) return "جميع المراحل الست سجّلت نتيجة صحية. لا أولويات عاجلة.";
+  return weak.map((s, i) => {
+    const data = STAGE_DATA[s.key];
+    const urg = urgencyFor(s.avg);
+    const urgLabel = urg ? ` [${urg.label}]` : "";
+    return `الأولوية ${i + 1}${urgLabel}: ${s.name} (${s.avg.toFixed(1)}/5, ${s.failure})\n${data.interpretations[interpretationBand(s.avg)]}\nالخطوة الأولى: ${data.action}`;
+  }).join("\n\n");
+}
+
+async function submitAndShowResults() {
+  const name = document.getElementById("fName").value.trim();
+  const email = document.getElementById("fEmail").value.trim();
+  const company = document.getElementById("fCompany").value.trim();
+  if (!name || !email) {
+    alert("يرجى إضافة اسمك والبريد الإلكتروني للعمل على الأقل حتى نتمكن من المتابعة معك.");
+    return;
+  }
+
+  const { stageScores, index } = computeScores();
+  const verdict = bandLabel(index);
+
+  // ---- Submit results via Formspree ----
+  try {
+    await fetch(FORMSPREE_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({
+        name,
+        email,
+        company: company || "(غير مُقدّم)",
+        snapshot_index: index.toFixed(1) + " / 5",
+        verdict,
+        stage_scores: buildStageScoresSummary(stageScores),
+        priorities: buildPrioritiesSummary(stageScores),
+        submitted_at: new Date().toLocaleString("ar-SA", { dateStyle: "long", timeStyle: "short" }),
+        language: "ar"
+      })
+    });
+    console.log("Formspree submission sent successfully.");
+  } catch (err) {
+    console.warn("Formspree submission failed:", err);
+  }
+
+  hideAllScreens();
+  document.getElementById("screen-results").classList.remove("hidden");
+  updateProgress(STAGES.length + 2);
+  window.scrollTo({top:0, behavior:"smooth"});
+  requestAnimationFrame(() => renderResults(stageScores, index, name));
+}
+
+/* ================================================================
+   RENDER RESULTS (enhanced)
+   ================================================================ */
+function renderResults(stageScores, index, name) {
+  /* ---- Headline & sub ---- */
+  document.getElementById("resultsHeadline").textContent = name ? `${name.split(" ")[0]}، إليك وضع نظامك الحالي` : "إليك وضع نظامك الحالي";
+
+  const weakest = [...stageScores].sort((a,b) => a.avg - b.avg)[0];
+  const strongest = [...stageScores].sort((a,b) => b.avg - a.avg)[0];
+  const weakCount = stageScores.filter(s => s.avg < WEAK_THRESHOLD).length;
+
+  let subText;
+  if (weakCount === 0) {
+    subText = `جميع المراحل الست تتجه نحو الصحة بناءً على التقييم الذاتي. ${weakest.name} هي الأدنى نسبياً، لكن لا شيء هنا يبدو عاجلاً.`;
+  } else if (weakCount <= 2) {
+    subText = `نظامك يواجه ضغطاً موضعياً في ${weakCount === 1 ? 'مرحلة واحدة' : 'مرحلتين'}. ${weakest.name} (${weakest.failure}) هي حيث يجب أن يبدأ الحوار.`;
+  } else {
+    subText = `${toArabicNum(weakCount)} من مراحلك الست أقل من العتبة الصحية. هذا يشير إلى نمط منهجي أوسع، وليس مجرد منطقة واحدة تحتاج إصلاحاً.`;
+  }
+  document.getElementById("resultsSub").textContent = subText;
+
+  /* ---- Index hero ---- */
+  const band = bandFor(index);
+  document.getElementById("indexValue").textContent = index.toFixed(1) + " / ٥";
+  let verdictText;
+  if (band.label === "متوازن جيداً") {
+    verdictText = "نظامك يبدو متوازناً جيداً بناءً على التقييم الذاتي. التشخيص الكامل سيؤكد ذلك مقابل بيانات حقيقية.";
+  } else if (band.label === "اختلال موضعي") {
+    verdictText = "من المرجح أنك تحمل اختلالاً موضعياً في مرحلة أو مرحلتين، يستحق التحديد الدقيق قبل أن ينتشر.";
+  } else {
+    verdictText = "المؤشرات تدل على اختلال منهجي أوسع عبر مراحل متعددة. الإصلاحات الفردية لن تكفي.";
+  }
+  document.getElementById("indexVerdict").textContent = verdictText;
+
+  /* ---- Strengths ---- */
+  renderStrengths(stageScores);
+
+  /* ---- Priorities ---- */
+  renderPriorities(stageScores);
+
+  /* ---- Cross-stage connections ---- */
+  renderConnections(stageScores);
+
+  /* ---- Score table with interpretations ---- */
+  const tbody = document.getElementById("resultsTableBody");
+  tbody.innerHTML = "";
+  stageScores.forEach(s => {
+    const b = bandFor(s.avg);
+    const interp = scoreInterpretation(s.avg);
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td><strong>${s.name}</strong></td><td>${s.failure}<span class="info-dot" tabindex="0" aria-label="ماذا يعني ${s.failure}">i<span class="tip">${FAILURE_INFO[s.failure]}</span></span></td><td><span class="score-pill" style="background:${b.color}1F; color:${b.color};">${s.avg.toFixed(1)}</span><span class="score-interp">${interp}</span></td>`;
+    tbody.appendChild(tr);
+  });
+
+  /* ---- Radar chart ---- */
+  const ctx = document.getElementById("radarChart");
+  if (chartInstance) chartInstance.destroy();
+  chartInstance = new Chart(ctx, {
+    type: "radar",
+    data: {
+      labels: stageScores.map(s => s.name),
+      datasets: [{
+        label: "نتيجتك",
+        data: stageScores.map(s => Number(s.avg.toFixed(2))),
+        borderColor: "#D51522",
+        backgroundColor: "rgba(213,21,34,0.15)",
+        pointBackgroundColor: "#D51522",
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        r: {
+          min: 0, max: 5, ticks: { stepSize: 1, backdropColor: "transparent", color: "#9AA3AB" },
+          grid: { color: "#E4E9EC" },
+          angleLines: { color: "#E4E9EC" },
+          pointLabels: { color: "#3A3F47", font: { size: 11, family: "'Noto Sans Arabic', Inter" } }
+        }
+      },
+      plugins: { legend: { display: false } }
+    }
+  });
+}
+
+/* ---- Strengths section ---- */
+function renderStrengths(stageScores) {
+  const strong = stageScores.filter(s => s.avg >= STRENGTH_THRESHOLD).sort((a,b) => b.avg - a.avg);
+  const el = document.getElementById("strengthsContainer");
+
+  if (strong.length === 0) {
+    el.innerHTML = "";
+    return;
+  }
+
+  const cards = strong.map(s => `
+    <div class="strength-card">
+      <div class="strength-head">
+        <span class="strength-stage">${s.name}</span>
+        <span class="strength-score">${s.avg.toFixed(1)} / ٥</span>
+      </div>
+      <p class="strength-text">${STAGE_DATA[s.key].strength}</p>
+    </div>`).join("");
+
+  el.innerHTML = `
+    <h2>ما الذي يعمل جيداً</h2>
+    <p class="lead">${strong.length === 6 ? "جميع المراحل الست تتجه نحو الصحة. إليك ما تقوم به بشكل صحيح." : "هذه المراحل تؤدي بشكل جيد. احمِها بينما تعالج ما هو أدناه."}</p>
+    <div class="strength-grid">${cards}</div>`;
+}
+
+/* ---- Priority recommendations (enhanced with symptoms, actions, urgency) ---- */
+function renderPriorities(stageScores) {
+  const sorted = [...stageScores].sort((a, b) => a.avg - b.avg);
+  const weak = sorted.filter(s => s.avg < WEAK_THRESHOLD).slice(0, 3);
+  const el = document.getElementById("priorityContainer");
+
+  if (weak.length === 0) {
+    el.innerHTML = `
+      <div class="priority-empty">
+        <h2>لا شيء عاجل يبرز</h2>
+        <p>جميع المراحل الست تتجه نحو الصحة بناءً على التقييم الذاتي. التشخيص الكامل سيؤكد ذلك مقابل بيانات أداء حقيقية ومن المرجح أن يكشف فرص تحسين أصغر بدلاً من إصلاح أولوي واضح.</p>
+      </div>`;
+    return;
+  }
+
+  const cards = weak.map((s, i) => {
+    const data = STAGE_DATA[s.key];
+    const urg = urgencyFor(s.avg);
+    const band = interpretationBand(s.avg);
+    const interpretation = data.interpretations[band];
+    const symptomsHtml = data.symptoms.map(sym => `<li>${sym}</li>`).join("");
+
+    return `
+    <div class="priority-card rank-${i + 1}">
+      <div class="priority-rank">الأولوية ${i + 1}</div>
+      <div class="priority-head">
+        <span class="priority-stage">${s.name}${urg ? `<span class="urgency-badge ${urg.level}">${urg.label}</span>` : ''}</span>
+        <span class="priority-score" style="color:${bandFor(s.avg).color}">${s.avg.toFixed(1)} / ٥</span>
+      </div>
+      <div class="priority-failure">${s.failure}</div>
+      <p class="priority-interpretation">${interpretation}</p>
+      <ul class="priority-symptoms">${symptomsHtml}</ul>
+      <div class="priority-action">
+        <strong>الخطوة الأولى الملموسة</strong>
+        ${data.action}
+      </div>
+    </div>`;
+  }).join("");
+
+  el.innerHTML = `
+    <h2>أين تركّز أولاً</h2>
+    <p class="lead">بناءً على المراحل الأدنى تسجيلاً لديك. ليس بديلاً عن التشخيص الكامل، لكنه نقطة بداية معقولة للحوار.</p>
+    <div class="priority-grid">${cards}</div>`;
+}
+
+/* ---- Cross-stage connections ---- */
+function renderConnections(stageScores) {
+  const el = document.getElementById("connectionsContainer");
+  const weakKeys = new Set(stageScores.filter(s => s.avg < WEAK_THRESHOLD).map(s => s.key));
+
+  const active = CROSS_STAGE_LINKS.filter(link =>
+    link.stages.every(k => weakKeys.has(k))
+  );
+
+  if (active.length === 0) {
+    el.classList.add("hidden");
+    return;
+  }
+
+  el.classList.remove("hidden");
+  const cards = active.map(link => `
+    <div class="connection-card">
+      <div class="connection-label">${link.label}</div>
+      <div class="connection-stages">${link.stages.map(k => STAGES.find(s => s.key === k).name).join(" + ")}</div>
+      <p class="connection-text">${link.text}</p>
+    </div>`).join("");
+
+  el.innerHTML = `
+    <h2>المخاطر المترابطة</h2>
+    <p class="lead">بعض مراحلك الضعيفة مرتبطة ببعضها. إصلاح واحدة بمعزل قد لا يكفي.</p>
+    ${cards}`;
+}
+</script>
+</body>
+</html>

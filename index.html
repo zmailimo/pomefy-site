@@ -54,7 +54,7 @@
   "areaServed": ["JO", "SA", "AE", "GB"],
   "serviceType": [
     "Revenue Consulting",
-    "Social Intelligence",
+    "Growth Strategy",
     "Marketing Agency Services",
     "Digital Marketing Strategy",
     "Brand Identity & Campaign Execution",
@@ -96,7 +96,7 @@
     "@type": "OfferCatalog",
     "name": "Advisory Services",
     "itemListElement": [
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Social Intelligence", "description": "Social intelligence, market mapping, and strategies that deliver measurable commercial outcomes."}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Growth Strategy", "description": "Social intelligence, market mapping, and strategies that deliver measurable commercial outcomes."}},
       {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Marketing & Brand", "description": "Full-service brand identity, campaign concepts, and impeccable execution rivalling any specialist marketing agency."}},
       {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "E-Commerce Development", "description": "Shopify, WooCommerce, and Magento store development with strategic advisory, not just technical build."}},
       {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Business Development", "description": "Partnership development, pipeline building, and deal negotiation as a fully managed service."}},
@@ -135,7 +135,7 @@
       "name": "What services does POME Fruitful Partners offer?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "POME offers seven core services: Social Intelligence (market mapping and competitive intelligence), Marketing and Brand (identity, campaign concepts, and execution), E-Commerce (Shopify, WooCommerce, and Magento development), Business Development (pipeline building and deal negotiation), Investment Advisory (valuations, pitch decks, and governance), AI Stack Advisory, and Event-Led Business Development."
+        "text": "POME offers seven core services: Growth Strategy (social intelligence and market mapping), Marketing and Brand (identity, campaign concepts, and execution), E-Commerce (Shopify, WooCommerce, and Magento development), Business Development (pipeline building and deal negotiation), Investment Advisory (valuations, pitch decks, and governance), AI Stack Advisory, and Event-Led Business Development."
       }
     },
     {
@@ -792,6 +792,22 @@
     .wrap{ padding: 0 18px; }
     .section-lede{ font-size: 14.5px; }
   }
+
+/* Language Switcher */
+.lang-switch{display:inline-flex;align-items:center;gap:4px;margin-left:12px;margin-right:12px;font-size:13px;font-weight:600;letter-spacing:.02em;}
+.lang-switch a{color:rgba(255,255,255,.55);text-decoration:none;padding:3px 6px;border-radius:4px;transition:all .25s ease;}
+.lang-switch a:hover{color:rgba(255,255,255,.85);}
+.lang-switch a.active{color:var(--white);background:rgba(255,255,255,.15);}
+.lang-switch .sep{color:rgba(255,255,255,.3);user-select:none;}
+header.site-nav.scrolled .lang-switch a{color:rgba(27,22,19,.4);}
+header.site-nav.scrolled .lang-switch a:hover{color:rgba(27,22,19,.7);}
+header.site-nav.scrolled .lang-switch a.active{color:var(--ink);background:rgba(27,22,19,.08);}
+header.site-nav.scrolled .lang-switch .sep{color:rgba(27,22,19,.2);}
+
+.mobile-lang-switch{display:flex;justify-content:center;gap:8px;padding:16px 24px;border-top:1px solid rgba(27,22,19,.1);margin-top:8px;}
+.mobile-lang-switch a{font-size:14px;font-weight:600;color:rgba(27,22,19,.5);text-decoration:none;padding:6px 14px;border-radius:6px;transition:all .25s ease;}
+.mobile-lang-switch a:hover{color:var(--ink);}
+.mobile-lang-switch a.active{color:var(--white);background:var(--red);}
 </style>
 </head>
 <body>
@@ -815,7 +831,7 @@
       <div class="nav-dropdown">
         <a href="#services">Engagements <span class="dd-arrow">▾</span></a>
         <div class="dropdown-menu">
-          <a href="social-intelligence.html"><svg viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-5 3 3 5-7"/></svg>Social Intelligence</a>
+          <a href="social-intelligence.html"><svg viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-5 3 3 5-7"/></svg>Growth Strategy</a>
           <a href="marketing-brand.html"><svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5ZM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Marketing &amp; Brand</a>
           <a href="e-commerce.html"><svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12L5 3H2m6 18a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"/></svg>E‑Commerce</a>
           <a href="business-development.html"><svg viewBox="0 0 24 24"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="17" r="3"/><path d="M9.5 8.5 14.5 15.5"/></svg>Business Development</a>
@@ -827,6 +843,7 @@
       <a href="#work-with-us">Work With Us</a>
       <a href="#trusted">Clients</a>
     </nav>
+    <div class="lang-switch"><a href="#" class="active">EN</a><span class="sep">|</span><a href="index-ar.html">عربي</a></div>
     <a href="#lead-form" class="btn nav-cta" style="margin-right:8px;background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.4);color:var(--white);">Get My Free Diagnostic</a>
     <a href="collaborate.html" class="btn nav-cta nav-cta-collab" style="background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.4);color:var(--white);">Collaborate</a>
     <button type="button" class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileDrawer" aria-label="Open menu">
@@ -842,7 +859,7 @@
   <a href="#methodology">Methodology</a>
   <a href="#services" class="mobile-dd-toggle" onclick="event.preventDefault();var items=this.parentElement.querySelector('.mobile-dd-items');items.classList.toggle('open');this.querySelector('.dd-arrow').style.transform=items.classList.contains('open')?'rotate(180deg)':'';">Engagements <span class="dd-arrow" style="font-size:10px;margin-left:4px;display:inline-block;transition:transform .2s ease;">▾</span></a>
   <div class="mobile-dd-items">
-    <a href="social-intelligence.html">Social Intelligence</a>
+    <a href="social-intelligence.html">Growth Strategy</a>
     <a href="marketing-brand.html">Marketing &amp; Brand</a>
     <a href="e-commerce.html">E‑Commerce</a>
     <a href="business-development.html">Business Development</a>
@@ -854,6 +871,8 @@
   <a href="#trusted">Clients</a>
   <a href="collaborate.html">Collaborate</a>
   <a href="#lead-form" class="btn">Get My Free Diagnostic</a>
+
+  <div class="mobile-lang-switch"><a href="#" class="active">EN</a><a href="index-ar.html">عربي</a></div>
 </nav>
 
 <main id="top">
@@ -890,7 +909,7 @@
       <div class="hero-content">
         <h1>POME</h1>
         <p class="tagline-italic">Fruitful Partners</p>
-        <p class="lead">Social intelligence, revenue consulting, and commercial execution. For organizations ready to turn insight into momentum and rewrite their trajectory.</p>
+        <p class="lead">Social intelligence, revenue consulting, and commercial execution. For organizations ready to turn insight into momentum and rewrite their growth trajectory.</p>
         <div class="hero-cta">
           <a href="#lead-form" class="btn on-dark" style="border-color:#fff; color:#fff;">Get My Free Diagnostic</a>
           <a href="#methodology" class="btn" style="border-color: rgba(255,255,255,.5); color:#fff;">See How It Works ↓</a>
@@ -908,9 +927,9 @@
 
       <div class="who-grid">
         <div class="who-text reveal">
-          <p><strong>POME Fruitful Partners</strong> is a Business Development advisory built at the intersection of social intelligence, revenue consulting, and commercial execution. We work with organizations ready to turn insight into momentum and rewrite their trajectory.</p>
+          <p><strong>POME Fruitful Partners</strong> is a growth advisory built at the intersection of social intelligence, revenue consulting, and commercial execution. We work with organizations ready to turn insight into momentum and rewrite their growth trajectory.</p>
           <p>Our methodology is the Revenue Equilibrium Model, a systems-based framework modeled on the natural water cycle. We treat revenue as a living system, not a linear production line. Six interconnected stages operate in continuous flow. When one stage falls out of balance, the entire system suffers, not from lack of effort, but from imbalance.</p>
-          <p>We don't just design strategies; we execute them. Our team has built, launched, and run commercial programs across the full revenue spectrum, and that hands-on experience informs every piece of advisory work we do.</p>
+          <p>We don't just design strategies; we execute them. Our team has built, launched, and run growth programs across the full revenue spectrum, and that hands-on experience informs every piece of advisory work we do.</p>
         </div>
         <div class="who-image reveal">
           <div class="quote-mark">
@@ -994,7 +1013,7 @@
       <div class="service-grid">
         <a href="social-intelligence.html" class="service-card reveal" style="text-decoration:none;color:inherit;display:block;">
           <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 15l4-5 3 3 5-7"/></svg></div>
-          <h3>Social Intelligence</h3>
+          <h3>Growth Strategy</h3>
           <p>Social intelligence, market mapping, and strategies that deliver.</p>
         </a>
         <a href="marketing-brand.html" class="service-card reveal" style="text-decoration:none;color:inherit;display:block;">

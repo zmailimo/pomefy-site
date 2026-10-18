@@ -299,6 +299,22 @@ body.drawer-open{overflow:hidden;}
   .final-btns .btn{width:100%;justify-content:center;}
   .footer-inner{flex-direction:column;text-align:center;}
 }
+
+/* Language Switcher */
+.lang-switch{display:inline-flex;align-items:center;gap:4px;margin-left:12px;margin-right:12px;font-size:13px;font-weight:600;letter-spacing:.02em;}
+.lang-switch a{color:rgba(255,255,255,.55);text-decoration:none;padding:3px 6px;border-radius:4px;transition:all .25s ease;}
+.lang-switch a:hover{color:rgba(255,255,255,.85);}
+.lang-switch a.active{color:var(--white);background:rgba(255,255,255,.15);}
+.lang-switch .sep{color:rgba(255,255,255,.3);user-select:none;}
+header.site-nav.scrolled .lang-switch a{color:rgba(27,22,19,.4);}
+header.site-nav.scrolled .lang-switch a:hover{color:rgba(27,22,19,.7);}
+header.site-nav.scrolled .lang-switch a.active{color:var(--ink);background:rgba(27,22,19,.08);}
+header.site-nav.scrolled .lang-switch .sep{color:rgba(27,22,19,.2);}
+
+.mobile-lang-switch{display:flex;justify-content:center;gap:8px;padding:16px 24px;border-top:1px solid rgba(27,22,19,.1);margin-top:8px;}
+.mobile-lang-switch a{font-size:14px;font-weight:600;color:rgba(27,22,19,.5);text-decoration:none;padding:6px 14px;border-radius:6px;transition:all .25s ease;}
+.mobile-lang-switch a:hover{color:var(--ink);}
+.mobile-lang-switch a.active{color:var(--white);background:var(--red);}
 </style>
 </head>
 <body>
@@ -320,6 +336,7 @@ body.drawer-open{overflow:hidden;}
       <a href="#deliverables">Deliverables</a>
       <a href="#faq">FAQ</a>
     </nav>
+    <div class="lang-switch"><a href="#" class="active">EN</a><span class="sep">|</span><a href="social-intelligence-ar.html">عربي</a></div>
     <a href="https://calendly.com/mo-zmaili-pomefy/30min" target="_blank" rel="noopener" class="btn nav-cta">Book a Strategy Call</a>
     <button class="menu-toggle" aria-label="Open menu" id="menuToggle" onclick="toggleDrawer()" aria-expanded="false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
